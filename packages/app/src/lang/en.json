@@ -1,0 +1,25 @@
+{
+  "connections": {
+    "create": "New Connection",
+    "create_group": "New Group",
+    "name": "Name",
+    "name_default": "New Connection",
+    "tag": "Tag",
+    "path": "Path",
+    "select_directory": "Select directory...",
+    "command": "Command",
+    "save": "Save",
+    "connect": "Connect",
+    "delete": "Delete",
+    "over_ssh": "Over SSH",
+    "over_ssh_desc": "it will use the default SSH config if you leaving the <small>SSH Key</small> empty",
+    "ssh_server": "Server",
+    "ssh_port": "Port",
+    "ssh_user": "User",
+    "ssh_key": "SSH Key",
+    "import_ssh_key": "Import a private key..."
+  },
+
+  "zh": "中文",
+  "en": "English"
+}

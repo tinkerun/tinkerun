@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+}
+
+/* for react-split */
+.gutter {
+    cursor: col-resize;
+}
