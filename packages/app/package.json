@@ -8,6 +8,7 @@
   "scripts": {
     "start": "electron ./src/index.js",
     "lint": "eslint ./src",
+    "rebuild": "electron-rebuild -f -w node-pty",
     "build": "ncc build ./src/index.js -e electron -e node-pty -o build",
     "test": "jest"
   },
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@vercel/ncc": "^0.27.0",
     "electron": "^11.3.0",
+    "electron-rebuild": "^2.3.5",
     "eslint": "^7.20.0",
     "eslint-config-billyct": "^1.1.0",
     "jest": "^26.6.3",

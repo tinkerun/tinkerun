@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
+    "rebuild": "lerna run rebuild --scope app",
     "start:app": "lerna run start --scope app --stream",
     "start:web": "lerna run start --scope web --stream",
     "start": "run-p start:web start:app",
