@@ -40,6 +40,9 @@ ipcMain.on('createConnection', event => {
     id: uuid4(),
     tag: 'local',
     name: getIntl().formatMessage({id: 'connections.name_default'}),
+    is_over_ssh: false,
+    path: '',
+    command: '',
   }
 
   createConnection(connection)
