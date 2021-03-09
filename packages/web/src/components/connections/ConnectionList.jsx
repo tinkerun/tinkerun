@@ -1,31 +1,17 @@
-import {useEffect} from 'react'
 import {Pane} from 'evergreen-ui'
 
 import ConnectionItem from './ConnectionItem'
 import ConnectionListContainer from './ConnectionListContainer'
-import {
-  offUpdateConnection,
-  offDeleteConnection,
-  onDeleteConnection,
-  onUpdateConnection,
-  onCreateConnection,
-  offCreateConnection,
-} from '../../utils/api'
+import useDeleteConnectionEvent from '../../hooks/useDeleteConnectionEvent'
+import useCreateConnectionEvent from '../../hooks/useCreateConnectionEvent'
+import useUpdateConnectionEvent from '../../hooks/useUpdateConnectionEvent'
 
 const ConnectionList = () => {
-  const {connections, updateConnection, deleteConnection, createConnection} = ConnectionListContainer.useContainer()
+  const {connections} = ConnectionListContainer.useContainer()
 
-  useEffect(() => {
-    onUpdateConnection(updateConnection)
-    onDeleteConnection(deleteConnection)
-    onCreateConnection(createConnection)
-
-    return () => {
-      offUpdateConnection()
-      offDeleteConnection()
-      offCreateConnection()
-    }
-  }, [])
+  useDeleteConnectionEvent()
+  useCreateConnectionEvent()
+  useUpdateConnectionEvent()
 
   return (
     <Pane>
