@@ -11,7 +11,6 @@ module.exports = {
     app: appPkg,
     output: 'build',
   },
-  asar: false,
   mac:{
     electronLanguages: ['en', 'zh'],
   },
