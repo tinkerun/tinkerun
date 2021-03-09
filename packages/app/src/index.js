@@ -1,4 +1,4 @@
-const {app, nativeTheme} = require('electron')
+const {app} = require('electron')
 const {is} = require('electron-util')
 const unhandled = require('electron-unhandled')
 const debug = require('electron-debug')
@@ -7,9 +7,6 @@ const contextMenu = require('electron-context-menu')
 const {createIndexWindow} = require('./createIndexWindow')
 const {getIndexWindow} = require('./processes')
 require('./ipc')
-
-// TODO support dark mode
-nativeTheme.themeSource = 'light'
 
 unhandled()
 debug()

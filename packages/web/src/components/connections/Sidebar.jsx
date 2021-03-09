@@ -1,7 +1,7 @@
 import {majorScale, Pane} from 'evergreen-ui'
 
 import QuickButton from './QuickButton'
-import CreateMenu from './CreateMenu'
+import CreateButton from './CreateButton'
 import ConnectionList from './ConnectionList'
 import ConnectionListContainer from './ConnectionListContainer'
 import {allConnections} from '../../utils/api'
@@ -21,7 +21,7 @@ const Sidebar = () => (
       paddingX={majorScale(2)}
     >
       <QuickButton/>
-      <CreateMenu/>
+      <CreateButton/>
     </Pane>
 
     <Pane

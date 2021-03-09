@@ -1,4 +1,4 @@
-import {Button, PlusIcon, majorScale} from 'evergreen-ui'
+import {Button, PlusIcon, majorScale, IconButton} from 'evergreen-ui'
 import {FormattedMessage} from 'react-intl'
 import {useLocation} from 'wouter'
 
@@ -13,14 +13,14 @@ const CreateButton = () => {
   }
 
   return (
-    <Button
-      iconBefore={PlusIcon}
-      height={majorScale(4)}
-      width='100%'
+    <IconButton
+      icon={PlusIcon}
+      height={majorScale(3)}
       onClick={handleClick}
+      appearance='minimal'
     >
       <FormattedMessage id='connections.create'/>
-    </Button>
+    </IconButton>
   )
 }
 

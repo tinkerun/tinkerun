@@ -4,7 +4,7 @@ const {createEditorWindow} = require('./createEditorWindow')
 const {getIntl} = require('./locale')
 const {deleteConnection, getConnection} = require('./services/connections')
 
-const createConnectionContextMenu = id => {
+const popupConnectionContextMenu = id => {
   const menu = new Menu()
 
   menu.append(new MenuItem({
@@ -26,5 +26,5 @@ const createConnectionContextMenu = id => {
 }
 
 module.exports = {
-  createConnectionContextMenu,
+  popupConnectionContextMenu,
 }

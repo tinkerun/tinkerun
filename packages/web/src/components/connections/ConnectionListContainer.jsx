@@ -4,6 +4,15 @@ import {createContainer} from 'unstated-next'
 const useConnections = (initialState = {}) => {
   const [connections, setConnections] = useState(Object.values(initialState))
 
+  const createConnection = connection => {
+    setConnections(prevState => (
+      [
+        ...prevState,
+        connection,
+      ]
+    ))
+  }
+
   const updateConnection = connection => {
     setConnections(prevState => (
       prevState.map(c => {
@@ -16,16 +25,15 @@ const useConnections = (initialState = {}) => {
     ))
   }
 
-  const deleteConnection = connection => {
-    setConnections(prevState => (
-      prevState.filter(c => c.id !== connection.id)
-    ))
+  const deleteConnection = id => {
+    setConnections(prevState => prevState.filter(c => c.id !== id))
   }
 
   return {
     connections,
     updateConnection,
     deleteConnection,
+    createConnection,
   }
 }
 

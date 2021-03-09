@@ -24,9 +24,17 @@ const deleteConnection = id => {
 /**
  * @param {Record<string, any>} connection
  */
+const createConnection = connection => {
+  connections.set(connection.id, connection)
+  getIndexWindow().webContents.send('createConnection', connection)
+}
+
+/**
+ * @param {Record<string, any>} connection
+ */
 const updateConnection = connection => {
   connections.set(connection.id, connection)
-  getIndexWindow().contents.send('updateConnection', connection)
+  getIndexWindow().webContents.send('updateConnection', connection)
 }
 
 /**
@@ -38,6 +46,7 @@ const getConnection = id => connections.get(id, {})
 module.exports = {
   allConnections,
   deleteConnection,
+  createConnection,
   updateConnection,
   getConnection,
 }

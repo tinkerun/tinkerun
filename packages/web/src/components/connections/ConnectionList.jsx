@@ -3,18 +3,27 @@ import {Pane} from 'evergreen-ui'
 
 import ConnectionItem from './ConnectionItem'
 import ConnectionListContainer from './ConnectionListContainer'
-import {offUpdateConnection, offDeleteConnection, onDeleteConnection, onUpdateConnection} from '../../utils/api'
+import {
+  offUpdateConnection,
+  offDeleteConnection,
+  onDeleteConnection,
+  onUpdateConnection,
+  onCreateConnection,
+  offCreateConnection,
+} from '../../utils/api'
 
 const ConnectionList = () => {
-  const {connections, updateConnection, deleteConnection} = ConnectionListContainer.useContainer()
+  const {connections, updateConnection, deleteConnection, createConnection} = ConnectionListContainer.useContainer()
 
   useEffect(() => {
     onUpdateConnection(updateConnection)
     onDeleteConnection(deleteConnection)
+    onCreateConnection(createConnection)
 
     return () => {
       offUpdateConnection()
       offDeleteConnection()
+      offCreateConnection()
     }
   }, [])
 

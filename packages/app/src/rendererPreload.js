@@ -24,6 +24,8 @@ contextBridge.exposeInMainWorld('api', {
   offSetIntlConfig: () => ipcRenderer.removeAllListeners('setIntlConfig'),
   onUpdateConnection: cb => ipcRenderer.on('updateConnection', (event, arg) => cb(arg)),
   offUpdateConnection: () => ipcRenderer.removeAllListeners('updateConnection'),
+  onCreateConnection: cb => ipcRenderer.on('createConnection', (event, arg) => cb(arg)),
+  offCreateConnection: () => ipcRenderer.removeAllListeners('createConnection'),
   onDeleteConnection: cb => ipcRenderer.on('deleteConnection', (event, arg) => cb(arg)),
   offDeleteConnection: () => ipcRenderer.removeAllListeners('deleteConnection'),
   onOutputConnection: cb => ipcRenderer.on(`outputConnection.${connectionId()}`, (event, arg) => cb(arg)),

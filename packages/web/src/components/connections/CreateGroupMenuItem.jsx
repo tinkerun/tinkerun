@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
 import {FormattedMessage} from 'react-intl'
 import {Menu, NewLayersIcon, majorScale} from 'evergreen-ui'
 
-const CreateGroupMenuItem = () => {
+const CreateGroupMenuItem = ({close}) => {
   const handleSelect = () => {
     // unimplemented
+    close()
   }
 
   return (
@@ -17,6 +19,10 @@ const CreateGroupMenuItem = () => {
       />
     </Menu.Item>
   )
+}
+
+CreateGroupMenuItem.propTypes = {
+  close: PropTypes.func.isRequired,
 }
 
 export default CreateGroupMenuItem

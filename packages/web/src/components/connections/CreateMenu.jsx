@@ -14,10 +14,10 @@ import CreateGroupMenuItem from './CreateGroupMenuItem'
 const CreateMenu = () => (
   <Popover
     position={Position.BOTTOM_LEFT}
-    content={
+    content={({close}) =>
       <Menu>
-        <CreateMenuItem/>
-        <CreateGroupMenuItem/>
+        <CreateMenuItem close={close}/>
+        <CreateGroupMenuItem close={close}/>
       </Menu>
     }
   >

@@ -6,9 +6,9 @@ const {allLocales} = require('./utils/allLocales')
 const {quickConnection} = require('./constants')
 const {getIntlConfig, getIntl} = require('./locale')
 const {createEditorWindow} = require('./createEditorWindow')
-const {createConnectionContextMenu} = require('./createConnectionContextMenu')
+const {popupConnectionContextMenu} = require('./popupConnectionContextMenu')
 const {Inspiring} = require('./Inspiring')
-const {deleteConnection, updateConnection, allConnections, getConnection} = require('./services/connections')
+const {deleteConnection, createConnection, updateConnection, allConnections, getConnection} = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
@@ -38,10 +38,11 @@ ipcMain.on('getIntlConfig', event => {
 ipcMain.on('createConnection', event => {
   const connection = {
     id: uuid4(),
+    tag: 'local',
     name: getIntl().formatMessage({id: 'connections.name_default'}),
   }
 
-  updateConnection(connection)
+  createConnection(connection)
 
   event.returnValue = connection.id
 })
@@ -82,6 +83,6 @@ ipcMain.on('inspire', event => {
 })
 
 ipcMain.on('popupConnectionContextMenu', (event, id) => {
-  const menu = createConnectionContextMenu(id)
+  const menu = popupConnectionContextMenu(id)
   menu.popup()
 })
