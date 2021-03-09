@@ -16,8 +16,7 @@ module.exports = {
   packageOptions: {},
   devOptions: {
     open: 'none',
+    port: parseInt(process.env.WEB_PORT) || 8080,
   },
-  buildOptions: {
-    baseUrl: '/',
-  },
+  buildOptions: {},
 }
