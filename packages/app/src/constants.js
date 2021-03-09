@@ -3,6 +3,9 @@ const quickConnection = {
   name: 'Quick Connection',
 }
 
+const appName = 'Tinkerun'
+
 module.exports = {
   quickConnection,
+  appName,
 }

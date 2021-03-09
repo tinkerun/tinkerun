@@ -3,6 +3,7 @@ const {is} = require('electron-util')
 
 const {setIndexWindow} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
+const {appName} = require('./constants')
 
 const createIndexWindow = async () => {
   const win = new BrowserWindow({
@@ -10,6 +11,7 @@ const createIndexWindow = async () => {
     height: 500,
     minWidth: 600,
     minHeight: 500,
+    title: appName,
     webPreferences: {
       preload: getPreloadEntryUrl(),
       contextIsolation: true,

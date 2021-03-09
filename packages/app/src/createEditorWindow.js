@@ -4,6 +4,7 @@ const {is} = require('electron-util')
 const {PsySHPty} = require('./PsySHPty')
 const {getEditorWindow, setEditorWindow, getIndexWindow} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
+const {appName} = require('./constants')
 
 const createPty = connection => {
   const pty = new PsySHPty(connection)
@@ -37,7 +38,7 @@ const createEditorWindow = async connection => {
   const win = new BrowserWindow({
     width: 1000,
     height: 800,
-    title: name,
+    title: `${appName} - ${name}`,
     webPreferences: {
       preload: getPreloadEntryUrl(),
       contextIsolation: true,
