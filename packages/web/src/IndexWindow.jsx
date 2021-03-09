@@ -3,7 +3,7 @@ import Split from 'react-split'
 import {Route, Switch} from 'wouter'
 
 import Sidebar from './components/connections/Sidebar'
-import Empty from './components/Empty'
+import Inspire from './components/Inspire'
 import ConnectionPage from './components/ConnectionPage'
 import WindowContainer from './components/WindowContainer'
 
@@ -17,7 +17,7 @@ const IndexWindow = () => (
     >
       <Sidebar/>
       <Switch>
-        <Route path='/' component={Empty}/>
+        <Route path='/' component={Inspire}/>
         <Route path='/connections/:id' component={ConnectionPage}/>
       </Switch>
     </Pane>

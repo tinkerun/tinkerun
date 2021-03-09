@@ -2,20 +2,11 @@ import {Heading, majorScale, Pane, Text} from 'evergreen-ui'
 
 import {inspire} from '../utils/api'
 
-const Empty = () => {
+const Inspire = () => {
   const snippets = inspire().split('-')
 
   const sentence = snippets[0].trim()
   const author = snippets[1].trim()
-
-  const emptyTextProperties = {
-    color: 'transparent',
-    backgroundColor: '#d0d0d0',
-    textShadow: '1px 1px 0px rgba(255,255,255,0.5)',
-    style: {
-      WebkitBackgroundClip: 'text',
-    },
-  }
 
   return (
     <Pane
@@ -28,7 +19,8 @@ const Empty = () => {
     >
       <Heading
         size={600}
-        {...emptyTextProperties}
+        color='darkgray'
+        fontWeight='lighter'
       >
         {sentence}
       </Heading>
@@ -37,7 +29,8 @@ const Empty = () => {
         marginTop={majorScale(2)}
         fontStyle='italic'
         size={300}
-        {...emptyTextProperties}
+        color='darkgray'
+        fontWeight='lighter'
       >
         {author}
       </Text>
@@ -45,4 +38,4 @@ const Empty = () => {
   )
 }
 
-export default Empty
+export default Inspire
