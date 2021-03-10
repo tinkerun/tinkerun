@@ -17,8 +17,8 @@ module.exports = {
   files: [
     '!**/*',
     {from: appPkg, filter: ['package.json']},
-    {from: path.join(appPkg, 'node_modules/node-pty'), to: 'node_modules/node-pty'},
-    {from: path.join(appPkg, 'build'), to: 'main'},
+    {from: path.join(appPkg, 'node_modules/node-pty/build/'), to: 'main/build'},
+    {from: path.join(appPkg, 'build'), to: 'main', filter: ['!build/']},
     {from: path.join(webPkg, 'build'), to: 'renderer'},
   ],
   electronDownload: {
