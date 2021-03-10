@@ -1,4 +1,5 @@
 const {ipcMain} = require('electron')
+const {is} = require('electron-util')
 
 const {selectDirectory, selectFile} = require('./utils/selectFileOrDirectory')
 const {allLocales} = require('./utils/allLocales')
@@ -67,6 +68,15 @@ ipcMain.on('updateConnection', (event, connection) => {
 
 ipcMain.on('connectConnection', async (event, connection) => {
   updateConnection(connection)
+
+  if (is.macos) {
+    // 如果是苹果系统则关闭 indexWindow
+    const win = getIndexWindow()
+    if (win) {
+      win.close()
+    }
+  }
+
   await createEditorWindow(connection)
 })
 

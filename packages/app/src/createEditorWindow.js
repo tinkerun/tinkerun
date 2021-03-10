@@ -2,17 +2,11 @@ const {BrowserWindow} = require('electron')
 const {is} = require('electron-util')
 
 const {createPty} = require('./createPty')
-const {setEditorWindow, getIndexWindow, getPtyProcess, setPtyProcess} = require('./processes')
+const {setEditorWindow, getPtyProcess, setPtyProcess} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')
 
 const createEditorWindow = async connection => {
-  const mainWindow = getIndexWindow()
-
-  if (mainWindow) {
-    mainWindow.close()
-  }
-
   const {id, name} = connection
 
   const win = new BrowserWindow({
