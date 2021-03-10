@@ -20,6 +20,23 @@
     "import_ssh_key": "导入秘钥..."
   },
 
+  "unable_to_connect": "无法连接，请检查你的连接配置是否正确",
+  "ok": "确定",
+
   "zh": "中文",
-  "en": "English"
+  "en": "English",
+
+  "menu": {
+    "website": "访问网站",
+    "source_code": "源代码",
+    "report_an_issue": "提交问题...",
+    "created_by": "Created by billyct",
+    "preferences": "偏好设置...",
+    "settings": "设置",
+    "debug": "调试",
+    "show_settings": "打开配置文件",
+    "show_app_data": "打开应用数据",
+    "delete_settings": "删除配置文件",
+    "delete_app_data": "删除应用数据"
+  }
 }
