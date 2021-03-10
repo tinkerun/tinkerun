@@ -5,6 +5,8 @@ const {setIndexWindow} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')
 
+let hash = ''
+
 const createIndexWindow = async () => {
   const win = new BrowserWindow({
     width: 600,
@@ -19,7 +21,12 @@ const createIndexWindow = async () => {
     },
   })
 
-  await win.loadURL(getEntryUrl('index.html'))
+  let asset = 'index.html'
+  if (hash) {
+    asset = `${asset}#${hash}`
+  }
+
+  await win.loadURL(getEntryUrl(asset))
 
   if (is.development) {
     win.webContents.openDevTools()
@@ -27,6 +34,11 @@ const createIndexWindow = async () => {
 
   win.on('ready-to-show', () => {
     win.show()
+  })
+
+  win.on('close', () => {
+    // 保存上一次的 url hash 地址
+    hash = win.webContents.getURL().split('#')[1]
   })
 
   win.on('closed', () => {
