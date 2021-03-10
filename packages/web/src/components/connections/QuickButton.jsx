@@ -1,4 +1,5 @@
 import {Button, FolderOpenIcon, majorScale} from 'evergreen-ui'
+import {FormattedMessage} from 'react-intl'
 
 import {quickConnect} from '../../utils/api'
 
@@ -13,7 +14,7 @@ const QuickButton = () => {
       height={majorScale(3)}
       onClick={handleClick}
     >
-      Quick Connect
+      <FormattedMessage id='connections.quick_connect'/>
     </Button>
   )
 }

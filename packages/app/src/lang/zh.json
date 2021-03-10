@@ -1,5 +1,6 @@
 {
   "connections": {
+    "quick_connect": "快速连接",
     "create": "新建连接",
     "create_group": "新建组",
     "name": "名称",

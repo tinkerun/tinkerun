@@ -1,5 +1,6 @@
 {
   "connections": {
+    "quick_connect": "Quick Connect",
     "create": "New Connection",
     "create_group": "New Group",
     "name": "Name",
