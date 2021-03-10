@@ -1,6 +1,21 @@
+const {v4: uuid4} = require('uuid')
+
 const {connections} = require('../database/connections')
-const {getIndexWindow} = require('../processes')
+const {getIndexWindow, getPtyProcess, getEditorWindow} = require('../processes')
+const {getIntl} = require('../locale')
 const {quickConnection} = require('../constants')
+
+/**
+ * @returns {Record<string, any>}
+ */
+const newConnection = () => ({
+  id: uuid4(),
+  tag: 'local',
+  name: getIntl().formatMessage({id: 'connections.name_default'}),
+  is_over_ssh: false,
+  path: '',
+  command: '',
+})
 
 /**
  * @returns {Record<string, any>}
@@ -13,7 +28,7 @@ const allConnections = () => {
 }
 
 /**
- * @param {string} id
+ * @param {String} id
  */
 const deleteConnection = id => {
   connections.delete(id)
@@ -22,11 +37,15 @@ const deleteConnection = id => {
 }
 
 /**
- * @param {Record<string, any>} connection
+ * @returns {Record<string, any>}
  */
-const createConnection = connection => {
+const createConnection = () => {
+  const connection = newConnection()
+
   connections.set(connection.id, connection)
   getIndexWindow().webContents.send('createConnection', connection)
+
+  return connection
 }
 
 /**
@@ -38,10 +57,26 @@ const updateConnection = connection => {
 }
 
 /**
- * @param {string} id
- * @returns {object}
+ * @param {String} id
+ * @returns {Record<string, any>}
  */
 const getConnection = id => connections.get(id, {})
+
+/**
+ *
+ * @param {String} id
+ * @param {String } code
+ */
+const inputConnection = (id, code) => {
+  getPtyProcess(id).run(code)
+}
+
+/**
+ * @param {String} id
+ */
+const closeConnection = id => {
+  getEditorWindow(id).close()
+}
 
 module.exports = {
   allConnections,
@@ -49,4 +84,6 @@ module.exports = {
   createConnection,
   updateConnection,
   getConnection,
+  inputConnection,
+  closeConnection,
 }

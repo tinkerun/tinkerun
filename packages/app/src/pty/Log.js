@@ -2,7 +2,7 @@ const {app} = require('electron')
 const path = require('path')
 const fs = require('fs')
 
-class PtyLog {
+class Log {
   constructor (connection) {
     const dir = path.resolve(app.getPath('userData'), 'pty-logs')
 
@@ -10,9 +10,8 @@ class PtyLog {
       fs.mkdirSync(dir, {recursive: true})
     }
 
-    const filename = `${connection.id}.log`
-
-    this.fd = fs.openSync(path.resolve(dir, filename), 'w')
+    this.filename = path.resolve(dir, `${connection.id}.log`)
+    this.fd = fs.openSync(this.filename, 'w')
   }
 
   append (data) {
@@ -21,9 +20,11 @@ class PtyLog {
 
   close () {
     fs.closeSync(this.fd)
+    // 关闭之后删除 log 文件
+    fs.unlinkSync(this.filename)
   }
 }
 
 module.exports = {
-  PtyLog,
+  Log,
 }

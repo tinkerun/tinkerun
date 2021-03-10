@@ -1,14 +1,22 @@
 const {ipcMain} = require('electron')
-const {v4: uuid4} = require('uuid')
 
 const {selectDirectory, selectFile} = require('./utils/selectFileOrDirectory')
 const {allLocales} = require('./utils/allLocales')
 const {quickConnection} = require('./constants')
-const {getIntlConfig, getIntl} = require('./locale')
+const {getIntlConfig} = require('./locale')
 const {createEditorWindow} = require('./createEditorWindow')
+const {getEditorWindow} = require('./processes')
 const {popupConnectionContextMenu} = require('./popupConnectionContextMenu')
 const {Inspiring} = require('./Inspiring')
-const {deleteConnection, createConnection, updateConnection, allConnections, getConnection} = require('./services/connections')
+const {
+  deleteConnection,
+  createConnection,
+  updateConnection,
+  allConnections,
+  getConnection,
+  inputConnection,
+  closeConnection,
+} = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
@@ -36,17 +44,7 @@ ipcMain.on('getIntlConfig', event => {
 })
 
 ipcMain.on('createConnection', event => {
-  const connection = {
-    id: uuid4(),
-    tag: 'local',
-    name: getIntl().formatMessage({id: 'connections.name_default'}),
-    is_over_ssh: false,
-    path: '',
-    command: '',
-  }
-
-  createConnection(connection)
-
+  const connection = createConnection()
   event.returnValue = connection.id
 })
 
@@ -69,6 +67,14 @@ ipcMain.on('updateConnection', (event, connection) => {
 ipcMain.on('connectConnection', async (event, connection) => {
   updateConnection(connection)
   await createEditorWindow(connection)
+})
+
+ipcMain.on(`inputConnection`, (event, id, code) => {
+  inputConnection(id, code)
+})
+
+ipcMain.on('closeConnection', (event, id) => {
+  closeConnection(id)
 })
 
 ipcMain.on('quickConnect', async event => {

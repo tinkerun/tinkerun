@@ -1,28 +1,10 @@
-const {BrowserWindow, ipcMain} = require('electron')
+const {BrowserWindow} = require('electron')
 const {is} = require('electron-util')
 
-const {PsySHPty} = require('./PsySHPty')
-const {getEditorWindow, setEditorWindow, getIndexWindow} = require('./processes')
+const {createPty} = require('./createPty')
+const {setEditorWindow, getIndexWindow, getPtyProcess, setPtyProcess} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')
-
-const createPty = connection => {
-  const pty = new PsySHPty(connection)
-  pty.connect()
-
-  const {id} = connection
-
-  // bind events
-  pty.onExecuted(res => {
-    getEditorWindow(id).webContents.send(`outputConnection.${id}`, res)
-  })
-
-  // pty.onConnected(() => {
-  //   getEditorWindow(id).webContents.send(`connectedConnection.${id}`, true)
-  // })
-
-  return pty
-}
 
 const createEditorWindow = async connection => {
   const mainWindow = getIndexWindow()
@@ -30,8 +12,6 @@ const createEditorWindow = async connection => {
   if (mainWindow) {
     mainWindow.close()
   }
-
-  const pty = createPty(connection)
 
   const {id, name} = connection
 
@@ -48,6 +28,8 @@ const createEditorWindow = async connection => {
 
   await win.loadURL(`${getEntryUrl('editor.html')}?id=${id}`)
 
+  createPty(connection)
+
   if (is.development) {
     win.webContents.openDevTools()
   }
@@ -59,16 +41,11 @@ const createEditorWindow = async connection => {
   win.on('closed', () => {
     setEditorWindow(id, null)
 
-    if (pty) {
-      pty.kill()
+    // 清理 pty
+    if (getPtyProcess(id)) {
+      getPtyProcess(id).kill()
+      setPtyProcess(id, null)
     }
-
-    ipcMain.removeAllListeners(`inputConnection.${id}`)
-  })
-
-  // bind run code
-  ipcMain.on(`inputConnection.${id}`, (event, code) => {
-    pty.run(code)
   })
 
   setEditorWindow(id, win)
