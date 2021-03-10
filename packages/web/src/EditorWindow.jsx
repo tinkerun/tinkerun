@@ -2,10 +2,13 @@ import {Route} from 'wouter'
 
 import EditorPage from './components/EditorPage'
 import WindowContainer from './components/WindowContainer'
+import ConnectionProvider from './components/ConnectionProvider'
 
 const EditorWindow = () => (
   <WindowContainer>
-    <Route path='/' component={EditorPage}/>
+    <ConnectionProvider>
+      <Route path='/' component={EditorPage}/>
+    </ConnectionProvider>
   </WindowContainer>
 )
 

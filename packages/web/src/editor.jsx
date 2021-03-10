@@ -1,14 +1,8 @@
 import {render} from 'react-dom'
-import {Route} from 'wouter'
 
-import WindowContainer from './components/WindowContainer'
-import EditorPage from './components/EditorPage'
+import EditorWindow from './EditorWindow'
 
 render(
-  (
-    <WindowContainer>
-        <Route path='/' component={EditorPage}/>
-    </WindowContainer>
-  ),
+  <EditorWindow/>,
   document.querySelector('#app'),
 )
