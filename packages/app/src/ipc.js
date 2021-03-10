@@ -80,7 +80,7 @@ ipcMain.on('connectConnection', async (event, connection) => {
   await createEditorWindow(connection)
 })
 
-ipcMain.on(`inputConnection`, (event, id, code) => {
+ipcMain.on('inputConnection', (event, id, code) => {
   inputConnection(id, code)
 })
 

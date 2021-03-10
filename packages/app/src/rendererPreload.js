@@ -29,7 +29,7 @@ contextBridge.exposeInMainWorld('api', {
   offCreateConnection: () => ipcRenderer.removeAllListeners('createConnection'),
   onDeleteConnection: cb => ipcRenderer.on('deleteConnection', (event, arg) => cb(arg)),
   offDeleteConnection: () => ipcRenderer.removeAllListeners('deleteConnection'),
-  onOutputConnection: cb => ipcRenderer.on(`outputConnection`, (event, arg) => cb(arg)),
-  offOutputConnection: () => ipcRenderer.removeAllListeners(`outputConnection`),
+  onOutputConnection: cb => ipcRenderer.on('outputConnection', (event, arg) => cb(arg)),
+  offOutputConnection: () => ipcRenderer.removeAllListeners('outputConnection'),
   onConnectedConnection: cb => ipcRenderer.once('connectedConnection', cb),
 })

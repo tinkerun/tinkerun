@@ -10,7 +10,7 @@ const ON_EXECUTED = 'onExecuted'
 const ON_CONNECTED = 'onConnected'
 
 class Pty {
-  constructor(connection) {
+  constructor (connection) {
     this.connection = connection
     // 自定义事件触发器
     this.event = new EventEmitter()
@@ -30,7 +30,7 @@ class Pty {
   /**
    * 初始化 connection pty 进程
    */
-  connect() {
+  connect () {
     const shell = defaultShell
     const options = {
       env: process.env,
@@ -60,7 +60,7 @@ class Pty {
    *
    * @private
    */
-  _onData() {
+  _onData () {
     let res = ''
     let connected = false
 
@@ -94,7 +94,7 @@ class Pty {
    * @param {function} cb
    * @returns {void}
    */
-  onExecuted(cb) {
+  onExecuted (cb) {
     this.event.on(ON_EXECUTED, cb)
   }
 
@@ -104,14 +104,14 @@ class Pty {
    * @param {function} cb
    * @returns {void}
    */
-  onConnected(cb) {
+  onConnected (cb) {
     this.event.once(ON_CONNECTED, cb)
   }
 
   /**
    * 重连
    */
-  reconnect() {
+  reconnect () {
     this.kill()
     this.connect()
   }
@@ -119,7 +119,7 @@ class Pty {
   /**
    * 清理
    */
-  kill() {
+  kill () {
     this.pty.kill()
     this.pty = null
 
@@ -138,7 +138,7 @@ class Pty {
    * @param {string} code
    * @returns {void}
    */
-  run(code) {
+  run (code) {
     this.code = code
 
     code = code.replaceAll('\n', '\\\n')
@@ -151,7 +151,7 @@ class Pty {
    * @param {string} res
    * @returns {string}
    */
-  result(res) {
+  result (res) {
     const snippets = this.code.split('\n').filter(v => !!v.trim())
     return getStringBetween(res, `${snippets[snippets.length - 1]}\r\n`, this.prompt)
   }

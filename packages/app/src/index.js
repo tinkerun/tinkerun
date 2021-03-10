@@ -3,7 +3,7 @@ const {is} = require('electron-util')
 const unhandled = require('electron-unhandled')
 const debug = require('electron-debug')
 const contextMenu = require('electron-context-menu')
-const {default: installExtension, REACT_DEVELOPER_TOOLS} =  require('electron-devtools-installer')
+const {default: installExtension, REACT_DEVELOPER_TOOLS} = require('electron-devtools-installer')
 
 const {createIndexWindow} = require('./createIndexWindow')
 const {getIndexWindow} = require('./processes')
