@@ -23,7 +23,7 @@ const useDeleteConnectionEvent = () => {
     return () => {
       offDeleteConnection()
     }
-  }, [params])
+  }, [params]) // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default useDeleteConnectionEvent
