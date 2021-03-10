@@ -5,7 +5,8 @@ const {allLocales} = require('./utils/allLocales')
 const {quickConnection} = require('./constants')
 const {getIntlConfig} = require('./locale')
 const {createEditorWindow} = require('./createEditorWindow')
-const {getEditorWindow} = require('./processes')
+const {createIndexWindow} = require('./createIndexWindow')
+const {getIndexWindow} = require('./processes')
 const {popupConnectionContextMenu} = require('./popupConnectionContextMenu')
 const {Inspiring} = require('./Inspiring')
 const {
@@ -73,8 +74,12 @@ ipcMain.on(`inputConnection`, (event, id, code) => {
   inputConnection(id, code)
 })
 
-ipcMain.on('closeConnection', (event, id) => {
+ipcMain.on('closeConnection', async (event, id) => {
   closeConnection(id)
+
+  if (!getIndexWindow()) {
+    await createIndexWindow()
+  }
 })
 
 ipcMain.on('quickConnect', async event => {
