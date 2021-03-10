@@ -1,5 +1,5 @@
-import {InlineAlert, majorScale, Small, TextInput} from 'evergreen-ui'
-import {FormattedMessage, useIntl} from 'react-intl'
+import {majorScale, TextInput} from 'evergreen-ui'
+import {useIntl} from 'react-intl'
 import {useFormContext} from 'react-hook-form'
 
 import Field from '../Field'
@@ -18,22 +18,6 @@ const SSHForm = () => {
 
   return (
     <>
-      <Field>
-        <InlineAlert
-          size={300}
-          marginTop={8}
-          color="muted"
-        >
-          <FormattedMessage
-            id='connections.over_ssh_desc'
-            values={{
-              // eslint-disable-next-line react/display-name
-              small: chucks => <Small>{chucks}</Small>,
-            }}
-          />
-        </InlineAlert>
-      </Field>
-
       <Field
         label={intl.formatMessage({id: 'connections.ssh_server'})}
       >

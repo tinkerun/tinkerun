@@ -13,11 +13,11 @@
     "connect": "Connect",
     "delete": "Delete",
     "over_ssh": "Over SSH",
-    "over_ssh_desc": "it will use the default SSH config if you leaving the <small>SSH Key</small> empty",
     "ssh_server": "Server",
     "ssh_port": "Port",
     "ssh_user": "User",
     "ssh_key": "SSH Key",
+    "ssh_key_tooltip": "it will use the default SSH config if you leaving the SSH Key empty",
     "import_ssh_key": "Import a private key..."
   },
 

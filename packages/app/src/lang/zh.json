@@ -13,11 +13,11 @@
     "connect": "连接",
     "delete": "删除",
     "over_ssh": "使用 SSH",
-    "over_ssh_desc": "如果 <small>秘钥</small> 空着将使用默认的 SSH 配置进行连接",
     "ssh_server": "服务器",
     "ssh_port": "端口",
     "ssh_user": "用户",
     "ssh_key": "秘钥",
+    "ssh_key_tooltip": "如果秘钥空着则使用默认的 SSH 配置进行连接",
     "import_ssh_key": "导入秘钥..."
   },
 
