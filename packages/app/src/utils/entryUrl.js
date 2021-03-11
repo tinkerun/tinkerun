@@ -7,11 +7,11 @@ const getEntryUrl = asset => {
     return `http://localhost:${process.env.WEB_PORT || 8080}/${asset}`
   }
 
-  return `file://${path.resolve(__dirname, app.getAppPath(), 'renderer', asset)}`
+  return `file://${path.join(app.getAppPath(), 'renderer', asset)}`
 }
 
 const getPreloadEntryUrl = () => {
-  return path.resolve(__dirname, '../rendererPreload.js')
+  return path.join(__dirname, '../rendererPreload.js')
 }
 
 module.exports = {

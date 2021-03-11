@@ -4,13 +4,13 @@ const fs = require('fs')
 
 class Log {
   constructor (connection) {
-    const dir = path.resolve(app.getPath('userData'), 'pty-logs')
+    const dir = path.join(app.getPath('userData'), 'pty-logs')
 
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, {recursive: true})
     }
 
-    this.filename = path.resolve(dir, `${connection.id}.log`)
+    this.filename = path.join(dir, `${connection.id}.log`)
     this.fd = fs.openSync(this.filename, 'w')
   }
 

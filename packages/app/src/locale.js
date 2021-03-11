@@ -15,7 +15,7 @@ const cache = createIntlCache()
 const getIntlConfig = () => {
   const locale = getLocale()
   const messages = flatten(JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, `lang/${locale}.json`)).toString('utf8'),
+    fs.readFileSync(path.join(__dirname, `lang/${locale}.json`)).toString('utf8'),
   ))
 
   return {
