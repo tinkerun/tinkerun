@@ -1,6 +1,7 @@
 const pty = require('node-pty')
 const {EventEmitter} = require('events')
 const defaultShell = require('default-shell')
+const fs = require('fs')
 
 const {Log} = require('./Log')
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
@@ -33,11 +34,16 @@ class Pty {
   connect () {
     const shell = defaultShell
     const options = {
+      cwd: process.env.HOME,
       env: process.env,
+      encoding: 'utf-8',
     }
 
     if (!this.connection.is_over_ssh) {
-      options.cwd = this.connection.path
+      try {
+        fs.accessSync(this.connection.path)
+        options.cwd = this.connection.path
+      } catch (e) {}
     }
 
     this.pty = pty.spawn(shell, [], options)
