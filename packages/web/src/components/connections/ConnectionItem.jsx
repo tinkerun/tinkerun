@@ -38,11 +38,15 @@ const ConnectionItem = ({connection}) => {
           display='flex'
           alignItems='center'
         >
-          {
-            connection.is_over_ssh
-              ? <CloudIcon size={10}/>
-              : <DesktopIcon size={10}/>
-          }
+          <Pane
+            flexShrink={1}
+          >
+            {
+              connection.is_over_ssh
+                ? <CloudIcon size={10}/>
+                : <DesktopIcon size={10}/>
+            }
+          </Pane>
 
           <Text
             marginLeft={8}
