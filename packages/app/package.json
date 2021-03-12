@@ -1,7 +1,5 @@
 {
   "name": "app",
-  "description": "an app for php artisan",
-  "author": "billyct",
   "version": "1.0.0",
   "main": "main/index.js",
   "license": "MIT",
