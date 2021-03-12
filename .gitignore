@@ -1,6 +1,7 @@
 .idea
 node_modules
 build/
+/assets/icons
 
 .DS_Store
 .envrc
