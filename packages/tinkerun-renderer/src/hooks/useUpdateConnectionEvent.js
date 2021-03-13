@@ -8,7 +8,7 @@ const useUpdateConnectionEvent = () => {
 
   useEffect(() => {
     onUpdateConnection(updateConnection)
-    return offUpdateConnection
+    return () => offUpdateConnection(updateConnection)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 }
 

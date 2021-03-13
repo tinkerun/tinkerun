@@ -7,7 +7,7 @@ const useCreateConnectionEvent = () => {
   const {createConnection} = ConnectionListContainer.useContainer()
   useEffect(() => {
     onCreateConnection(createConnection)
-    return offCreateConnection
+    return () => offCreateConnection(createConnection)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 }
 

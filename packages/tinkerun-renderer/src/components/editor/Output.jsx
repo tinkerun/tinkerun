@@ -19,13 +19,15 @@ const Output = () => {
 
     term.open(termRef.current)
 
-    onOutputConnection(data => {
+    const writeToTerm = data => {
       term.clear()
       term.write(data)
-    })
+    }
+
+    onOutputConnection(writeToTerm)
 
     return () => {
-      offOutputConnection()
+      offOutputConnection(writeToTerm)
       term.dispose()
     }
   }, [])

@@ -13,7 +13,7 @@ const LanguageProvider = ({children}) => {
     onSetIntlConfig(setIntlConfig)
 
     return () => {
-      offSetIntlConfig()
+      offSetIntlConfig(setIntlConfig)
     }
   }, [])
 
