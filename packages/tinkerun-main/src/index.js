@@ -45,8 +45,7 @@ app.on('ready', async () => {
     installExtension(REACT_DEVELOPER_TOOLS)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log('An error occurred: ', err))
-  } catch(e) {}
-
+  } catch (e) {}
 
   Menu.setApplicationMenu(menu)
   await createIndexWindow()

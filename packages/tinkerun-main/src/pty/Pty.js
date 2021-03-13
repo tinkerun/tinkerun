@@ -69,7 +69,6 @@ class Pty {
     let connected = false
 
     this.pty.onData(data => {
-
       this.event.emit(ON_DATA, data)
 
       res += data
