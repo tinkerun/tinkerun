@@ -17,7 +17,10 @@ const createPty = connection => {
   })
 
   pty.onData(data => {
-    getEditorWindow(id).webContents.send('outputConnection', data)
+    const win = getEditorWindow(id)
+    if (win) {
+      win.webContents.send('outputConnection', data)
+    }
   })
 
   setPtyProcess(id, pty)
