@@ -1,6 +1,5 @@
 {
-  "name": "app",
-  "version": "1.0.0",
+  "name": "tinkerun-main",
   "main": "main/index.js",
   "license": "MIT",
   "scripts": {

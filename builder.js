@@ -1,7 +1,7 @@
 const path = require('path')
 
-const appPkg = path.join(__dirname, 'packages/app')
-const webPkg = path.join(__dirname, 'packages/web')
+const mainPkg = path.join(__dirname, 'packages/tinkerun-main')
+const rendererPkg = path.join(__dirname, 'packages/tinkerun-renderer')
 const assetsDir = path.join(__dirname, 'assets')
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
 
   directories: {
     buildResources: assetsDir,
-    app: appPkg,
+    app: mainPkg,
     output: 'build',
   },
   mac: {
@@ -35,10 +35,10 @@ module.exports = {
   },
   files: [
     '!**/*',
-    {from: appPkg, filter: ['package.json']},
-    {from: path.join(appPkg, 'node_modules/node-pty/build/'), to: 'main/build'},
-    {from: path.join(appPkg, 'build'), to: 'main', filter: ['!build/']},
-    {from: path.join(webPkg, 'build'), to: 'renderer'},
+    {from: mainPkg, filter: ['package.json']},
+    {from: path.join(mainPkg, 'node_modules/node-pty/build/'), to: 'main/build'},
+    {from: path.join(mainPkg, 'build'), to: 'main', filter: ['!build/']},
+    {from: path.join(rendererPkg, 'build'), to: 'renderer'},
   ],
   electronDownload: {
     mirror: process.env.ELECTRON_MIRROR,
