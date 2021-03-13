@@ -6,12 +6,13 @@
     "rebuild": "lerna run rebuild --scope tinkerun-main",
     "start:main": "lerna run start --scope tinkerun-main --stream",
     "start:renderer": "lerna run start --scope tinkerun-renderer --stream",
-    "start": "run-p start:main start:renderer",
+    "start": "lerna exec --parallel --stream yarn start",
     "build:packages": "lerna run build",
     "build:icons": "electron-icon-builder -i assets/icon.png -o assets",
     "build:electron": "electron-builder --config builder.js",
     "build": "run-s build:icons build:packages build:electron",
-    "test": "lerna run test"
+    "test": "lerna run test --parallel --",
+    "lint": "lerna run lint --parallel --"
   },
   "devDependencies": {
     "electron": "^12.0.0",

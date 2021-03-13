@@ -1,5 +1,7 @@
 const path = require('path')
 
+const lernaJson = require('./lerna.json')
+
 const mainPkg = path.join(__dirname, 'packages/tinkerun-main')
 const rendererPkg = path.join(__dirname, 'packages/tinkerun-renderer')
 const assetsDir = path.join(__dirname, 'assets')
@@ -20,6 +22,7 @@ module.exports = {
     repository:{
       url: 'https://github.com/tinkerun/tinkerun',
     },
+    version: lernaJson.version,
   },
 
   directories: {

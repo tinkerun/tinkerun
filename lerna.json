@@ -2,10 +2,6 @@
   "packages": [
     "packages/*"
   ],
-  "command": {
-    "run": {
-      "npmClient": "yarn"
-    }
-  },
+  "npmClient": "yarn",
   "version": "0.0.0"
 }
