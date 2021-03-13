@@ -26,7 +26,6 @@ const SSHForm = () => {
           width='100%'
           height={majorScale(3)}
           name='ssh_server'
-          isInvalid={Boolean(errors.server)}
           ref={register}
         />
       </Field>
@@ -52,7 +51,6 @@ const SSHForm = () => {
           height={majorScale(3)}
           placeholder='root'
           name='ssh_user'
-          isInvalid={Boolean(errors.user)}
           ref={register}
         />
       </Field>

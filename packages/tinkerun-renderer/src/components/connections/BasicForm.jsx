@@ -27,7 +27,6 @@ const BasicForm = () => {
           height={majorScale(3)}
           placeholder='Magic'
           name='name'
-          isInvalid={Boolean(errors.name)}
           ref={register}
         />
       </Field>
@@ -46,7 +45,6 @@ const BasicForm = () => {
           height={majorScale(3)}
           placeholder='php artisan tinker'
           name='command'
-          isInvalid={Boolean(errors.command)}
           ref={register}
         />
       </Field>

@@ -25,7 +25,6 @@ const PathField = () => {
           width='100%'
           name='path'
           ref={register}
-          isInvalid={Boolean(errors.path)}
         />
       </Field>
 
