@@ -1,6 +1,5 @@
 import {Pane, majorScale} from 'evergreen-ui'
 
-import SettingButton from './SettingButton'
 import RunButton from './RunButton'
 
 const Toolbar = () => (
@@ -11,7 +10,6 @@ const Toolbar = () => (
     paddingY={majorScale(1)}
   >
     <Pane>
-      <SettingButton/>
     </Pane>
 
     <Pane>

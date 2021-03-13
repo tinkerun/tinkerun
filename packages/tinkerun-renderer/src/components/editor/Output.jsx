@@ -33,7 +33,6 @@ const Output = () => {
   return (
     <Pane
       padding={majorScale(1)}
-      borderTop
     >
       <Pane
         ref={termRef}

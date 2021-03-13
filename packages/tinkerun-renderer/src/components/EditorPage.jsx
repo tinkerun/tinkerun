@@ -1,5 +1,6 @@
 import {Pane} from 'evergreen-ui'
 
+import ConnectionProvider from './ConnectionProvider'
 import Editor from './editor/Editor'
 import Output from './editor/Output'
 import Toolbar from './editor/Toolbar'
@@ -16,7 +17,14 @@ const EditorPage = () => {
       <EditorContainer.Provider>
         <Editor/>
         <Toolbar/>
-        <Output/>
+        <Pane
+          position='relative'
+          borderTop
+        >
+          <ConnectionProvider>
+            <Output/>
+          </ConnectionProvider>
+        </Pane>
       </EditorContainer.Provider>
     </Pane>
   )
