@@ -21,6 +21,11 @@
     "import_ssh_key": "Import a private key..."
   },
 
+  "editor": {
+    "output": "Output",
+    "terminal": "Terminal"
+  },
+
   "unable_to_connect": "Unable to connect the connection, please check your connection config.",
   "ok": "Ok",
   "cancel": "Cancel",

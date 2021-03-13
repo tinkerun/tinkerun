@@ -1,6 +1,7 @@
 import {Pane, majorScale} from 'evergreen-ui'
 
 import RunButton from './RunButton'
+import OutputTab from './OutputTab'
 
 const Toolbar = () => (
   <Pane
@@ -8,8 +9,11 @@ const Toolbar = () => (
     justifyContent='space-between'
     paddingX={majorScale(2)}
     paddingY={majorScale(1)}
+    borderTop
+    borderBottom
   >
     <Pane>
+      <OutputTab/>
     </Pane>
 
     <Pane>

@@ -9,11 +9,15 @@ const createPty = connection => {
   pty.connect()
 
   pty.onExecuted(res => {
-    getEditorWindow(id).webContents.send('outputConnection', res)
+    getEditorWindow(id).webContents.send('executeConnection', res)
   })
 
   pty.onConnected(() => {
     getEditorWindow(id).webContents.send('connectedConnection')
+  })
+
+  pty.onData(data => {
+    getEditorWindow(id).webContents.send('outputConnection', data)
   })
 
   setPtyProcess(id, pty)

@@ -9,14 +9,13 @@ const {getStringBetween} = require('../utils/getStringBetween')
 
 const ON_EXECUTED = 'onExecuted'
 const ON_CONNECTED = 'onConnected'
+const ON_DATA = 'onData'
 
 class Pty {
   constructor (connection) {
     this.connection = connection
     // 自定义事件触发器
     this.event = new EventEmitter()
-    // 用于存储 log
-    this.log = new Log(this.connection)
 
     this.pty = null
 
@@ -71,9 +70,8 @@ class Pty {
     let connected = false
 
     this.pty.onData(data => {
-      if (this.log) {
-        this.log.append(data)
-      }
+
+      this.event.emit(ON_DATA, data)
 
       res += data
       if (res.indexOf(this.prompt) >= 0) {
@@ -98,7 +96,6 @@ class Pty {
    * 代码已经执行
    *
    * @param {function} cb
-   * @returns {void}
    */
   onExecuted (cb) {
     this.event.on(ON_EXECUTED, cb)
@@ -108,10 +105,18 @@ class Pty {
    * 已连接
    *
    * @param {function} cb
-   * @returns {void}
    */
   onConnected (cb) {
     this.event.once(ON_CONNECTED, cb)
+  }
+
+  /**
+   * terminal 模式下返回全部数据
+   *
+   * @param {function} cb
+   */
+  onData (cb) {
+    this.event.on(ON_DATA, cb)
   }
 
   /**
@@ -129,12 +134,9 @@ class Pty {
     this.pty.kill()
     this.pty = null
 
-    this.log.close()
-    this.log = null
-
     this.event.removeAllListeners([
       ON_EXECUTED,
-      ON_CONNECTED,
+      ON_DATA,
     ])
   }
 
@@ -149,6 +151,15 @@ class Pty {
 
     code = code.replaceAll('\n', '\\\n')
     this.pty.write(`${code}\r`)
+  }
+
+  /**
+   * terminal 输入
+   *
+   * @param {String} code
+   */
+  input (code) {
+    this.pty.write(code)
   }
 
   /**

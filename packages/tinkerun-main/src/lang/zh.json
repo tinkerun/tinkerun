@@ -21,6 +21,11 @@
     "import_ssh_key": "导入秘钥..."
   },
 
+  "editor": {
+    "output": "输出",
+    "terminal": "命令行"
+  },
+
   "unable_to_connect": "无法连接，请检查你的连接配置是否正确",
   "ok": "确定",
   "cancel": "取消",

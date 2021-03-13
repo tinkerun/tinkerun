@@ -1,8 +1,13 @@
 body {
     margin: 0;
+    overflow-y: hidden;
 }
 
 /* for react-split */
-.gutter {
+.gutter-horizontal {
     cursor: col-resize;
+}
+
+.gutter-vertical {
+    cursor: row-resize;
 }

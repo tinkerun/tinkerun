@@ -3,7 +3,7 @@ import {majorScale, Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
-import {offOutputConnection, onOutputConnection} from '../../utils/api'
+import {offExecuteConnection, onExecuteConnection} from '../../utils/api'
 import {getTermOptions} from '../../utils/getTermOptions'
 
 const Output = () => {
@@ -15,19 +15,20 @@ const Output = () => {
     term = new xterm.Terminal({
       ...getTermOptions(),
       fontSize: 12,
+      disableStdin: true,
     })
 
     term.open(termRef.current)
 
-    const writeToTerm = data => {
+    const execute = data => {
       term.clear()
       term.write(data)
     }
 
-    onOutputConnection(writeToTerm)
+    onExecuteConnection(execute)
 
     return () => {
-      offOutputConnection(writeToTerm)
+      offExecuteConnection(execute)
       term.dispose()
     }
   }, [])

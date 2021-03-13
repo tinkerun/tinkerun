@@ -1,32 +1,35 @@
 import {Pane} from 'evergreen-ui'
+import Split from 'react-split'
 
-import ConnectionProvider from './ConnectionProvider'
 import Editor from './editor/Editor'
-import Output from './editor/Output'
 import Toolbar from './editor/Toolbar'
+import OutputView from './editor/OutputView'
 import EditorContainer from './editor/EditorContainer'
+import OutputContainer from './editor/OutputContainer'
 
 const EditorPage = () => {
   return (
-    <Pane
-      flex={1}
-      height='100vh'
-      display='flex'
-      flexDirection='column'
-    >
-      <EditorContainer.Provider>
-        <Editor/>
-        <Toolbar/>
+    <EditorContainer.Provider>
+      <OutputContainer.Provider>
         <Pane
-          position='relative'
-          borderTop
+          is={Split}
+          sizes={[50, 50]}
+          direction='vertical'
+          height='100vh'
+          display='flex'
+          flexDirection='column'
         >
-          <ConnectionProvider>
-            <Output/>
-          </ConnectionProvider>
+          <Pane
+            display='flex'
+            flexDirection='column'
+          >
+            <Editor/>
+            <Toolbar/>
+          </Pane>
+          <OutputView/>
         </Pane>
-      </EditorContainer.Provider>
-    </Pane>
+      </OutputContainer.Provider>
+    </EditorContainer.Provider>
   )
 }
 

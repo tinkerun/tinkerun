@@ -4,6 +4,9 @@ import {filterUndefined} from './filterUndefined'
 const defaultProps = {
   backgroundColor: '#fff',
   foregroundColor: '#000',
+  cursorColor: '#000',
+  selectionColor: '#666',
+
   colors: {
     black: '#000000',
     red: '#990000',

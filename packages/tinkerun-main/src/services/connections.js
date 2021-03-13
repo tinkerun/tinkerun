@@ -68,6 +68,15 @@ const getConnection = id => connections.get(id, {})
  * @param {String } code
  */
 const inputConnection = (id, code) => {
+  getPtyProcess(id).input(code)
+}
+
+/**
+ *
+ * @param {String} id
+ * @param {String } code
+ */
+const runConnection = (id, code) => {
   getPtyProcess(id).run(code)
 }
 
@@ -85,5 +94,6 @@ module.exports = {
   updateConnection,
   getConnection,
   inputConnection,
+  runConnection,
   closeConnection,
 }

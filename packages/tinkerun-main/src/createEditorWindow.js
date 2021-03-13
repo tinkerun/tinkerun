@@ -23,8 +23,6 @@ const createEditorWindow = async connection => {
 
   await win.loadURL(`${getEntryUrl('editor.html')}?id=${id}`)
 
-  createPty(connection)
-
   if (is.development) {
     win.webContents.openDevTools()
   }
@@ -44,6 +42,8 @@ const createEditorWindow = async connection => {
   })
 
   setEditorWindow(id, win)
+
+  createPty(connection)
 }
 
 module.exports = {

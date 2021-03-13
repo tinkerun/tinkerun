@@ -26,7 +26,8 @@ const Editor = () => {
       flex={1}
     >
       <MonacoEditor
-        language="php-snippet"
+        height={350}
+        language='php-snippet'
         value={code}
         options={{
           selectOnLineNumbers: true,

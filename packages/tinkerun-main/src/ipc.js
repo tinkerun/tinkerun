@@ -17,6 +17,7 @@ const {
   allConnections,
   getConnection,
   inputConnection,
+  runConnection,
   closeConnection,
 } = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
@@ -78,6 +79,10 @@ ipcMain.on('connectConnection', async (event, connection) => {
   }
 
   await createEditorWindow(connection)
+})
+
+ipcMain.on('runConnection', (event, id, code) => {
+  runConnection(id, code)
 })
 
 ipcMain.on('inputConnection', (event, id, code) => {
