@@ -17,6 +17,7 @@ const createEditorWindow = async connection => {
       preload: getPreloadEntryUrl(),
       contextIsolation: true,
       nodeIntegration: false,
+      nodeIntegrationInWorker: true,
     },
   })
 

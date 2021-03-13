@@ -18,6 +18,7 @@ const createIndexWindow = async () => {
       preload: getPreloadEntryUrl(),
       contextIsolation: true,
       nodeIntegration: false,
+      nodeIntegrationInWorker: true,
     },
   })
 
