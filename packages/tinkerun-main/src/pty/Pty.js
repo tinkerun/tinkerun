@@ -3,7 +3,6 @@ const {EventEmitter} = require('events')
 const defaultShell = require('default-shell')
 const fs = require('fs')
 
-const {Log} = require('./Log')
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
 const {getStringBetween} = require('../utils/getStringBetween')
 
