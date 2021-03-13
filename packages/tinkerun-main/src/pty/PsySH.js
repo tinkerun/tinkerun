@@ -9,7 +9,7 @@ class PsySH extends Pty {
     this.prompt = '>>>'
 
     // 默认执行使用 laravel 的 tinker 命令
-    this.commandDeafult = 'php artisan tinker'
+    this.commandDefault = 'php artisan tinker'
   }
 }
 
