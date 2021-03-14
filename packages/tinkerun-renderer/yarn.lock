@@ -3568,7 +3568,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-monaco-editor@*, monaco-editor@^0.22.3:
+monaco-editor@^0.22.3:
   version "0.22.3"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.22.3.tgz#69b42451d3116c6c08d9b8e052007ff891fd85d7"
   integrity sha512-RM559z2CJbczZ3k2b+ouacMINkAYWwRit4/vs0g2X/lkYefDiu0k2GmgWjAuiIpQi+AqASPOKvXNmYc8KUSvVQ==
@@ -4121,14 +4121,6 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha1-WzUxvXamRaTJ+25pPtNkGeMwEzk=
-
-react-monaco-editor@^0.42.0:
-  version "0.42.0"
-  resolved "https://registry.npm.taobao.org/react-monaco-editor/download/react-monaco-editor-0.42.0.tgz?cache=0&sync_timestamp=1612458827876&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-monaco-editor%2Fdownload%2Freact-monaco-editor-0.42.0.tgz#f754842a8c1ac5b14360b46fd8e17eff49882fab"
-  integrity sha1-91SEKowaxbFDYLRv2OF+/0mIL6s=
-  dependencies:
-    monaco-editor "*"
-    prop-types "^15.7.2"
 
 react-refresh@^0.9.0:
   version "0.9.0"
@@ -5243,6 +5235,11 @@ xmlchars@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/xmlchars/download/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha1-Bg/hvLf5x2/ioX24apvDq4lCEMs=
+
+xterm-addon-fit@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.npm.taobao.org/xterm-addon-fit/download/xterm-addon-fit-0.5.0.tgz#2d51b983b786a97dcd6cde805e700c7f913bc596"
+  integrity sha1-LVG5g7eGqX3NbN6AXnAMf5E7xZY=
 
 xterm@^4.10.0:
   version "4.10.0"

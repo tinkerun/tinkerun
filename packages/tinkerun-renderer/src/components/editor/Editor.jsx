@@ -1,42 +1,60 @@
-import {memo} from 'react'
+import {memo, useEffect, useRef} from 'react'
 import {Pane} from 'evergreen-ui'
-import MonacoEditor from 'react-monaco-editor'
+import * as monaco from 'monaco-editor'
 
 import EditorContainer from './EditorContainer'
 import {registerPHPSnippetLanguage} from '../../utils/registerPHPSnippetLanguage'
 
+const layoutEditor = editor => {
+  const layout = () => editor.layout()
+  window.addEventListener('resize', layout)
+  layout()
+
+  return {
+    dispose: () => window.removeEventListener('resize', layout),
+  }
+}
+
 const Editor = () => {
   const {code, setCode} = EditorContainer.useContainer()
+  const editorRef = useRef()
 
-  const handleEditorDidMount = editor => {
-    editor.focus()
-  }
-
-  const handleChange = value => {
-    setCode(value)
-  }
-
-  const handleEditorWillMount = monaco => {
-    // register php-snippet language
+  useEffect(() => {
+    // 注册 php-snippet
     registerPHPSnippetLanguage(monaco.languages)
-  }
+
+    const editor = monaco.editor.create(editorRef.current, {
+      language: 'php-snippet',
+      lineNumbers: 'on',
+      value: code,
+      selectOnLineNumbers: true,
+    })
+
+    editor.focus()
+    const change = editor.onDidChangeModelContent((e) => {
+      setCode(editor.getValue())
+    })
+
+    const layout = layoutEditor(editor)
+
+    return () => {
+      editor.dispose()
+
+      const model = editor.getModel()
+      if (model) {
+        model.dispose()
+      }
+
+      change.dispose()
+      layout.dispose()
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Pane
       flex={1}
-    >
-      <MonacoEditor
-        height={350}
-        language='php-snippet'
-        value={code}
-        options={{
-          selectOnLineNumbers: true,
-        }}
-        onChange={handleChange}
-        editorDidMount={handleEditorDidMount}
-        editorWillMount={handleEditorWillMount}
-      />
-    </Pane>
+      ref={editorRef}
+    />
   )
 }
 

@@ -9,9 +9,9 @@ let hash = ''
 
 const createIndexWindow = async () => {
   const win = new BrowserWindow({
-    width: 600,
+    width: 750,
     height: 500,
-    minWidth: 600,
+    minWidth: 750,
     minHeight: 500,
     title: appName,
     webPreferences: {

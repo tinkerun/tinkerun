@@ -1,18 +1,19 @@
 import {memo, useEffect, useRef} from 'react'
-import {majorScale, Pane} from 'evergreen-ui'
+import {Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
 import {offExecuteConnection, onExecuteConnection} from '../../utils/api'
 import {getTermOptions} from '../../utils/getTermOptions'
+import useFitAddon from '../../hooks/useFitAddon'
 
 const Output = () => {
   const termRef = useRef()
-  let term = null
+  const {fitAddonRef} = useFitAddon()
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    term = new xterm.Terminal({
+    const term = new xterm.Terminal({
       ...getTermOptions(),
       fontSize: 12,
       disableStdin: true,
@@ -27,6 +28,9 @@ const Output = () => {
 
     onExecuteConnection(execute)
 
+    term.loadAddon(fitAddonRef.current)
+    fitAddonRef.current.fit()
+
     return () => {
       offExecuteConnection(execute)
       term.dispose()
@@ -35,14 +39,9 @@ const Output = () => {
 
   return (
     <Pane
-      padding={majorScale(1)}
-    >
-      <Pane
-        ref={termRef}
-        height={400}
-        overflowY='scroll'
-      />
-    </Pane>
+      height='inherit'
+      ref={termRef}
+    />
   )
 }
 

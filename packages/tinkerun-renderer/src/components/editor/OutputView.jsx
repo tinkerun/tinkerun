@@ -1,4 +1,4 @@
-import {Pane} from 'evergreen-ui'
+import {majorScale, Pane} from 'evergreen-ui'
 
 import ConnectionProvider from '../ConnectionProvider'
 import Output from './Output'
@@ -11,9 +11,10 @@ const OutputView = () => {
   return (
     <Pane
       position='relative'
-      height={400}
+      padding={majorScale(1)}
     >
       <Pane
+        height='100%'
         display={tabIndex === 0 ? 'block' : 'none'}
       >
         <ConnectionProvider>
@@ -22,11 +23,11 @@ const OutputView = () => {
       </Pane>
 
       <Pane
+        height='100%'
         display={tabIndex === 1 ? 'block' : 'none'}
       >
         <Terminal/>
       </Pane>
-
     </Pane>
   )
 }

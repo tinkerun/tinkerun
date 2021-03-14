@@ -12,6 +12,8 @@ const createEditorWindow = async connection => {
   const win = new BrowserWindow({
     width: 1000,
     height: 800,
+    minWidth: 800,
+    minHeight: 800,
     title: `${appName} - ${name}`,
     webPreferences: {
       preload: getPreloadEntryUrl(),

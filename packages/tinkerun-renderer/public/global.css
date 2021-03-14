@@ -4,10 +4,15 @@ body {
 }
 
 /* for react-split */
+.gutter {
+    position: relative;
+}
 .gutter-horizontal {
     cursor: col-resize;
+    left: -5px;
 }
 
 .gutter-vertical {
     cursor: row-resize;
+    top: -5px;
 }

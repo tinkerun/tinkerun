@@ -19,11 +19,11 @@
     "react-hook-form": "^6.15.4",
     "react-hotkeys-hook": "^3.1.0",
     "react-intl": "^5.13.1",
-    "react-monaco-editor": "^0.42.0",
     "react-split": "^2.0.9",
     "unstated-next": "^1.1.0",
     "wouter": "^2.7.3",
-    "xterm": "^4.10.0"
+    "xterm": "^4.10.0",
+    "xterm-addon-fit": "^0.5.0"
   },
   "devDependencies": {
     "@snowpack/plugin-react-refresh": "^2.4.0",
