@@ -3,14 +3,16 @@ import {Pane, majorScale} from 'evergreen-ui'
 import RunButton from './RunButton'
 import OutputTab from './OutputTab'
 
-const Toolbar = () => (
+const Toolbar = (props) => (
   <Pane
+    height={50}
     display='flex'
     justifyContent='space-between'
+    alignItems='center'
     paddingX={majorScale(2)}
     paddingY={majorScale(1)}
     borderTop
-    borderBottom
+    {...props}
   >
     <Pane>
       <OutputTab/>

@@ -8,7 +8,7 @@ import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
 
 const Output = () => {
-  const termRef = useRef()
+  const domRef = useRef()
   const {fitAddonRef} = useFitAddon()
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Output = () => {
       cursor: '#fff',
     })
 
-    term.open(termRef.current)
+    term.open(domRef.current)
 
     const execute = data => {
       term.clear()
@@ -46,7 +46,7 @@ const Output = () => {
   return (
     <Pane
       height='inherit'
-      ref={termRef}
+      ref={domRef}
     />
   )
 }

@@ -1,7 +1,7 @@
 import {Tablist, Tab} from 'evergreen-ui'
 import {useIntl} from 'react-intl'
 
-import OutputContainer from './OutputContainer'
+import OutputContainer from './OutputTabContainer'
 
 const OutputTab = () => {
   const {tabIndex, setTabIndex} = OutputContainer.useContainer()

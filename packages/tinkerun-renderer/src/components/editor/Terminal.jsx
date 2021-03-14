@@ -8,7 +8,7 @@ import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
 
 const Terminal = () => {
-  const termRef = useRef()
+  const domRef = useRef()
   const {fitAddonRef} = useFitAddon()
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Terminal = () => {
       convertEol: true,
     })
 
-    term.open(termRef.current)
+    term.open(domRef.current)
     // 绑定输入
     term.onData(inputConnection)
 
@@ -40,7 +40,6 @@ const Terminal = () => {
     onOutputConnection(output)
 
     term.loadAddon(fitAddonRef.current)
-    fitAddonRef.current.fit()
 
     return () => {
       offOutputConnection(output)
@@ -51,7 +50,7 @@ const Terminal = () => {
   return (
     <Pane
       height='inherit'
-      ref={termRef}
+      ref={domRef}
     />
   )
 }

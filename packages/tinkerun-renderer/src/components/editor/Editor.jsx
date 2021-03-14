@@ -2,28 +2,22 @@ import {memo, useEffect, useRef} from 'react'
 import {Pane} from 'evergreen-ui'
 import * as monaco from 'monaco-editor'
 
-import EditorContainer from './EditorContainer'
+import EditorContainer from './CodeContainer'
 import {registerPHPSnippetLanguage} from '../../utils/registerPHPSnippetLanguage'
-
-const layoutEditor = editor => {
-  const layout = () => editor.layout()
-  window.addEventListener('resize', layout)
-  layout()
-
-  return {
-    dispose: () => window.removeEventListener('resize', layout),
-  }
-}
+import useEditorLayout from '../../hooks/useEditorLayout'
 
 const Editor = () => {
   const {code, setCode} = EditorContainer.useContainer()
+  const domRef = useRef()
   const editorRef = useRef()
+
+  useEditorLayout(editorRef)
 
   useEffect(() => {
     // 注册 php-snippet
     registerPHPSnippetLanguage(monaco.languages)
 
-    const editor = monaco.editor.create(editorRef.current, {
+    const editor = monaco.editor.create(domRef.current, {
       language: 'php-snippet',
       lineNumbers: 'on',
       value: code,
@@ -31,11 +25,12 @@ const Editor = () => {
     })
 
     editor.focus()
+
     const change = editor.onDidChangeModelContent((e) => {
       setCode(editor.getValue())
     })
 
-    const layout = layoutEditor(editor)
+    editorRef.current = editor
 
     return () => {
       editor.dispose()
@@ -46,14 +41,13 @@ const Editor = () => {
       }
 
       change.dispose()
-      layout.dispose()
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Pane
-      flex={1}
-      ref={editorRef}
+      height='100%'
+      ref={domRef}
     />
   )
 }

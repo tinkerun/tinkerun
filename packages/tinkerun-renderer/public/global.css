@@ -14,5 +14,5 @@ body {
 
 .gutter-vertical {
     cursor: row-resize;
-    top: -5px;
+    top: 5px;
 }

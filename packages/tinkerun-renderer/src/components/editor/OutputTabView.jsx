@@ -2,15 +2,16 @@ import {majorScale, Pane} from 'evergreen-ui'
 
 import ConnectionProvider from '../ConnectionProvider'
 import Output from './Output'
-import OutputContainer from './OutputContainer'
+import OutputTabContainer from './OutputTabContainer'
 import Terminal from './Terminal'
 
-const OutputView = (props) => {
-  const {tabIndex} = OutputContainer.useContainer()
+const OutputTabView = (props) => {
+  const {tabIndex} = OutputTabContainer.useContainer()
 
   const tabStyle = isDisplay => {
     const base = {
-      height: '100%',
+      height: 'inherit',
+      paddingBottom: majorScale(1),
     }
 
     if (isDisplay) {
@@ -28,7 +29,10 @@ const OutputView = (props) => {
   return (
     <Pane
       position='relative'
-      padding={majorScale(1)}
+      backgroundColor='white'
+      paddingX={majorScale(2)}
+      height='100%'
+      paddingTop={50}
       {...props}
     >
       <Pane
@@ -48,4 +52,4 @@ const OutputView = (props) => {
   )
 }
 
-export default OutputView
+export default OutputTabView
