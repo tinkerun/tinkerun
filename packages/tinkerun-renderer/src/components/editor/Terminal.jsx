@@ -16,7 +16,6 @@ const Terminal = () => {
     const term = new xterm.Terminal({
       ...getTermOptions(),
       fontSize: 12,
-      cursorStyle: 'bar',
       cursorBlink: true,
       disableStdin: false,
       convertEol: true,

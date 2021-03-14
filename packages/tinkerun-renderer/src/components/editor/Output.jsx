@@ -19,6 +19,12 @@ const Output = () => {
       disableStdin: true,
     })
 
+    // 不显示 cursor
+    term.setOption('theme', {
+      ...term.getOption('theme'),
+      cursor: '#fff',
+    })
+
     term.open(termRef.current)
 
     const execute = data => {
