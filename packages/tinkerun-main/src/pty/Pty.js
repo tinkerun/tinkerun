@@ -1,35 +1,24 @@
 const pty = require('node-pty')
-const {EventEmitter} = require('events')
 const defaultShell = require('default-shell')
 const fs = require('fs')
 
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
-const {getStringBetween} = require('../utils/getStringBetween')
+const {PtyEvent} = require('./PtyEvent')
 
-const ON_EXECUTED = 'onExecuted'
-const ON_CONNECTED = 'onConnected'
-const ON_DATA = 'onData'
+class Pty extends PtyEvent {
+  constructor(connection) {
+    super()
 
-class Pty {
-  constructor (connection) {
     this.connection = connection
-    // 自定义事件触发器
-    this.event = new EventEmitter()
-
     this.pty = null
-
-    // 标记进程执行完毕
-    this.prompt = ''
     // 默认初始化命令
     this.commandDefault = ''
-    // 存储正在执行的代码
-    this.code = ''
   }
 
   /**
    * 初始化 connection pty 进程
    */
-  connect () {
+  connect() {
     const shell = defaultShell
     const options = {
       cwd: process.env.HOME,
@@ -41,7 +30,8 @@ class Pty {
       try {
         fs.accessSync(this.connection.path)
         options.cwd = this.connection.path
-      } catch (e) {}
+      } catch ( e ) {
+      }
     }
 
     this.pty = pty.spawn(shell, [], options)
@@ -56,86 +46,31 @@ class Pty {
       this.pty.write(`${command}\r`)
     }
 
-    this._onData()
-  }
-
-  /**
-   * 监听 pty 的 onData 事件
-   *
-   * @private
-   */
-  _onData () {
-    let res = ''
-    let connected = false
-
-    this.pty.onData(data => {
-      this.event.emit(ON_DATA, data)
-
-      res += data
-      if (res.indexOf(this.prompt) >= 0) {
-        if (!connected) {
-          this.event.emit(ON_CONNECTED)
-          connected = true
-        } else {
-          // 触发已执行事件
-          this.event.emit(ON_EXECUTED, this.result(res))
-
-          // 重置代码
-          this.code = ''
-        }
-
-        // 重置 `res`
-        res = ''
-      }
-    })
-  }
-
-  /**
-   * 代码已经执行
-   *
-   * @param {function} cb
-   */
-  onExecuted (cb) {
-    this.event.on(ON_EXECUTED, cb)
-  }
-
-  /**
-   * 已连接
-   *
-   * @param {function} cb
-   */
-  onConnected (cb) {
-    this.event.once(ON_CONNECTED, cb)
-  }
-
-  /**
-   * terminal 模式下返回全部数据
-   *
-   * @param {function} cb
-   */
-  onData (cb) {
-    this.event.on(ON_DATA, cb)
+    // 自定义事件触发器
+    this.pty.onData(this.handlePtyData.bind(this))
   }
 
   /**
    * 重连
    */
-  reconnect () {
+  reconnect() {
     this.kill()
     this.connect()
   }
 
   /**
+   * @param {Function} cb
+   */
+  onExit(cb) {
+    this.pty.onExit(cb)
+  }
+
+  /**
    * 清理
    */
-  kill () {
+  kill() {
     this.pty.kill()
     this.pty = null
-
-    this.event.removeAllListeners([
-      ON_EXECUTED,
-      ON_DATA,
-    ])
   }
 
   /**
@@ -144,7 +79,7 @@ class Pty {
    * @param {string} code
    * @returns {void}
    */
-  run (code) {
+  run(code) {
     this.code = code
 
     code = code.replaceAll('\n', '\\\n')
@@ -156,19 +91,12 @@ class Pty {
    *
    * @param {String} code
    */
-  input (code) {
-    this.pty.write(code)
-  }
+  input(code) {
+    if (code !== '\r') {
+      this.code += code
+    }
 
-  /**
-   * 处理执行结果
-   *
-   * @param {string} res
-   * @returns {string}
-   */
-  result (res) {
-    const snippets = this.code.split('\n').filter(v => !!v.trim())
-    return getStringBetween(res, `${snippets[snippets.length - 1]}\r\n`, this.prompt)
+    this.pty.write(code)
   }
 }
 

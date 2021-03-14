@@ -8,19 +8,24 @@ const createPty = connection => {
   const pty = new PsySH(connection)
   pty.connect()
 
-  pty.onExecuted(res => {
-    getEditorWindow(id).webContents.send('executeConnection', res)
-  })
-
   pty.onConnected(() => {
     getEditorWindow(id).webContents.send('connectedConnection')
   })
 
-  pty.onData(data => {
+  const onExecuted = pty.onExecuted(res => {
+    getEditorWindow(id).webContents.send('executeConnection', res)
+  })
+
+  const onData = pty.onData(data => {
     const win = getEditorWindow(id)
     if (win) {
       win.webContents.send('outputConnection', data)
     }
+  })
+
+  pty.onExit(() => {
+    onExecuted.dispose()
+    onData.dispose()
   })
 
   setPtyProcess(id, pty)
