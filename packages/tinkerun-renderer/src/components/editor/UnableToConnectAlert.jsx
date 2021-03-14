@@ -1,15 +1,9 @@
+import PropTypes from 'prop-types'
 import {Alert, Button, majorScale} from 'evergreen-ui'
 import {FormattedMessage, useIntl} from 'react-intl'
 
-import {closeConnection} from '../utils/api'
-
-const UnableToConnectAlert = (props) => {
+const UnableToConnectAlert = ({onOK, ...props}) => {
   const intl = useIntl()
-
-  const handleClick = () => {
-    // unimplemented
-    closeConnection()
-  }
 
   return (
     <Alert
@@ -21,12 +15,20 @@ const UnableToConnectAlert = (props) => {
       <Button
         marginTop={majorScale(1)}
         height={majorScale(3)}
-        onClick={handleClick}
+        onClick={onOK}
       >
         <FormattedMessage id='ok'/>
       </Button>
     </Alert>
   )
+}
+
+UnableToConnectAlert.propTypes = {
+  onOK: PropTypes.func,
+}
+
+UnableToConnectAlert.defaultProps = {
+  onOK: () => false,
 }
 
 export default UnableToConnectAlert

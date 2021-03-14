@@ -1,13 +1,20 @@
 import {useEffect, useState} from 'react'
+
+import OutputTabContainer from './OutputTabContainer'
+import Loading from '../Loading'
+import {onConnectedConnection} from '../../utils/api'
 import {Pane} from 'evergreen-ui'
-
-import Loading from './Loading'
 import UnableToConnectAlert from './UnableToConnectAlert'
-import {onConnectedConnection} from '../utils/api'
 
-const ConnectionProvider = ({children}) => {
+const OutputConnectionProvider = ({children}) => {
+  const {setTerminalMode} = OutputTabContainer.useContainer()
   const [isConnected, setIsConnected] = useState(false)
   const [isUnableToConnect, setIsUnableToConnect] = useState(false)
+
+  const handleOK = () => {
+    setTerminalMode()
+    setIsConnected(true)
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,14 +38,14 @@ const ConnectionProvider = ({children}) => {
         {isUnableToConnect && (
           <UnableToConnectAlert
             width={600}
-            position='absolute'
+            position='relative'
             left={0}
             right={0}
             top={20}
             marginX='auto'
+            onOK={handleOK}
           />
         )}
-
         <Loading/>
       </Pane>
     )
@@ -47,4 +54,4 @@ const ConnectionProvider = ({children}) => {
   return children
 }
 
-export default ConnectionProvider
+export default OutputConnectionProvider

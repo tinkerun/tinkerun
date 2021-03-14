@@ -26,8 +26,8 @@
     "terminal": "Terminal"
   },
 
-  "unable_to_connect": "Unable to connect the connection, please check your connection config.",
-  "ok": "Ok",
+  "unable_to_connect": "Unable to connect the connection, switch to the terminal mode for more detail.",
+  "ok": "OK",
   "cancel": "Cancel",
 
   "zh": "中文",

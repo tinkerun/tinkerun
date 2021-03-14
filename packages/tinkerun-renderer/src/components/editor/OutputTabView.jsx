@@ -1,8 +1,8 @@
 import {majorScale, Pane} from 'evergreen-ui'
 
-import ConnectionProvider from '../ConnectionProvider'
-import Output from './Output'
+import OutputConnectionProvider from './OutputConnectionProvider'
 import OutputTabContainer from './OutputTabContainer'
+import Output from './Output'
 import Terminal from './Terminal'
 
 const OutputTabView = (props) => {
@@ -38,9 +38,9 @@ const OutputTabView = (props) => {
       <Pane
         {...tabStyle(tabIndex === 0)}
       >
-        <ConnectionProvider>
+        <OutputConnectionProvider>
           <Output/>
-        </ConnectionProvider>
+        </OutputConnectionProvider>
       </Pane>
 
       <Pane

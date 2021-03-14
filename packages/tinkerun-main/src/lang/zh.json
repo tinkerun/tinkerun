@@ -26,7 +26,7 @@
     "terminal": "命令行"
   },
 
-  "unable_to_connect": "无法连接，请检查你的连接配置是否正确",
+  "unable_to_connect": "无法连接，切换至命令行模式查看更多细节。",
   "ok": "确定",
   "cancel": "取消",
 
