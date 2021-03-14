@@ -7,11 +7,7 @@ const useFitAddon = () => {
   useEffect(() => {
     const fitAddon = new FitAddon()
 
-    const fitTerminal = () => {
-      try {
-        fitAddon.fit()
-      } catch (e) {}
-    }
+    const fitTerminal = () => fitAddon.fit()
     window.addEventListener('resize', fitTerminal)
 
     fitAddonRef.current = fitAddon

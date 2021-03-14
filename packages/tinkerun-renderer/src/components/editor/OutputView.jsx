@@ -5,17 +5,34 @@ import Output from './Output'
 import OutputContainer from './OutputContainer'
 import Terminal from './Terminal'
 
-const OutputView = () => {
+const OutputView = (props) => {
   const {tabIndex} = OutputContainer.useContainer()
+
+  const tabStyle = isDisplay => {
+    const base = {
+      height: '100%',
+    }
+
+    if (isDisplay) {
+      return base
+    }
+
+    return {
+      ...base,
+      visibility: 'hidden',
+      position: 'absolute',
+      zIndex: -999,
+    }
+  }
 
   return (
     <Pane
       position='relative'
       padding={majorScale(1)}
+      {...props}
     >
       <Pane
-        height='100%'
-        display={tabIndex === 0 ? 'block' : 'none'}
+        {...tabStyle(tabIndex === 0)}
       >
         <ConnectionProvider>
           <Output/>
@@ -23,8 +40,7 @@ const OutputView = () => {
       </Pane>
 
       <Pane
-        height='100%'
-        display={tabIndex === 1 ? 'block' : 'none'}
+        {...tabStyle(tabIndex === 1)}
       >
         <Terminal/>
       </Pane>
