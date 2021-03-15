@@ -27,7 +27,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('setIntlConfig', listener)
     return {
-      dispose: () => ipcRenderer.off('setIntlConfig', listener)
+      dispose: () => ipcRenderer.off('setIntlConfig', listener),
     }
   },
 
@@ -35,7 +35,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('updateConnection', listener)
     return {
-      dispose: () => ipcRenderer.off('updateConnection', listener)
+      dispose: () => ipcRenderer.off('updateConnection', listener),
     }
   },
 
@@ -43,7 +43,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('createConnection', listener)
     return {
-      dispose: () => ipcRenderer.off('createConnection', listener)
+      dispose: () => ipcRenderer.off('createConnection', listener),
     }
   },
 
@@ -51,7 +51,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('deleteConnection', listener)
     return {
-      dispose: () => ipcRenderer.off('deleteConnection', listener)
+      dispose: () => ipcRenderer.off('deleteConnection', listener),
     }
   },
 
@@ -59,7 +59,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('outputConnection', listener)
     return {
-      dispose: () => ipcRenderer.off('outputConnection', listener)
+      dispose: () => ipcRenderer.off('outputConnection', listener),
     }
   },
 
@@ -67,7 +67,7 @@ contextBridge.exposeInMainWorld('api', {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('executeConnection', listener)
     return {
-      dispose: () => ipcRenderer.off('executeConnection', listener)
+      dispose: () => ipcRenderer.off('executeConnection', listener),
     }
   },
 

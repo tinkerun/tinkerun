@@ -3,7 +3,7 @@ const {EventEmitter} = require('events')
 const {getStringBetween} = require('../utils/getStringBetween')
 
 class PtyEvent {
-  constructor() {
+  constructor () {
     this.event = new EventEmitter()
 
     // 标记进程执行完毕
@@ -16,7 +16,7 @@ class PtyEvent {
     this.connected = false
   }
 
-  handlePtyData(data) {
+  handlePtyData (data) {
     this.event.emit('data', data)
 
     this.res += data
@@ -48,10 +48,10 @@ class PtyEvent {
    *
    * @param {function} cb
    */
-  onData(cb) {
+  onData (cb) {
     this.event.on('data', cb)
     return {
-      dispose: () => this.event.off('data', cb)
+      dispose: () => this.event.off('data', cb),
     }
   }
 
@@ -60,10 +60,10 @@ class PtyEvent {
    *
    * @param {function} cb
    */
-  onExecuted(cb) {
+  onExecuted (cb) {
     this.event.on('executed', cb)
     return {
-      dispose: () => this.event.off('executed', cb)
+      dispose: () => this.event.off('executed', cb),
     }
   }
 
@@ -72,7 +72,7 @@ class PtyEvent {
    *
    * @param {function} cb
    */
-  onConnected(cb) {
+  onConnected (cb) {
     this.event.once('connected', cb)
   }
 }

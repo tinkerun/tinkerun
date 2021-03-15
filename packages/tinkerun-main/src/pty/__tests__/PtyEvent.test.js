@@ -3,8 +3,7 @@ const {EventEmitter} = require('events')
 const {PtyEvent} = require('../PtyEvent')
 
 describe('test PtyEvent', () => {
-
-  test('constructor should be correctly',  () => {
+  test('constructor should be correctly', () => {
     const p = new PtyEvent()
     expect(p.event).toBeInstanceOf(EventEmitter)
     expect(p.prompt).toBe('')
@@ -37,10 +36,10 @@ describe('test PtyEvent', () => {
       const ss = [
         '>>>',
         '>>>',
-        '>>>'
+        '>>>',
       ]
 
-      for (let s of ss){
+      for (const s of ss) {
         p.handlePtyData(s)
       }
 
@@ -59,10 +58,10 @@ describe('test PtyEvent', () => {
       const ss = [
         `${p.code}\r\n`,
         'result\r\n',
-        '>>> '
+        '>>> ',
       ]
 
-      for (let s of ss) {
+      for (const s of ss) {
         p.handlePtyData(s)
       }
 
@@ -77,19 +76,18 @@ describe('test PtyEvent', () => {
       const ss = [
         '>>>',
         '>>>',
-        '>>>'
+        '>>>',
       ]
 
-      for (let s of ss){
+      for (const s of ss) {
         p.handlePtyData(s)
       }
 
       expect(p.res).toBe('')
-
     })
   })
 
-  test('test onData method', () => {
+  test('onData method', () => {
     const p = new PtyEvent()
 
     const fn = jest.fn()
@@ -104,7 +102,7 @@ describe('test PtyEvent', () => {
     expect(fn).not.toBeCalled()
   })
 
-  test('test onExecuted method', () => {
+  test('onExecuted method', () => {
     const p = new PtyEvent()
 
     const fn = jest.fn()
@@ -119,7 +117,7 @@ describe('test PtyEvent', () => {
     expect(fn).not.toBeCalled()
   })
 
-  test('test onConnected method', () => {
+  test('onConnected method', () => {
     const p = new PtyEvent()
 
     const fn = jest.fn()
@@ -129,5 +127,4 @@ describe('test PtyEvent', () => {
 
     expect(fn).toBeCalledTimes(1)
   })
-
 })

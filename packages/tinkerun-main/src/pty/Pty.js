@@ -6,7 +6,7 @@ const {parseSSHCommand} = require('../utils/parseSSHCommand')
 const {PtyEvent} = require('./PtyEvent')
 
 class Pty extends PtyEvent {
-  constructor(connection) {
+  constructor (connection) {
     super()
 
     this.connection = connection
@@ -18,7 +18,7 @@ class Pty extends PtyEvent {
   /**
    * 初始化 connection pty 进程
    */
-  connect() {
+  connect () {
     const shell = defaultShell
     const options = {
       cwd: process.env.HOME,
@@ -30,7 +30,7 @@ class Pty extends PtyEvent {
       try {
         fs.accessSync(this.connection.path)
         options.cwd = this.connection.path
-      } catch ( e ) {
+      } catch (e) {
       }
     }
 
@@ -53,7 +53,7 @@ class Pty extends PtyEvent {
   /**
    * 重连
    */
-  reconnect() {
+  reconnect () {
     this.kill()
     this.connect()
   }
@@ -61,14 +61,14 @@ class Pty extends PtyEvent {
   /**
    * @param {Function} cb
    */
-  onExit(cb) {
+  onExit (cb) {
     this.pty.onExit(cb)
   }
 
   /**
    * 清理
    */
-  kill() {
+  kill () {
     this.pty.kill()
     this.pty = null
   }
@@ -79,7 +79,7 @@ class Pty extends PtyEvent {
    * @param {string} code
    * @returns {void}
    */
-  run(code) {
+  run (code) {
     this.code = code
 
     code = code.replaceAll('\n', '\\\n')
@@ -91,7 +91,7 @@ class Pty extends PtyEvent {
    *
    * @param {String} code
    */
-  input(code) {
+  input (code) {
     if (code !== '\r') {
       this.code += code
     }
