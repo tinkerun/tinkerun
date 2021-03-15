@@ -31,30 +31,6 @@ contextBridge.exposeInMainWorld('api', {
     }
   },
 
-  onUpdateConnection: cb => {
-    const listener = (event, arg) => cb(arg)
-    ipcRenderer.on('updateConnection', listener)
-    return {
-      dispose: () => ipcRenderer.off('updateConnection', listener),
-    }
-  },
-
-  onCreateConnection: cb => {
-    const listener = (event, arg) => cb(arg)
-    ipcRenderer.on('createConnection', listener)
-    return {
-      dispose: () => ipcRenderer.off('createConnection', listener),
-    }
-  },
-
-  onDeleteConnection: cb => {
-    const listener = (event, arg) => cb(arg)
-    ipcRenderer.on('deleteConnection', listener)
-    return {
-      dispose: () => ipcRenderer.off('deleteConnection', listener),
-    }
-  },
-
   onOutputConnection: cb => {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('outputConnection', listener)

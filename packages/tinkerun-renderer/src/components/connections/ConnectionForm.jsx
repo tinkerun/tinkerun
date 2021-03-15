@@ -1,28 +1,39 @@
-import {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {Pane} from 'evergreen-ui'
-import {useForm, FormProvider} from 'react-hook-form'
 
 import Field from '../Field'
 import ConnectButton from './ConnectButton'
 import OverSSHButton from './OverSSHButton'
-import AutoSave from './AutoSave'
 import SSHForm from './SSHForm'
 import BasicForm from './BasicForm'
+import {useCallback, useEffect} from 'react'
+import {useFormContext} from 'react-hook-form'
+import debounce from 'lodash/debounce'
 
-const ConnectionForm = ({defaultValues}) => {
-  const methods = useForm()
-  const {reset} = methods
+const ConnectionForm = ({onSubmit}) => {
+  const {watch} = useFormContext()
 
-  // 解决表单不能根据默认值重新填充的问题
-  // https://github.com/react-hook-form/react-hook-form/discussions/2282#discussioncomment-39308
+  const data = watch()
+
+  // debounce the update
+  // https://www.synthace.com/autosave-with-react-hooks/
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSave = useCallback(
+    debounce(dataNew => {
+      onSubmit(dataNew)
+    }, 500),
+    [],
+  )
+
+  // auto save connections
   useEffect(() => {
-    reset(defaultValues)
-  }, [defaultValues.id])
+    if (data.id) {
+      debouncedSave(data)
+    }
+  }, [data])
 
   return (
-    <FormProvider {...methods}>
-      <AutoSave/>
+    <Pane>
       <BasicForm/>
       <SSHForm/>
 
@@ -37,18 +48,13 @@ const ConnectionForm = ({defaultValues}) => {
         </Field>
 
         <ConnectButton/>
-
       </Pane>
-    </FormProvider>
+    </Pane>
   )
 }
 
 ConnectionForm.propTypes = {
-  defaultValues: PropTypes.object,
-}
-
-ConnectionForm.defaultProps = {
-  defaultValues: {},
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default ConnectionForm

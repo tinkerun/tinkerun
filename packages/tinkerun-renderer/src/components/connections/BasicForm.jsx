@@ -9,7 +9,7 @@ import PathField from './PathField'
 const BasicForm = () => {
   const intl = useIntl()
 
-  const {register, errors} = useFormContext()
+  const {register} = useFormContext()
 
   return (
     <>

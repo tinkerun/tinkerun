@@ -1,7 +1,9 @@
 import {useState} from 'react'
 
-const useConnections = (initialState = {}) => {
-  const [connections, setConnections] = useState(Object.values(initialState))
+const useConnections = (initialState = []) => {
+  const [connections, setConnections] = useState(initialState)
+
+  const getConnection = id => connections.find(c => c.id === id)
 
   const createConnection = connection => {
     setConnections(prevState => (
@@ -30,6 +32,7 @@ const useConnections = (initialState = {}) => {
 
   return {
     connections,
+    getConnection,
     updateConnection,
     deleteConnection,
     createConnection,

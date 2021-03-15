@@ -10,8 +10,8 @@
     "select_directory": "Select directory...",
     "command": "Command",
     "save": "Save",
-    "connect": "Connect Connection",
-    "delete": "Delete Connection",
+    "connect": "Connect",
+    "delete": "Delete",
     "over_ssh": "Over SSH",
     "ssh_server": "Server",
     "ssh_port": "Port",
@@ -20,7 +20,8 @@
     "ssh_key_tooltip": "it will use the default SSH config if you leaving the SSH Key empty",
     "import_ssh_key": "Import a private key...",
     "delete_confirm_title": "Are you absolutely sure?",
-    "delete_confirm_content": "This action <strong>cannot</strong> be undone. This will permanently delete the <strong>{name}</strong> connection."
+    "delete_confirm_content": "This action <strong>cannot</strong> be undone. This will permanently delete the <strong>{name}</strong> connection.",
+    "delete_connection": "Delete Connection"
   },
 
   "editor": {

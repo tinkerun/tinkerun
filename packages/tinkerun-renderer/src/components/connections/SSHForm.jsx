@@ -8,7 +8,7 @@ import SSHKeyButton from './SSHKeyButton'
 const SSHForm = () => {
   const intl = useIntl()
 
-  const {errors, register, watch} = useFormContext()
+  const {register, watch} = useFormContext()
 
   const isOverSSH = watch('is_over_ssh')
 

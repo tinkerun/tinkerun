@@ -3,8 +3,6 @@ import {majorScale, Pane} from 'evergreen-ui'
 import QuickButton from './QuickButton'
 import CreateButton from './CreateButton'
 import ConnectionList from './ConnectionList'
-import ConnectionListContainer from './ConnectionListContainer'
-import {allConnections} from '../../utils/api'
 
 const Sidebar = () => (
   <Pane
@@ -29,9 +27,7 @@ const Sidebar = () => (
       flex={1}
       overflowY='scroll'
     >
-      <ConnectionListContainer.Provider initialState={allConnections()}>
-        <ConnectionList/>
-      </ConnectionListContainer.Provider>
+      <ConnectionList/>
     </Pane>
   </Pane>
 )

@@ -3,13 +3,16 @@ import {FormattedMessage} from 'react-intl'
 import {useLocation} from 'wouter'
 
 import {createConnection} from '../../utils/api'
+import ConnectionsContainer from './ConnectionsContainer'
 
 const CreateButton = () => {
   const [, setLocation] = useLocation()
+  const container = ConnectionsContainer.useContainer()
 
   const handleClick = () => {
-    const id = createConnection()
-    setLocation(`/connections/${id}`)
+    const connection = createConnection()
+    container.createConnection(connection)
+    setLocation(`/connections/${connection.id}`)
   }
 
   return (

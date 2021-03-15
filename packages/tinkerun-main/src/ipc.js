@@ -1,14 +1,11 @@
 const {ipcMain} = require('electron')
-const {is} = require('electron-util')
 
 const {selectDirectory, selectFile} = require('./utils/selectFileOrDirectory')
 const {allLocales} = require('./utils/allLocales')
 const {quickConnection} = require('./constants')
 const {getIntlConfig} = require('./locale')
 const {createEditorWindow} = require('./createEditorWindow')
-const {createIndexWindow} = require('./createIndexWindow')
-const {getIndexWindow} = require('./processes')
-const {popupConnectionContextMenu} = require('./popupConnectionContextMenu')
+const {connectionContextMenu} = require('./connectionContextMenu')
 const {Inspiring} = require('./Inspiring')
 const {
   deleteConnection,
@@ -19,6 +16,7 @@ const {
   inputConnection,
   runConnection,
   closeConnection,
+  connectConnection,
 } = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
 
@@ -47,8 +45,7 @@ ipcMain.on('getIntlConfig', event => {
 })
 
 ipcMain.on('createConnection', event => {
-  const connection = createConnection()
-  event.returnValue = connection.id
+  event.returnValue = createConnection()
 })
 
 ipcMain.on('getConnection', (event, id) => {
@@ -69,16 +66,7 @@ ipcMain.on('updateConnection', (event, connection) => {
 
 ipcMain.on('connectConnection', async (event, connection) => {
   updateConnection(connection)
-
-  if (is.macos) {
-    // 如果是苹果系统则关闭 indexWindow
-    const win = getIndexWindow()
-    if (win) {
-      win.close()
-    }
-  }
-
-  await createEditorWindow(connection)
+  await connectConnection(connection)
 })
 
 ipcMain.on('runConnection', (event, id, code) => {
@@ -90,11 +78,7 @@ ipcMain.on('inputConnection', (event, id, code) => {
 })
 
 ipcMain.on('closeConnection', async (event, id) => {
-  closeConnection(id)
-
-  if (!getIndexWindow()) {
-    await createIndexWindow()
-  }
+  await closeConnection(id)
 })
 
 ipcMain.on('quickConnect', async event => {
@@ -112,6 +96,5 @@ ipcMain.on('inspire', event => {
 })
 
 ipcMain.on('popupConnectionContextMenu', (event, id) => {
-  const menu = popupConnectionContextMenu(id)
-  menu.popup()
+  connectionContextMenu(id).popup()
 })

@@ -20,7 +20,8 @@
     "ssh_key_tooltip": "如果秘钥空着则使用默认的 SSH 配置进行连接",
     "import_ssh_key": "导入秘钥...",
     "delete_confirm_title": "确定删除？",
-    "delete_confirm_content": "本操作<strong>不能撤销</strong>，将永久删除<strong>{name}</strong>的连接设置。"
+    "delete_confirm_content": "本操作<strong>不能撤销</strong>，将永久删除<strong>{name}</strong>的连接设置。",
+    "delete_connection": "删除连接"
   },
 
   "editor": {

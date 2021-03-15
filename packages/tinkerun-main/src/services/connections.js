@@ -1,9 +1,12 @@
 const {v4: uuid4} = require('uuid')
+const {is} = require('electron-util')
 
 const {connections} = require('../database/connections')
 const {getIndexWindow, getPtyProcess, getEditorWindow} = require('../processes')
 const {getIntl} = require('../locale')
 const {quickConnection} = require('../constants')
+const {createIndexWindow} = require('../createIndexWindow')
+const {createEditorWindow} = require('../createEditorWindow')
 
 /**
  * @returns {Record<string, any>}
@@ -32,12 +35,29 @@ const allConnections = () => {
  */
 const deleteConnection = id => {
   connections.delete(id)
-  // send the `deleteConnection` event to the renderer
-  getIndexWindow().webContents.send('deleteConnection', id)
 }
 
+/**
+ * @param {String} id
+ */
 const deleteConnectionConfirm = id => {
   getIndexWindow().webContents.send('deleteConnectionConfirm', getConnection(id))
+}
+
+/**
+ * @param {Record<string, any>} connection
+ * @returns {Promise<void>}
+ */
+const connectConnection = async connection => {
+  if (is.macos) {
+    // 如果是苹果系统则关闭 indexWindow
+    const win = getIndexWindow()
+    if (win) {
+      win.close()
+    }
+  }
+
+  await createEditorWindow(connection)
 }
 
 /**
@@ -45,10 +65,7 @@ const deleteConnectionConfirm = id => {
  */
 const createConnection = () => {
   const connection = newConnection()
-
   connections.set(connection.id, connection)
-  getIndexWindow().webContents.send('createConnection', connection)
-
   return connection
 }
 
@@ -57,7 +74,6 @@ const createConnection = () => {
  */
 const updateConnection = connection => {
   connections.set(connection.id, connection)
-  getIndexWindow().webContents.send('updateConnection', connection)
 }
 
 /**
@@ -87,8 +103,12 @@ const runConnection = (id, code) => {
 /**
  * @param {String} id
  */
-const closeConnection = id => {
+const closeConnection = async id => {
   getEditorWindow(id).close()
+
+  if (!getIndexWindow()) {
+    await createIndexWindow()
+  }
 }
 
 module.exports = {
@@ -101,4 +121,5 @@ module.exports = {
   inputConnection,
   runConnection,
   closeConnection,
+  connectConnection,
 }
