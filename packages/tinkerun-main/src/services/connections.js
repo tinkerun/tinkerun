@@ -36,6 +36,10 @@ const deleteConnection = id => {
   getIndexWindow().webContents.send('deleteConnection', id)
 }
 
+const deleteConnectionConfirm = id => {
+  getIndexWindow().webContents.send('deleteConnectionConfirm', getConnection(id))
+}
+
 /**
  * @returns {Record<string, any>}
  */
@@ -90,6 +94,7 @@ const closeConnection = id => {
 module.exports = {
   allConnections,
   deleteConnection,
+  deleteConnectionConfirm,
   createConnection,
   updateConnection,
   getConnection,

@@ -71,5 +71,13 @@ contextBridge.exposeInMainWorld('api', {
     }
   },
 
+  onDeleteConnectionConfirm: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('deleteConnectionConfirm', listener)
+    return {
+      dispose: () => ipcRenderer.off('deleteConnectionConfirm', listener),
+    }
+  },
+
   onConnectedConnection: cb => ipcRenderer.once('connectedConnection', cb),
 })

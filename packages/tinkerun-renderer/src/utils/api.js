@@ -22,6 +22,7 @@ export const onSetIntlConfig = api.onSetIntlConfig
 export const onUpdateConnection = api.onUpdateConnection
 export const onCreateConnection = api.onCreateConnection
 export const onDeleteConnection = api.onDeleteConnection
+export const onDeleteConnectionConfirm = api.onDeleteConnectionConfirm
 export const onOutputConnection = api.onOutputConnection
 export const onExecuteConnection = api.onExecuteConnection
 export const onConnectedConnection = api.onConnectedConnection
