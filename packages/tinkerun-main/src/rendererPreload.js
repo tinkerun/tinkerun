@@ -22,17 +22,54 @@ contextBridge.exposeInMainWorld('api', {
   inputConnection: code => ipcRenderer.send('inputConnection', connectionId(), code),
   runConnection: code => ipcRenderer.send('runConnection', connectionId(), code),
   closeConnection: () => ipcRenderer.send('closeConnection', connectionId()),
-  onSetIntlConfig: cb => ipcRenderer.on('setIntlConfig', (event, arg) => cb(arg)),
-  offSetIntlConfig: listener => ipcRenderer.removeListener('setIntlConfig', listener),
-  onUpdateConnection: cb => ipcRenderer.on('updateConnection', (event, arg) => cb(arg)),
-  offUpdateConnection: listener => ipcRenderer.removeListener('updateConnection', listener),
-  onCreateConnection: cb => ipcRenderer.on('createConnection', (event, arg) => cb(arg)),
-  offCreateConnection: listener => ipcRenderer.removeListener('createConnection', listener),
-  onDeleteConnection: cb => ipcRenderer.on('deleteConnection', (event, arg) => cb(arg)),
-  offDeleteConnection: listener => ipcRenderer.removeListener('deleteConnection', listener),
-  onOutputConnection: cb => ipcRenderer.on('outputConnection', (event, arg) => cb(arg)),
-  offOutputConnection: listener => ipcRenderer.removeListener('outputConnection', listener),
-  onExecuteConnection: cb => ipcRenderer.on('executeConnection', (event, arg) => cb(arg)),
-  offExecuteConnection: listener => ipcRenderer.removeListener('executeConnection', listener),
+
+  onSetIntlConfig: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('setIntlConfig', listener)
+    return {
+      dispose: () => ipcRenderer.off('setIntlConfig', listener)
+    }
+  },
+
+  onUpdateConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('updateConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('updateConnection', listener)
+    }
+  },
+
+  onCreateConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('createConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('createConnection', listener)
+    }
+  },
+
+  onDeleteConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('deleteConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('deleteConnection', listener)
+    }
+  },
+
+  onOutputConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('outputConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('outputConnection', listener)
+    }
+  },
+
+  onExecuteConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('executeConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('executeConnection', listener)
+    }
+  },
+
   onConnectedConnection: cb => ipcRenderer.once('connectedConnection', cb),
 })

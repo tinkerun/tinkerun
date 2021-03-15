@@ -2,7 +2,7 @@ import {useLocation, useRoute} from 'wouter'
 import {useEffect} from 'react'
 
 import ConnectionListContainer from '../components/connections/ConnectionListContainer'
-import {offDeleteConnection, onDeleteConnection} from '../utils/api'
+import {onDeleteConnection} from '../utils/api'
 
 const useDeleteConnectionEvent = () => {
   const {deleteConnection} = ConnectionListContainer.useContainer()
@@ -20,9 +20,9 @@ const useDeleteConnectionEvent = () => {
       }
     }
 
-    onDeleteConnection(cb)
+    const onDelete = onDeleteConnection(cb)
 
-    return () => offDeleteConnection(cb)
+    return () => onDelete.dispose()
   }, [params]) // eslint-disable-line react-hooks/exhaustive-deps
 }
 

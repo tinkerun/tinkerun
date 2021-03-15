@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import {IntlProvider} from 'react-intl'
 
 import Loading from './Loading'
-import {getIntlConfig, offSetIntlConfig, onSetIntlConfig} from '../utils/api'
+import {getIntlConfig, onSetIntlConfig} from '../utils/api'
 
 const LanguageProvider = ({children}) => {
   const [intlConfig, setIntlConfig] = useState({})
 
   useEffect(() => {
     getIntlConfig()
-    onSetIntlConfig(setIntlConfig)
+    const onSet = onSetIntlConfig(setIntlConfig)
 
     return () => {
-      offSetIntlConfig(setIntlConfig)
+      onSet.dispose()
     }
   }, [])
 

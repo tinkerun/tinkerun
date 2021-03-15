@@ -3,7 +3,7 @@ import {Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
-import {offOutputConnection, onOutputConnection, inputConnection} from '../../utils/api'
+import {onOutputConnection, inputConnection} from '../../utils/api'
 import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
 
@@ -37,12 +37,12 @@ const Terminal = () => {
       term.write(data)
     }
 
-    onOutputConnection(output)
+    const onOutput = onOutputConnection(output)
 
     term.loadAddon(fitAddonRef.current)
 
     return () => {
-      offOutputConnection(output)
+      onOutput.dispose()
       term.dispose()
     }
   }, [])
