@@ -6,6 +6,7 @@ import Editor from './editor/Editor'
 import Toolbar from './editor/Toolbar'
 import OutputTabView from './editor/OutputTabView'
 import SizesContainer from './editor/SizesContainer'
+import OutputContentContainer from './editor/OutputContentContainer'
 import useSplit from '../hooks/useSplit'
 
 const EditorPage = () => {
@@ -28,17 +29,19 @@ const EditorPage = () => {
     >
       <Editor/>
 
-      <Pane
-        position='relative'
-      >
-        <Toolbar
-          position='absolute'
-          width='100%'
-          top={0}
-          zIndex={1}
-        />
-        <OutputTabView/>
-      </Pane>
+      <OutputContentContainer.Provider>
+        <Pane
+          position='relative'
+        >
+          <Toolbar
+            position='absolute'
+            width='100%'
+            top={0}
+            zIndex={1}
+          />
+          <OutputTabView/>
+        </Pane>
+      </OutputContentContainer.Provider>
     </Pane>
   )
 }

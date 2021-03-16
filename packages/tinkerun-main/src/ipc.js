@@ -14,7 +14,6 @@ const {
   allConnections,
   getConnection,
   inputConnection,
-  runConnection,
   closeConnection,
   connectConnection,
 } = require('./services/connections')
@@ -67,10 +66,6 @@ ipcMain.on('updateConnection', (event, connection) => {
 ipcMain.on('connectConnection', async (event, connection) => {
   updateConnection(connection)
   await connectConnection(connection)
-})
-
-ipcMain.on('runConnection', (event, id, code) => {
-  runConnection(id, code)
 })
 
 ipcMain.on('inputConnection', (event, id, code) => {

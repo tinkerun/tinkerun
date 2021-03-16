@@ -20,7 +20,6 @@ contextBridge.exposeInMainWorld('api', {
   quickConnect: () => ipcRenderer.send('quickConnect'),
   popupConnectionContextMenu: id => ipcRenderer.send('popupConnectionContextMenu', id),
   inputConnection: code => ipcRenderer.send('inputConnection', connectionId(), code),
-  runConnection: code => ipcRenderer.send('runConnection', connectionId(), code),
   closeConnection: () => ipcRenderer.send('closeConnection', connectionId()),
 
   onSetIntlConfig: cb => {
@@ -36,14 +35,6 @@ contextBridge.exposeInMainWorld('api', {
     ipcRenderer.on('outputConnection', listener)
     return {
       dispose: () => ipcRenderer.off('outputConnection', listener),
-    }
-  },
-
-  onExecuteConnection: cb => {
-    const listener = (event, arg) => cb(arg)
-    ipcRenderer.on('executeConnection', listener)
-    return {
-      dispose: () => ipcRenderer.off('executeConnection', listener),
     }
   },
 

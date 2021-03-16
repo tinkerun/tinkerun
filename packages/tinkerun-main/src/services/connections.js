@@ -92,15 +92,6 @@ const inputConnection = (id, code) => {
 }
 
 /**
- *
- * @param {String} id
- * @param {String } code
- */
-const runConnection = (id, code) => {
-  getPtyProcess(id).run(code)
-}
-
-/**
  * @param {String} id
  */
 const closeConnection = async id => {
@@ -119,7 +110,6 @@ module.exports = {
   updateConnection,
   getConnection,
   inputConnection,
-  runConnection,
   closeConnection,
   connectConnection,
 }

@@ -1,8 +1,9 @@
-import {memo, useEffect, useRef} from 'react'
+import {useMemo, useEffect, useRef} from 'react'
 import {Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
+import OutputContentContainer from './OutputContentContainer'
 import {onOutputConnection, inputConnection} from '../../utils/api'
 import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
@@ -10,6 +11,7 @@ import useFitAddon from '../../hooks/useFitAddon'
 const Terminal = () => {
   const domRef = useRef()
   const {fitAddonRef} = useFitAddon()
+  const {appendOutputContent, clearOutputContent} = OutputContentContainer.useContainer()
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +35,15 @@ const Terminal = () => {
       }
     })
 
+    term.onKey(({domEvent}) => {
+      if (domEvent.key === 'Enter') {
+        // 监听每一次执行命令的时候，清空 output content
+        clearOutputContent()
+      }
+    })
+
     const output = data => {
+      appendOutputContent(data)
       term.write(data)
     }
 
@@ -47,12 +57,12 @@ const Terminal = () => {
     }
   }, [])
 
-  return (
+  return useMemo(() => (
     <Pane
       height='inherit'
       ref={domRef}
     />
-  )
+  ), [])
 }
 
-export default memo(Terminal)
+export default Terminal

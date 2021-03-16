@@ -3,14 +3,13 @@ const defaultShell = require('default-shell')
 const fs = require('fs')
 
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
-const {PtyEvent} = require('./PtyEvent')
 
-class Pty extends PtyEvent {
+class Pty {
   constructor (connection) {
-    super()
-
     this.connection = connection
     this.pty = null
+    // 标记进程执行完毕
+    this.prompt = ''
     // 默认初始化命令
     this.commandDefault = ''
   }
@@ -45,9 +44,6 @@ class Pty extends PtyEvent {
     if (command) {
       this.pty.write(`${command}\r`)
     }
-
-    // 自定义事件触发器
-    this.pty.onData(this.handlePtyData.bind(this))
   }
 
   /**
@@ -56,6 +52,10 @@ class Pty extends PtyEvent {
   reconnect () {
     this.kill()
     this.connect()
+  }
+
+  onData (cb) {
+    this.pty.onData(cb)
   }
 
   /**
@@ -74,28 +74,11 @@ class Pty extends PtyEvent {
   }
 
   /**
-   * 执行代码
-   *
-   * @param {string} code
-   * @returns {void}
-   */
-  run (code) {
-    this.code = code
-
-    code = code.replaceAll('\n', '\\\n')
-    this.pty.write(`${code}\r`)
-  }
-
-  /**
    * terminal 输入
    *
    * @param {String} code
    */
   input (code) {
-    if (code !== '\r') {
-      this.code += code
-    }
-
     this.pty.write(code)
   }
 }
