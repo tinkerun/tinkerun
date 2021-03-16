@@ -4,8 +4,8 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "rebuild": "lerna run rebuild --scope tinkerun-main",
-    "start:main": "lerna run start --scope tinkerun-main --stream",
-    "start:renderer": "lerna run start --scope tinkerun-renderer --stream",
+    "start:main": "lerna run start --scope tinkerun-main --stream --",
+    "start:renderer": "lerna run start --scope tinkerun-renderer --stream --",
     "start": "lerna exec --parallel --stream yarn start",
     "build:packages": "lerna run build",
     "build:icons": "electron-icon-builder -i assets/icon.png -o assets",
