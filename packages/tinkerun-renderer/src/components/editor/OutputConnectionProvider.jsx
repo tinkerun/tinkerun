@@ -1,35 +1,38 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
+import {Pane} from 'evergreen-ui'
 
 import OutputTabContainer from './OutputTabContainer'
-import Loading from '../Loading'
-import {onConnectedConnection} from '../../utils/api'
-import {Pane} from 'evergreen-ui'
+import OutputContainer from './OutputContainer'
 import UnableToConnectAlert from './UnableToConnectAlert'
+import Loading from '../Loading'
 
 const OutputConnectionProvider = ({children}) => {
   const {setTerminalMode} = OutputTabContainer.useContainer()
-  const [isConnected, setIsConnected] = useState(false)
+  const {isConnected, setIsConnected} = OutputContainer.useContainer()
   const [isUnableToConnect, setIsUnableToConnect] = useState(false)
+  const timerRef = useRef()
 
   const handleOK = () => {
     setTerminalMode()
     setIsConnected(true)
   }
 
+  const clearTimer = () => {
+    const timer = timerRef.current
+    if (timer) {
+      clearTimeout(timer)
+    }
+  }
+
+  useEffect(clearTimer, [isConnected])
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       // 15 秒之后，没有连接上，则提示无法连接
       setIsUnableToConnect(true)
     }, 15000)
 
-    onConnectedConnection(() => {
-      setIsConnected(true)
-      clearTimeout(timer)
-    })
-
-    return () => {
-      timer && clearTimeout(timer)
-    }
+    return clearTimer
   }, [])
 
   if (!isConnected) {

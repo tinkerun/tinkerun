@@ -1,12 +1,12 @@
 import {Button, majorScale, PlayIcon} from 'evergreen-ui'
 
 import CodeContainer from './CodeContainer'
-import OutputContentContainer from './OutputContentContainer'
+import OutputContainer from './OutputContainer'
 import {inputConnection} from '../../utils/api'
 
 const RunButton = () => {
   const {code} = CodeContainer.useContainer()
-  const {clearOutputContent, setInput} = OutputContentContainer.useContainer()
+  const {clearOutputContent, setInput} = OutputContainer.useContainer()
 
   const handleClick = () => {
     clearOutputContent()

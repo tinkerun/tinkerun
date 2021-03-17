@@ -3,7 +3,7 @@ import {Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
-import OutputContentContainer from './OutputContentContainer'
+import OutputContainer from './OutputContainer'
 import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
 
@@ -11,7 +11,7 @@ const Output = () => {
   const domRef = useRef()
   const termRef = useRef()
   const {fitAddonRef} = useFitAddon()
-  const {getOutputContent} = OutputContentContainer.useContainer()
+  const {getOutputContent} = OutputContainer.useContainer()
 
   const content = getOutputContent()
 

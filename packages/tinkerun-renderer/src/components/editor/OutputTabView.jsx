@@ -3,6 +3,7 @@ import {majorScale, Pane} from 'evergreen-ui'
 import OutputTabContainer from './OutputTabContainer'
 import Output from './Output'
 import Terminal from './Terminal'
+import OutputConnectionProvider from './OutputConnectionProvider'
 
 const OutputTabView = (props) => {
   const {tabIndex} = OutputTabContainer.useContainer()
@@ -37,7 +38,9 @@ const OutputTabView = (props) => {
       <Pane
         {...tabStyle(tabIndex === 0)}
       >
-        <Output/>
+        <OutputConnectionProvider>
+          <Output/>
+        </OutputConnectionProvider>
       </Pane>
 
       <Pane

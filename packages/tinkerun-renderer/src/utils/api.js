@@ -20,4 +20,3 @@ export const closeConnection = api.closeConnection
 export const onSetIntlConfig = api.onSetIntlConfig
 export const onDeleteConnectionConfirm = api.onDeleteConnectionConfirm
 export const onOutputConnection = api.onOutputConnection
-export const onConnectedConnection = api.onConnectedConnection

@@ -16,7 +16,9 @@ const createPty = connection => {
   })
 
   pty.onExit(() => {
-    onData.dispose()
+    if (onData) {
+      onData.dispose()
+    }
   })
 
   setPtyProcess(id, pty)
