@@ -1,15 +1,17 @@
 import {memo, useEffect, useRef} from 'react'
 import {Pane} from 'evergreen-ui'
 import * as monaco from 'monaco-editor'
+import {useIntl} from 'react-intl'
 
 import EditorContainer from './CodeContainer'
 import {registerPHPSnippetLanguage} from '../../utils/registerPHPSnippetLanguage'
 import useEditorLayout from '../../hooks/useEditorLayout'
 
 const Editor = () => {
-  const {code, setCode} = EditorContainer.useContainer()
+  const {code, setCode, runCode} = EditorContainer.useContainer()
   const domRef = useRef()
   const editorRef = useRef()
+  const intl = useIntl()
 
   useEditorLayout(editorRef)
 
@@ -22,6 +24,20 @@ const Editor = () => {
       lineNumbers: 'on',
       value: code,
       selectOnLineNumbers: true,
+    })
+
+    editor.addAction({
+      id: 'run-php-snippet',
+      label: intl.formatMessage({id: 'editor.run'}),
+      keybindings: [
+        monaco.KeyMod.WinCtrl | monaco.KeyCode.KEY_R,
+      ],
+      contextMenuGroupId: 'navigation',
+      contextMenuOrder: 1,
+      run: ed => {
+        runCode(ed.getValue())
+        return null
+      },
     })
 
     editor.focus()

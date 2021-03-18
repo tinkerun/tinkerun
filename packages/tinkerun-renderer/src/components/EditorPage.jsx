@@ -29,19 +29,17 @@ const EditorPage = () => {
     >
       <Editor/>
 
-      <OutputContainer.Provider>
-        <Pane
-          position='relative'
-        >
-          <Toolbar
-            position='absolute'
-            width='100%'
-            top={0}
-            zIndex={1}
-          />
-          <OutputTabView/>
-        </Pane>
-      </OutputContainer.Provider>
+      <Pane
+        position='relative'
+      >
+        <Toolbar
+          position='absolute'
+          width='100%'
+          top={0}
+          zIndex={1}
+        />
+        <OutputTabView/>
+      </Pane>
     </Pane>
   )
 }

@@ -1,32 +1,25 @@
+import {useMemo} from 'react'
 import {Button, majorScale, PlayIcon} from 'evergreen-ui'
+import {FormattedMessage} from 'react-intl'
 
 import CodeContainer from './CodeContainer'
-import OutputContainer from './OutputContainer'
-import {inputConnection} from '../../utils/api'
 
 const RunButton = () => {
-  const {code} = CodeContainer.useContainer()
-  const {clearOutputContent, setInput} = OutputContainer.useContainer()
+  const {code, runCode} = CodeContainer.useContainer()
+  const disabled = code.trim() === ''
 
-  const handleClick = () => {
-    clearOutputContent()
+  const handleClick = () => runCode(code)
 
-    const input = code.replaceAll('\n', '\\\n')
-    setInput(input)
-
-    inputConnection(`${input}\r`)
-  }
-
-  return (
+  return useMemo(() => (
     <Button
       height={majorScale(3)}
       iconBefore={PlayIcon}
       onClick={handleClick}
-      disabled={code.trim() === ''}
+      disabled={disabled}
     >
-      Run
+      <FormattedMessage id='editor.run'/>
     </Button>
-  )
+  ))
 }
 
 export default RunButton
