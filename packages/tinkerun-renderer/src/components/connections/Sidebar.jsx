@@ -1,29 +1,24 @@
-import {majorScale, Pane} from 'evergreen-ui'
+import {Pane} from 'evergreen-ui'
 
 import QuickButton from './QuickButton'
 import CreateButton from './CreateButton'
 import ConnectionList from './ConnectionList'
+import Header from '../Header'
 
 const Sidebar = () => (
   <Pane
-    paddingY={majorScale(2)}
     height='100vh'
     display='flex'
     flexShrink={0}
     flexDirection='column'
     borderRight
   >
-    <Pane
-      display='flex'
-      justifyContent='space-between'
-      paddingX={majorScale(2)}
-    >
+    <Header>
       <QuickButton/>
       <CreateButton/>
-    </Pane>
+    </Header>
 
     <Pane
-      marginTop={majorScale(2)}
       flex={1}
       overflowY='scroll'
     >
