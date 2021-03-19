@@ -29,11 +29,13 @@ const ConnectionItem = ({connection}) => {
     >
       <Cell
         paddingX={majorScale(2)}
-        display='flex'
-        alignItems='center'
         justifyContent='space-between'
+        rightView={(
+          <TagBadge
+            tag={connection.tag}
+          />
+        )}
       >
-
         <Pane
           display='flex'
           alignItems='center'
@@ -55,12 +57,6 @@ const ConnectionItem = ({connection}) => {
             {connection.name}
           </Text>
         </Pane>
-
-        {connection.tag && (
-          <TagBadge
-            tag={connection.tag}
-          />
-        )}
       </Cell>
     </Row>
   )
