@@ -1,14 +1,14 @@
 import {majorScale, Pane} from 'evergreen-ui'
 
-import OutputTabContainer from './OutputTabContainer'
 import Output from './Output'
 import Terminal from './Terminal'
-import OutputConnectionProvider from './OutputConnectionProvider'
+import {useAtomValue} from 'jotai/utils'
+import {tabIndexAtom} from '../../stores/editor'
 
 const OutputTabView = (props) => {
-  const {tabIndex} = OutputTabContainer.useContainer()
+  const tabIndex = useAtomValue(tabIndexAtom)
 
-  const tabStyle = isDisplay => {
+  const paneStyle = isDisplay => {
     const base = {
       height: 'inherit',
       paddingBottom: majorScale(1),
@@ -36,17 +36,14 @@ const OutputTabView = (props) => {
       {...props}
     >
       <Pane
-        {...tabStyle(tabIndex === 0)}
-      >
-        <OutputConnectionProvider>
-          <Output/>
-        </OutputConnectionProvider>
-      </Pane>
-
-      <Pane
-        {...tabStyle(tabIndex === 1)}
+        {...paneStyle(tabIndex === 0)}
       >
         <Terminal/>
+      </Pane>
+      <Pane
+        {...paneStyle(tabIndex === 1)}
+      >
+        <Output/>
       </Pane>
     </Pane>
   )

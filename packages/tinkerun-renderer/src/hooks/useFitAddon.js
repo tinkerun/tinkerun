@@ -1,11 +1,12 @@
 import {useEffect, useRef} from 'react'
 import {FitAddon} from 'xterm-addon-fit'
 
-import SizesContainer from '../components/editor/SizesContainer'
+import {useAtomValue} from 'jotai/utils'
+import {sizesAtom} from '../stores/editor'
 
 const useFitAddon = () => {
   const fitAddonRef = useRef()
-  const {sizes} = SizesContainer.useContainer()
+  const sizes = useAtomValue(sizesAtom)
 
   useEffect(() => {
     const fitAddon = new FitAddon()
@@ -22,7 +23,7 @@ const useFitAddon = () => {
     if (fitAddonRef.current) {
       fitAddonRef.current.fit()
     }
-  }, [sizes, fitAddonRef])
+  }, [sizes])
 
   return {
     fitAddonRef,

@@ -1,38 +1,28 @@
 import {useMemo, useEffect, useRef} from 'react'
 import {Pane} from 'evergreen-ui'
+import {useAtomValue} from 'jotai/utils'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
+import debounce from 'lodash/debounce'
 
-import OutputContainer from './OutputContainer'
 import {getTermOptions} from '../../utils/getTermOptions'
+import {outputFilteredAtom} from '../../stores/editor'
 import useFitAddon from '../../hooks/useFitAddon'
 
 const Output = () => {
   const domRef = useRef()
   const termRef = useRef()
   const {fitAddonRef} = useFitAddon()
-  const {getOutputContent} = OutputContainer.useContainer()
-
-  const content = getOutputContent()
+  const content = useAtomValue(outputFilteredAtom)
 
   // 写入内容至 output
-  useEffect(() => {
+  useEffect(debounce(() => {
     const term = termRef.current
     if (term) {
       term.reset()
       term.write(content)
     }
-  }, [content])
-
-  // 设置 fit addon
-  useEffect(() => {
-    const term = termRef.current
-    const fitAddon = fitAddonRef.current
-    if (term && fitAddon) {
-      term.loadAddon(fitAddon)
-      fitAddon.fit()
-    }
-  }, [fitAddonRef])
+  }, 400), [content])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,6 +39,8 @@ const Output = () => {
     })
 
     term.open(domRef.current)
+    term.loadAddon(fitAddonRef.current)
+    fitAddonRef.current.fit()
 
     termRef.current = term
 

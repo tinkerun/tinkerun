@@ -5,13 +5,14 @@ import debounce from 'lodash/debounce'
 import Editor from './editor/Editor'
 import Toolbar from './editor/Toolbar'
 import OutputTabView from './editor/OutputTabView'
-import SizesContainer from './editor/SizesContainer'
-import OutputContainer from './editor/OutputContainer'
+import EditorHeader from './editor/EditorHeader'
 import useSplit from '../hooks/useSplit'
+import {sizesAtom} from '../stores/editor'
+import {useUpdateAtom} from 'jotai/utils'
 
 const EditorPage = () => {
   const {splitRef} = useSplit()
-  const {setSizes} = SizesContainer.useContainer()
+  const setSizes = useUpdateAtom(sizesAtom)
 
   const handleDrag = debounce(sizes => {
     setSizes(sizes)
@@ -27,7 +28,10 @@ const EditorPage = () => {
       height='100vh'
       onDrag={handleDrag}
     >
-      <Editor/>
+      <Pane>
+        <EditorHeader/>
+        <Editor/>
+      </Pane>
 
       <Pane
         position='relative'

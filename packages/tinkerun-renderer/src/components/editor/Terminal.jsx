@@ -3,15 +3,17 @@ import {Pane} from 'evergreen-ui'
 import xterm from 'xterm'
 import 'xterm/css/xterm.css'
 
-import OutputContainer from './OutputContainer'
 import {onOutputConnection, inputConnection} from '../../utils/api'
 import {getTermOptions} from '../../utils/getTermOptions'
 import useFitAddon from '../../hooks/useFitAddon'
+import {useUpdateAtom} from 'jotai/utils'
+import {appendOutputAtom, clearOutputAtom} from '../../stores/editor'
 
 const Terminal = () => {
   const domRef = useRef()
   const {fitAddonRef} = useFitAddon()
-  const {appendOutputContent, clearOutputContent} = OutputContainer.useContainer()
+  const appendOutput = useUpdateAtom(appendOutputAtom)
+  const clearOutput = useUpdateAtom(clearOutputAtom)
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,18 +40,19 @@ const Terminal = () => {
     term.onKey(({domEvent}) => {
       if (domEvent.key === 'Enter') {
         // 监听每一次执行命令的时候，清空 output content
-        clearOutputContent()
+        clearOutput()
       }
     })
 
     const output = data => {
-      appendOutputContent(data)
+      appendOutput(data)
       term.write(data)
     }
 
     const onOutput = onOutputConnection(output)
 
     term.loadAddon(fitAddonRef.current)
+    fitAddonRef.current.fit()
 
     return () => {
       onOutput.dispose()

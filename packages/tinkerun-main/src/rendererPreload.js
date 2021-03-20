@@ -45,4 +45,8 @@ contextBridge.exposeInMainWorld('api', {
       dispose: () => ipcRenderer.off('deleteConnectionConfirm', listener),
     }
   },
+
+  createSnippet: snippet => ipcRenderer.send('createSnippet', connectionId(), snippet),
+  updateSnippet: snippet => ipcRenderer.send('updateSnippet', connectionId(), snippet),
+  allSnippets: () => ipcRenderer.sendSync('allSnippets', connectionId())
 })

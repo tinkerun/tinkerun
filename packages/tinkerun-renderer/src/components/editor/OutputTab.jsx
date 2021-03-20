@@ -1,15 +1,16 @@
 import {Tablist, Tab} from 'evergreen-ui'
 import {useIntl} from 'react-intl'
+import {useAtom} from 'jotai'
 
-import OutputContainer from './OutputTabContainer'
+import {tabIndexAtom} from '../../stores/editor'
 
 const OutputTab = () => {
-  const {tabIndex, setTabIndex} = OutputContainer.useContainer()
+  const [tabIndex, setTabIndex] = useAtom(tabIndexAtom)
   const intl = useIntl()
 
   const tabs = [
-    intl.formatMessage({id: 'editor.output'}),
     intl.formatMessage({id: 'editor.terminal'}),
+    intl.formatMessage({id: 'editor.output'}),
   ]
 
   return (

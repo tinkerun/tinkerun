@@ -26,7 +26,10 @@
 
   "editor": {
     "output": "输出",
-    "terminal": "命令行"
+    "terminal": "命令行",
+    "run": "运行",
+    "snippets": "代码",
+    "new_snippet": "新代码片段"
   },
 
   "unable_to_connect": "无法连接，切换至命令行模式查看更多细节。",

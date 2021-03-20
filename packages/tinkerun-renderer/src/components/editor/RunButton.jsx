@@ -1,16 +1,22 @@
-import {useMemo} from 'react'
 import {Button, majorScale, PlayIcon} from 'evergreen-ui'
 import {FormattedMessage} from 'react-intl'
+import {useAtomValue, useUpdateAtom} from 'jotai/utils'
+import {useRoute} from 'wouter'
 
-import CodeContainer from './CodeContainer'
+import {snippetAtomWithId} from '../../stores/snippets'
+import {runAtom} from '../../stores/editor'
 
 const RunButton = () => {
-  const {code, runCode} = CodeContainer.useContainer()
+  const [, params] = useRoute('/snippets/:id')
+  const snippet = useAtomValue(snippetAtomWithId(params.id))
+  const run = useUpdateAtom(runAtom)
+
+  const {code} = snippet
   const disabled = code.trim() === ''
 
-  const handleClick = () => runCode(code)
+  const handleClick = () => run(code)
 
-  return useMemo(() => (
+  return (
     <Button
       height={majorScale(3)}
       iconBefore={PlayIcon}
@@ -19,7 +25,7 @@ const RunButton = () => {
     >
       <FormattedMessage id='editor.run'/>
     </Button>
-  ))
+  )
 }
 
 export default RunButton

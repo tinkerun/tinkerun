@@ -18,6 +18,7 @@ const {
   connectConnection,
 } = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
+const {createSnippet, allSnippets, updateSnippet} = require('./services/snippets')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
   event.returnValue = selectDirectory(defaultPath)
@@ -92,4 +93,16 @@ ipcMain.on('inspire', event => {
 
 ipcMain.on('popupConnectionContextMenu', (event, id) => {
   connectionContextMenu(id).popup()
+})
+
+ipcMain.on('createSnippet', (event, connectionId, snippet) => {
+  createSnippet(connectionId, snippet)
+})
+
+ipcMain.on('updateSnippet', (event, connectionId, snippet) => {
+  updateSnippet(connectionId, snippet)
+})
+
+ipcMain.on('allSnippets', (event, connectionId) => {
+  event.returnValue = allSnippets(connectionId)
 })

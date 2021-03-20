@@ -26,7 +26,10 @@
 
   "editor": {
     "output": "Output",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "run": "Run",
+    "snippets": "Snippets",
+    "new_snippet": "New Snippet"
   },
 
   "unable_to_connect": "Unable to connect the connection, switch to the terminal mode for more detail.",
