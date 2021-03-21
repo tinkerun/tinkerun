@@ -5,21 +5,22 @@ import {useRoute} from 'wouter'
 
 import Tooltip from '../Tooltip'
 import {snippetAtomWithId} from '../../stores/snippets'
-import {runAtom, tabIndexAtom} from '../../stores/editor'
+import {runAtom} from '../../stores/editor'
 
 const RunButton = () => {
   const [, params] = useRoute('/snippets/:id')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
-  const setTabIndex = useUpdateAtom(tabIndexAtom)
 
-  const {code} = snippet
-  const disabled = code.trim() === ''
+  const isDisabled = () => {
+    if (snippet) {
+      return snippet.code.trim() === ''
+    }
 
-  const handleClick = () => {
-    setTabIndex(1)
-    run(code)
+    return false
   }
+
+  const handleClick = () => run(snippet.code)
 
   return (
     <Tooltip
@@ -31,7 +32,7 @@ const RunButton = () => {
         height={majorScale(4)}
         icon={PlayIcon}
         onClick={handleClick}
-        disabled={disabled}
+        disabled={isDisabled()}
         borderRadius='50%'
       />
     </Tooltip>

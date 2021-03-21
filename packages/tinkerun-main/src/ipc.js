@@ -6,6 +6,7 @@ const {quickConnection} = require('./constants')
 const {getIntlConfig} = require('./locale')
 const {createEditorWindow} = require('./createEditorWindow')
 const {connectionContextMenu} = require('./connectionContextMenu')
+const {snippetContextMenu} = require('./snippetContextMenu')
 const {Inspiring} = require('./Inspiring')
 const {
   deleteConnection,
@@ -18,7 +19,7 @@ const {
   connectConnection,
 } = require('./services/connections')
 const {setLocale, getLocale} = require('./services/config')
-const {createSnippet, allSnippets, updateSnippet} = require('./services/snippets')
+const {createSnippet, allSnippets, updateSnippet, deleteSnippet} = require('./services/snippets')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
   event.returnValue = selectDirectory(defaultPath)
@@ -105,4 +106,12 @@ ipcMain.on('updateSnippet', (event, connectionId, snippet) => {
 
 ipcMain.on('allSnippets', (event, connectionId) => {
   event.returnValue = allSnippets(connectionId)
+})
+
+ipcMain.on('deleteSnippet', ((event, connectionId, snippetId) => {
+  deleteSnippet(connectionId, snippetId)
+}))
+
+ipcMain.on('popupSnippetContextMenu', (event, connectionId, snippetId) => {
+  snippetContextMenu(connectionId, snippetId).popup()
 })

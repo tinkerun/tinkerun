@@ -11,7 +11,6 @@
     "command": "Command",
     "save": "Save",
     "connect": "Connect",
-    "delete": "Delete",
     "over_ssh": "Over SSH",
     "ssh_server": "Server",
     "ssh_port": "Port",
@@ -29,12 +28,16 @@
     "terminal": "Terminal",
     "run": "Run",
     "snippets": "Snippets",
-    "new_snippet": "New Snippet"
+    "new_snippet": "New Snippet",
+    "delete_confirm_title": "Are you absolutely sure?",
+    "delete_confirm_content": "This action <strong>cannot</strong> be undone. This will permanently delete the <strong>{name}</strong> snippet.",
+    "delete_snippet": "Delete Snippet"
   },
 
   "unable_to_connect": "Unable to connect the connection, switch to the terminal mode for more detail.",
   "ok": "OK",
   "cancel": "Cancel",
+  "delete": "Delete",
 
   "zh": "中文",
   "en": "English",

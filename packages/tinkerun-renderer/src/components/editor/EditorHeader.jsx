@@ -19,6 +19,10 @@ const EditorHeader = () => {
     })
   }
 
+  if (!snippet) {
+    return null
+  }
+
   return (
     <Header
       borderBottom

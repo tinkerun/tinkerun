@@ -7,7 +7,7 @@ import {useUpdateAtom} from 'jotai/utils'
 import {onDeleteConnectionConfirm} from '../../utils/api'
 import {deleteConnectionAtom} from '../../stores/connections'
 
-const DeleteConfirm = () => {
+const DeleteConnectionConfirm = () => {
   const [isShow, setIsShow] = useState(false)
   const [connection, setConnection] = useState({})
   const intl = useIntl()
@@ -66,4 +66,4 @@ const DeleteConfirm = () => {
   )
 }
 
-export default DeleteConfirm
+export default DeleteConnectionConfirm

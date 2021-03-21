@@ -11,7 +11,6 @@
     "command": "命令",
     "save": "保存",
     "connect": "连接",
-    "delete": "删除",
     "over_ssh": "使用 SSH",
     "ssh_server": "服务器",
     "ssh_port": "端口",
@@ -29,12 +28,16 @@
     "terminal": "命令行",
     "run": "运行",
     "snippets": "代码",
-    "new_snippet": "新代码片段"
+    "new_snippet": "新代码片段",
+    "delete_confirm_title": "确定删除？",
+    "delete_confirm_content": "本操作<strong>不能撤销</strong>，将永久删除<strong>{name}</strong>代码片段。",
+    "delete_snippet": "删除代码片段"
   },
 
   "unable_to_connect": "无法连接，切换至命令行模式查看更多细节。",
   "ok": "确定",
   "cancel": "取消",
+  "delete": "删除",
 
   "zh": "中文",
   "en": "English",

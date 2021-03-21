@@ -91,7 +91,7 @@ const Editor = () => {
         }
       }
     }
-  }, [snippet.id])
+  }, [params.id])
 
   useEffect(() => {
     // 注册 php-snippet

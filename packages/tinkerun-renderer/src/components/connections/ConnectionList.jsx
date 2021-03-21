@@ -2,7 +2,7 @@ import {Pane} from 'evergreen-ui'
 import {useAtomValue} from 'jotai/utils'
 
 import ConnectionItem from './ConnectionItem'
-import DeleteConfirm from './DeleteConfirm'
+import DeleteConnectionConfirm from './DeleteConnectionConfirm'
 import {connectionListAtom} from '../../stores/connections'
 
 const ConnectionList = () => {
@@ -10,7 +10,7 @@ const ConnectionList = () => {
 
   return (
     <Pane>
-      <DeleteConfirm/>
+      <DeleteConnectionConfirm/>
       {connections.map(connection => (
         <ConnectionItem
           key={connection.id}

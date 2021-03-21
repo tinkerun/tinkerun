@@ -1,7 +1,7 @@
 import {atom} from 'jotai'
 import {atomWithImmer} from 'jotai/immer'
 
-import {allSnippets, createSnippet, updateSnippet} from '../utils/api'
+import {allSnippets, createSnippet, deleteSnippet, updateSnippet} from '../utils/api'
 
 const snippetDataAtom = atomWithImmer(allSnippets())
 
@@ -27,6 +27,14 @@ const updateSnippetAtom = atom(null, (get, set, snippet) => {
   updateSnippet(get(snippetDataAtom)[snippet.id])
 })
 
+const deleteSnippetAtom = atom(null, (get, set, id) => {
+  set(snippetDataAtom, data => {
+    delete data[id]
+  })
+
+  deleteSnippet(id)
+})
+
 const snippetAtoms = {}
 
 const snippetAtomWithId = id => {
@@ -42,5 +50,6 @@ export {
   snippetListAtom,
   createSnippetAtom,
   updateSnippetAtom,
+  deleteSnippetAtom,
   snippetAtomWithId,
 }

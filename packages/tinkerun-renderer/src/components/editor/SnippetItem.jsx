@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import {majorScale, Table} from 'evergreen-ui'
 import {useLocation, useRoute} from 'wouter'
 
+import {popupSnippetContextMenu} from '../../utils/api'
+
 const {Row, TextCell} = Table
 
 const SnippetItem = ({snippet}) => {
@@ -12,10 +14,15 @@ const SnippetItem = ({snippet}) => {
     setLocation(`/snippets/${snippet.id}`)
   }
 
+  const handleContextMenu = () => {
+    popupSnippetContextMenu(snippet.id)
+  }
+
   return (
     <Row
       height={majorScale(4)}
       onSelect={handleSelect}
+      onContextMenu={handleContextMenu}
       userSelect='none'
       isSelected={match && params.id === snippet.id}
       isSelectable

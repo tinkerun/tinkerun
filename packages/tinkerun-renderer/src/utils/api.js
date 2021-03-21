@@ -24,3 +24,6 @@ export const onOutputConnection = api.onOutputConnection
 export const createSnippet = api.createSnippet
 export const updateSnippet = api.updateSnippet
 export const allSnippets = api.allSnippets
+export const deleteSnippet = api.deleteSnippet
+export const popupSnippetContextMenu = api.popupSnippetContextMenu
+export const onDeleteSnippetConfirm = api.onDeleteSnippetConfirm

@@ -48,5 +48,15 @@ contextBridge.exposeInMainWorld('api', {
 
   createSnippet: snippet => ipcRenderer.send('createSnippet', connectionId(), snippet),
   updateSnippet: snippet => ipcRenderer.send('updateSnippet', connectionId(), snippet),
-  allSnippets: () => ipcRenderer.sendSync('allSnippets', connectionId())
+  deleteSnippet: id => ipcRenderer.send('deleteSnippet', connectionId(), id),
+  allSnippets: () => ipcRenderer.sendSync('allSnippets', connectionId()),
+  popupSnippetContextMenu: id => ipcRenderer.send('popupSnippetContextMenu', connectionId(), id),
+
+  onDeleteSnippetConfirm: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('deleteSnippetConfirm', listener)
+    return {
+      dispose: () => ipcRenderer.off('deleteSnippetConfirm', listener),
+    }
+  },
 })

@@ -11,6 +11,8 @@ const inputAtom = atom('')
 
 // 执行代码
 const runAtom = atom(null, (get, set, code) => {
+  // 展示 output
+  set(tabIndexAtom, 1)
   set(outputAtom, '')
   let codeArr = code.split('\n')
   codeArr = compact(codeArr)

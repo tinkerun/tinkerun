@@ -2,6 +2,7 @@ import {Pane} from 'evergreen-ui'
 import {useAtomValue} from 'jotai/utils'
 
 import SnippetItem from './SnippetItem'
+import DeleteSnippetConfirm from './DeleteSnippetConfirm'
 import {snippetListAtom} from '../../stores/snippets'
 
 const SnippetList = () => {
@@ -9,6 +10,7 @@ const SnippetList = () => {
 
   return (
     <Pane>
+      <DeleteSnippetConfirm/>
       {snippets.map(snippet => {
         return (
           <SnippetItem
