@@ -19,6 +19,10 @@ const IndexWindow = () => {
         display='flex'
         sizes={[36, 64]}
         minSize={[270, 340]}
+        gutterStyle={() => ({
+          left: '-5px',
+          width: '10px',
+        })}
       >
         <Sidebar/>
         <Switch>

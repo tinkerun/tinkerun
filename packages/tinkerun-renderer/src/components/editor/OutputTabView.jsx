@@ -32,7 +32,7 @@ const OutputTabView = (props) => {
       backgroundColor='white'
       paddingX={majorScale(2)}
       height='100%'
-      paddingTop={50}
+      paddingTop={40}
       {...props}
     >
       <Pane

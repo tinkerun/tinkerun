@@ -136,7 +136,7 @@ const Editor = () => {
 
   return useMemo(() => (
     <Pane
-      height='100%'
+      flex={1}
       ref={domRef}
     />
   ), [])
