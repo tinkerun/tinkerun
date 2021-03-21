@@ -19,7 +19,7 @@ const ConnectionPage = () => {
   return useMemo(() => (
     <Pane
       flex={1}
-      height='100vh'
+      height='100%'
       overflowY='scroll'
       padding={majorScale(2)}
     >

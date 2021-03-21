@@ -12,7 +12,7 @@ const Inspire = () => {
     <Pane
       display='flex'
       flexDirection='column'
-      height='100vh'
+      height='100%'
       width='100%'
       justifyContent='center'
       padding={majorScale(2)}

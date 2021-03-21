@@ -1,9 +1,10 @@
-import {Tooltip, Text, PlusIcon, majorScale, IconButton} from 'evergreen-ui'
+import {PlusIcon, majorScale, IconButton} from 'evergreen-ui'
 import {FormattedMessage, useIntl} from 'react-intl'
 import {useLocation} from 'wouter'
 import {nanoid} from 'nanoid'
 import {useUpdateAtom} from 'jotai/utils'
 
+import Tooltip from '../Tooltip'
 import {createConnectionAtom} from '../../stores/connections'
 
 const CreateButton = () => {
@@ -29,19 +30,8 @@ const CreateButton = () => {
   return (
     <Tooltip
       content={(
-        <Text
-          color='white'
-          size={300}
-          lineHeight={`${majorScale(3)}px`}
-          display='block'
-        >
-          <FormattedMessage id='connections.create'/>
-        </Text>
+        <FormattedMessage id='connections.create'/>
       )}
-      statelessProps={{
-        height: majorScale(3),
-        paddingY: 0,
-      }}
     >
       <IconButton
         icon={PlusIcon}

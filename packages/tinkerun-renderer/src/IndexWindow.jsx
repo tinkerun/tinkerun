@@ -25,10 +25,14 @@ const IndexWindow = () => {
         })}
       >
         <Sidebar/>
-        <Switch>
-          <Route path='/' component={Inspire}/>
-          <Route path='/connections/:id' component={ConnectionPage}/>
-        </Switch>
+        <Pane
+          height='100vh'
+        >
+          <Switch>
+            <Route path='/' component={Inspire}/>
+            <Route path='/connections/:id' component={ConnectionPage}/>
+          </Switch>
+        </Pane>
       </Pane>
     </WindowContainer>
   )

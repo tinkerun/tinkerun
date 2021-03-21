@@ -1,8 +1,8 @@
 import {majorScale, Pane} from 'evergreen-ui'
+import {useAtomValue} from 'jotai/utils'
 
 import Output from './Output'
 import Terminal from './Terminal'
-import {useAtomValue} from 'jotai/utils'
 import {tabIndexAtom} from '../../stores/editor'
 
 const OutputTabView = (props) => {

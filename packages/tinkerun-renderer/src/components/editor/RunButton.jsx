@@ -1,30 +1,40 @@
-import {Button, majorScale, PlayIcon} from 'evergreen-ui'
+import {IconButton, majorScale, PlayIcon} from 'evergreen-ui'
 import {FormattedMessage} from 'react-intl'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import {useRoute} from 'wouter'
 
+import Tooltip from '../Tooltip'
 import {snippetAtomWithId} from '../../stores/snippets'
-import {runAtom} from '../../stores/editor'
+import {runAtom, tabIndexAtom} from '../../stores/editor'
 
 const RunButton = () => {
   const [, params] = useRoute('/snippets/:id')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
+  const setTabIndex = useUpdateAtom(tabIndexAtom)
 
   const {code} = snippet
   const disabled = code.trim() === ''
 
-  const handleClick = () => run(code)
+  const handleClick = () => {
+    setTabIndex(1)
+    run(code)
+  }
 
   return (
-    <Button
-      height={majorScale(3)}
-      iconBefore={PlayIcon}
-      onClick={handleClick}
-      disabled={disabled}
+    <Tooltip
+      content={(
+        <FormattedMessage id='editor.run'/>
+      )}
     >
-      <FormattedMessage id='editor.run'/>
-    </Button>
+      <IconButton
+        height={majorScale(4)}
+        icon={PlayIcon}
+        onClick={handleClick}
+        disabled={disabled}
+        borderRadius='50%'
+      />
+    </Tooltip>
   )
 }
 

@@ -3,6 +3,7 @@ import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 
 import SnippetNameInput from './SnippetNameInput'
+import RunButton from './RunButton'
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
 
 const EditorHeader = () => {
@@ -20,13 +21,13 @@ const EditorHeader = () => {
 
   return (
     <Header
-      marginBottom={1}
       borderBottom
     >
       <SnippetNameInput
         value={snippet.name}
         onChange={handleChange}
       />
+      <RunButton/>
     </Header>
   )
 }
