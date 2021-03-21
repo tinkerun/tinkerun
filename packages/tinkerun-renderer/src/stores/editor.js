@@ -1,5 +1,6 @@
 import {atom} from 'jotai'
 import last from 'lodash/last'
+import compact from 'lodash/compact'
 
 import {inputConnection} from '../utils/api'
 
@@ -11,7 +12,9 @@ const inputAtom = atom('')
 // 执行代码
 const runAtom = atom(null, (get, set, code) => {
   set(outputAtom, '')
-  code = code.replaceAll('\n', '\\\n')
+  let codeArr = code.split('\n')
+  codeArr = compact(codeArr)
+  code = codeArr.join('\\\n')
   set(inputAtom, code)
 
   inputConnection(`${code}\r`)
