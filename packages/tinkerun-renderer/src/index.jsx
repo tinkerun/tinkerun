@@ -1,8 +1,12 @@
 import {render} from 'react-dom'
+import {Provider} from 'jotai'
 
 import IndexWindow from './IndexWindow'
 
 render(
-  <IndexWindow/>,
+  <Provider>
+    <IndexWindow/>
+  </Provider>
+  ,
   document.querySelector('#app'),
 )
