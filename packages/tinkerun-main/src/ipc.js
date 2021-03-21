@@ -44,8 +44,8 @@ ipcMain.on('getIntlConfig', event => {
   event.reply('setIntlConfig', getIntlConfig())
 })
 
-ipcMain.on('createConnection', event => {
-  event.returnValue = createConnection()
+ipcMain.on('createConnection', (event, connection) => {
+  createConnection(connection)
 })
 
 ipcMain.on('getConnection', (event, id) => {

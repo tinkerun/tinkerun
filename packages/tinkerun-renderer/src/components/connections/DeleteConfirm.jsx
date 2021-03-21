@@ -1,23 +1,23 @@
 import {useEffect, useState} from 'react'
 import {Dialog, Paragraph, Strong} from 'evergreen-ui'
 import {FormattedMessage, useIntl} from 'react-intl'
-
-import {onDeleteConnectionConfirm, deleteConnection} from '../../utils/api'
-import ConnectionsContainer from './ConnectionsContainer'
 import {useLocation, useRoute} from 'wouter'
+import {useUpdateAtom} from 'jotai/utils'
+
+import {onDeleteConnectionConfirm} from '../../utils/api'
+import {deleteConnectionAtom} from '../../stores/connections'
 
 const DeleteConfirm = () => {
   const [isShow, setIsShow] = useState(false)
   const [connection, setConnection] = useState({})
   const intl = useIntl()
-  const container = ConnectionsContainer.useContainer()
   const [match, params] = useRoute('/connections/:id')
   const [, setLocation] = useLocation()
+  const deleteConnection = useUpdateAtom(deleteConnectionAtom)
 
   const confirm = () => {
     if (connection.id) {
       deleteConnection(connection.id)
-      container.deleteConnection(connection.id)
 
       // 如果删除的 connection 和当前页面的 connection 相同则返回首页
       if (match && params.id === connection.id) {

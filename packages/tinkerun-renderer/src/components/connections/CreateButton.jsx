@@ -1,17 +1,28 @@
 import {Tooltip, Text, PlusIcon, majorScale, IconButton} from 'evergreen-ui'
-import {FormattedMessage} from 'react-intl'
+import {FormattedMessage, useIntl} from 'react-intl'
 import {useLocation} from 'wouter'
+import {nanoid} from 'nanoid'
+import {useUpdateAtom} from 'jotai/utils'
 
-import {createConnection} from '../../utils/api'
-import ConnectionsContainer from './ConnectionsContainer'
+import {createConnectionAtom} from '../../stores/connections'
 
 const CreateButton = () => {
   const [, setLocation] = useLocation()
-  const container = ConnectionsContainer.useContainer()
+  const createConnection = useUpdateAtom(createConnectionAtom)
+  const intl = useIntl()
 
   const handleClick = () => {
-    const connection = createConnection()
-    container.createConnection(connection)
+    const connection = {
+      id: nanoid(),
+      tag: 'local',
+      name: intl.formatMessage({id: 'connections.name_default'}),
+      is_over_ssh: false,
+      path: '',
+      command: '',
+    }
+
+    createConnection(connection)
+
     setLocation(`/connections/${connection.id}`)
   }
 

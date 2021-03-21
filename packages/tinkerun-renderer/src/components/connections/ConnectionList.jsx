@@ -1,11 +1,12 @@
 import {Pane} from 'evergreen-ui'
+import {useAtomValue} from 'jotai/utils'
 
 import ConnectionItem from './ConnectionItem'
 import DeleteConfirm from './DeleteConfirm'
-import ConnectionsContainer from './ConnectionsContainer'
+import {connectionListAtom} from '../../stores/connections'
 
 const ConnectionList = () => {
-  const {connections} = ConnectionsContainer.useContainer()
+  const connections = useAtomValue(connectionListAtom)
 
   return (
     <Pane>

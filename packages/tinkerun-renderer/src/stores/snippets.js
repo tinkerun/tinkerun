@@ -1,5 +1,4 @@
 import {atom} from 'jotai'
-import {splitAtom} from 'jotai/utils'
 import {atomWithImmer} from 'jotai/immer'
 
 import {allSnippets, createSnippet, updateSnippet} from '../utils/api'
@@ -38,12 +37,9 @@ const snippetAtomWithId = id => {
   return snippetAtoms[id]
 }
 
-const snippetAtomsAtom = splitAtom(snippetListAtom)
-
 export {
   snippetDataAtom,
   snippetListAtom,
-  snippetAtomsAtom,
   createSnippetAtom,
   updateSnippetAtom,
   snippetAtomWithId,

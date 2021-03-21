@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld('api', {
   allLocales: () => ipcRenderer.sendSync('allLocales'),
   getIntlConfig: () => ipcRenderer.send('getIntlConfig'),
   inspire: () => ipcRenderer.sendSync('inspire'),
-  createConnection: () => ipcRenderer.sendSync('createConnection'),
+  createConnection: connection => ipcRenderer.send('createConnection', connection),
   getConnection: id => ipcRenderer.sendSync('getConnection', id),
   deleteConnection: id => ipcRenderer.send('deleteConnection', id),
   allConnections: () => ipcRenderer.sendSync('allConnections'),

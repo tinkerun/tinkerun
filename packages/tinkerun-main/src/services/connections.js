@@ -1,24 +1,10 @@
-const {v4: uuid4} = require('uuid')
 const {is} = require('electron-util')
 
 const {connections} = require('../database/connections')
 const {getIndexWindow, getPtyProcess, getEditorWindow} = require('../processes')
-const {getIntl} = require('../locale')
 const {quickConnection} = require('../constants')
 const {createIndexWindow} = require('../createIndexWindow')
 const {createEditorWindow} = require('../createEditorWindow')
-
-/**
- * @returns {Record<string, any>}
- */
-const newConnection = () => ({
-  id: uuid4(),
-  tag: 'local',
-  name: getIntl().formatMessage({id: 'connections.name_default'}),
-  is_over_ssh: false,
-  path: '',
-  command: '',
-})
 
 /**
  * @returns {Record<string, any>}
@@ -63,10 +49,8 @@ const connectConnection = async connection => {
 /**
  * @returns {Record<string, any>}
  */
-const createConnection = () => {
-  const connection = newConnection()
+const createConnection = connection => {
   connections.set(connection.id, connection)
-  return connection
 }
 
 /**

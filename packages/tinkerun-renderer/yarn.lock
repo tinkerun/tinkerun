@@ -2453,11 +2453,6 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.npm.taobao.org/hosted-git-info/download/hosted-git-info-2.8.8.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhosted-git-info%2Fdownload%2Fhosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
   integrity sha1-dTm9S8Hg4KiVgVouAmJCCxKFhIg=
 
-hotkeys-js@3.8.2:
-  version "3.8.2"
-  resolved "https://registry.npm.taobao.org/hotkeys-js/download/hotkeys-js-3.8.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhotkeys-js%2Fdownload%2Fhotkeys-js-3.8.2.tgz#177c3e7dc19279c881e69983177849bed76e4747"
-  integrity sha1-F3w+fcGSeciB5pmDF3hJvtduR0c=
-
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/html-encoding-sniffer/download/html-encoding-sniffer-2.0.1.tgz#42a6dc4fd33f00281176e8b23759ca4e4fa185f3"
@@ -4102,13 +4097,6 @@ react-hook-form@^6.15.4:
   resolved "https://registry.npm.taobao.org/react-hook-form/download/react-hook-form-6.15.4.tgz?cache=0&sync_timestamp=1614219279870&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-hook-form%2Fdownload%2Freact-hook-form-6.15.4.tgz#328003e1ccc096cd158899ffe7e3b33735a9b024"
   integrity sha1-MoAD4czAls0ViJn/5+OzNzWpsCQ=
 
-react-hotkeys-hook@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.npm.taobao.org/react-hotkeys-hook/download/react-hotkeys-hook-3.1.0.tgz#fa2f6a7752b54c0fff94d4fdf3d13f24f7756189"
-  integrity sha1-+i9qd1K1TA//lNT989E/JPd1YYk=
-  dependencies:
-    hotkeys-js "3.8.2"
-
 react-intl@^5.13.1:
   version "5.13.1"
   resolved "https://registry.npm.taobao.org/react-intl/download/react-intl-5.13.1.tgz#6e043414be6eccb810446dd2813b899c7ca53d9e"
@@ -5048,11 +5036,6 @@ unset-value@^1.0.0:
   dependencies:
     has-value "^0.3.1"
     isobject "^3.0.0"
-
-unstated-next@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/unstated-next/download/unstated-next-1.1.0.tgz#7bb4911a12fdf3cc8ad3eb11a0b315e4a8685ea8"
-  integrity sha1-e7SRGhL988yK0+sRoLMV5KhoXqg=
 
 untildify@^2.0.0:
   version "2.1.0"
