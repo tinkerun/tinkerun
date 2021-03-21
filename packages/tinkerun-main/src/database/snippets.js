@@ -1,6 +1,6 @@
 const Store = require('electron-store')
 
-let data = {}
+const data = {}
 
 const snippets = id => {
   if (data[id]) {
@@ -8,7 +8,7 @@ const snippets = id => {
   }
 
   const store = new Store({
-    name: `app/snippets/${id}`
+    name: `app/snippets/${id}`,
   })
 
   data[id] = store
