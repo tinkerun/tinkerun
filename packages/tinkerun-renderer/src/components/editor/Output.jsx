@@ -1,4 +1,4 @@
-import {useMemo, useEffect, useRef} from 'react'
+import {useMemo, useEffect, useRef, useCallback} from 'react'
 import {Pane} from 'evergreen-ui'
 import {useAtomValue} from 'jotai/utils'
 import xterm from 'xterm'
@@ -15,14 +15,20 @@ const Output = () => {
   const {fitAddonRef} = useFitAddon()
   const content = useAtomValue(outputFilteredAtom)
 
-  // 写入内容至 output
-  useEffect(debounce(() => {
+  // 清空 output，写入内容
+  // https://github.com/xtermjs/xterm.js/issues/943
+  const writeContent = useCallback(debounce((content) => {
     const term = termRef.current
     if (term) {
       term.reset()
       term.write(content)
     }
-  }, 400), [content])
+  }, 500), [])
+
+  // 写入内容至 output
+  useEffect(() => {
+    writeContent(content)
+  }, [content])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
