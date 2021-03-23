@@ -1,6 +1,7 @@
 {
   "name": "tinkerun-renderer",
   "license": "MIT",
+  "version": "0.0.0",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
