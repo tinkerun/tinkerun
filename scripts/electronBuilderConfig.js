@@ -1,28 +1,28 @@
 const path = require('path')
 
-const lernaJson = require('./lerna.json')
+const config = require('./config')
 
-const mainPkg = path.join(__dirname, 'packages/tinkerun-main')
-const rendererPkg = path.join(__dirname, 'packages/tinkerun-renderer')
-const assetsDir = path.join(__dirname, 'assets')
+const mainPkg = path.join(__dirname, '../packages/tinkerun-main')
+const rendererPkg = path.join(__dirname, '../packages/tinkerun-renderer')
+const assetsDir = path.join(__dirname, '../assets')
 
 module.exports = {
-  appId: 'com.tinkerun.Tinkerun',
-  productName: 'Tinkerun',
-  copyright: 'Copyright © 2021 billyct',
+  appId: 'com.tinkerun.app',
+  productName: config.productName,
+  copyright: `Copyright © ${new Date().getFullYear()} billyct`,
 
   extraMetadata: {
-    name: 'Tinkerun',
+    name: config.productName,
     description: 'An application that lets you run code within your favorite PHP application - either locally or via SSH.',
-    homepage: 'https://github.com/tinkerun/tinkerun',
+    homepage: `https://github.com/${config.githubOrg}/${config.githubOrg}`,
     author: {
       name: 'billyct',
       email: 'billyct2012@gmail.com',
     },
-    repository:{
-      url: 'https://github.com/tinkerun/tinkerun',
+    repository: {
+      url: `https://github.com/${config.githubOrg}/${config.githubOrg}`,
     },
-    version: lernaJson.version,
+    version: config.version,
   },
 
   directories: {
@@ -34,7 +34,28 @@ module.exports = {
     category: 'public.app-category.developer-tools',
     icon: path.join(assetsDir, 'icons/mac/icon.icns'),
     electronLanguages: ['en', 'zh', 'zh-CN'],
-    target: 'zip',
+    target: [
+      'dmg',
+      'zip',
+    ],
+  },
+  'dmg': {
+    'window': {
+      'width': 540,
+      'height': 380,
+    },
+    'contents': [
+      {
+        'x': 130,
+        'y': 186,
+      },
+      {
+        'x': 409,
+        'y': 186,
+        'type': 'link',
+        'path': '/Applications',
+      },
+    ],
   },
   files: [
     '!**/*',

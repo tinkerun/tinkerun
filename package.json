@@ -7,18 +7,23 @@
     "start:main": "lerna run start --scope tinkerun-main --stream --",
     "start:renderer": "lerna run start --scope tinkerun-renderer --stream --",
     "start": "lerna exec --parallel --stream yarn start",
-    "build:packages": "lerna run build",
+    "build": "lerna run build",
     "build:icons": "electron-icon-builder -i assets/icon.png -o assets",
-    "build:electron": "electron-builder --config builder.js",
-    "build": "run-s build:icons build:packages build:electron",
+    "prepackage": "run-p build:icons build",
+    "package": "node ./scripts/package.js",
+    "prerelease": "run-s package",
+    "release": "node ./scripts/release.js",
     "test": "lerna run test --parallel --",
     "lint": "lerna run lint --parallel --"
   },
   "devDependencies": {
+    "@octokit/rest": "^18.3.5",
     "electron": "^12.0.0",
     "electron-builder": "^22.10.5",
     "electron-icon-builder": "^2.0.1",
+    "fast-glob": "^3.2.5",
     "lerna": "^3.22.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
