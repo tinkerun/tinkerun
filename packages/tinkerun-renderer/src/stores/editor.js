@@ -21,6 +21,9 @@ const runAtom = atom(null, (get, set, code) => {
   codeArr = compact(codeArr)
   set(inputAtom, codeArr)
 
+  // 清除命令行已输入的内容
+  inputConnection('\u0015')
+
   for (const codeItem of codeArr) {
     inputConnection(`${codeItem}\r`)
   }
