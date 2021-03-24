@@ -1,8 +1,9 @@
 import {atom} from 'jotai'
 import compact from 'lodash/compact'
 
-import {inputConnection} from '../utils/api'
+import {inputConnection, getConnection} from '../utils/api'
 
+const connectionAtom = atom(getConnection())
 const sizesAtom = atom([])
 const outputAtom = atom('')
 const tabIndexAtom = atom(0)
@@ -36,6 +37,7 @@ const clearOutputAtom = atom(null, (get, set, update) => {
 })
 
 export {
+  connectionAtom,
   sizesAtom,
   outputAtom,
   tabIndexAtom,

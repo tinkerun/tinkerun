@@ -12,7 +12,7 @@ contextBridge.exposeInMainWorld('api', {
   getIntlConfig: () => ipcRenderer.send('getIntlConfig'),
   inspire: () => ipcRenderer.sendSync('inspire'),
   createConnection: connection => ipcRenderer.send('createConnection', connection),
-  getConnection: id => ipcRenderer.sendSync('getConnection', id),
+  getConnection: () => ipcRenderer.sendSync('getConnection', connectionId()),
   deleteConnection: id => ipcRenderer.send('deleteConnection', id),
   allConnections: () => ipcRenderer.sendSync('allConnections'),
   updateConnection: connection => ipcRenderer.send('updateConnection', connection),

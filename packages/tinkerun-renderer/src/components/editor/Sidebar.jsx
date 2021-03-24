@@ -1,6 +1,6 @@
-import {Heading, Pane} from 'evergreen-ui'
-import {FormattedMessage} from 'react-intl'
+import {Pane} from 'evergreen-ui'
 
+import ConnectionInfo from './ConnectionInfo'
 import CreateSnippetButton from './CreateSnippetButton'
 import SnippetList from './SnippetList'
 import Header from '../Header'
@@ -8,7 +8,7 @@ import Header from '../Header'
 const Sidebar = () => {
   return (
     <Pane
-      width={240}
+      width={300}
       height='100vh'
       display='flex'
       flexShrink={0}
@@ -16,9 +16,7 @@ const Sidebar = () => {
       borderRight
     >
       <Header>
-        <Heading size={400}>
-          <FormattedMessage id='editor.snippets'/>
-        </Heading>
+        <ConnectionInfo/>
         <CreateSnippetButton/>
       </Header>
 
