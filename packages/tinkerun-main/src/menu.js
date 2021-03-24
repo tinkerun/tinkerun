@@ -1,9 +1,7 @@
-const path = require('path')
 const {app, Menu, shell} = require('electron')
 const {
   is,
   appMenu,
-  aboutMenuItem,
   openUrlMenuItem,
   openNewGitHubIssue,
   debugInfo,
@@ -44,18 +42,6 @@ ${debugInfo()}`
     },
   },
 ]
-
-if (!is.macos) {
-  helpSubmenu.push(
-    {
-      type: 'separator',
-    },
-    aboutMenuItem({
-      icon: path.join(__dirname, 'static', 'icon.png'),
-      text: getIntl().formatMessage({id: 'menu.created_by'}),
-    }),
-  )
-}
 
 const debugSubmenu = [
   {
