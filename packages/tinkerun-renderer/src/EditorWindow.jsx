@@ -1,21 +1,22 @@
-import {Route, Switch} from 'wouter'
+import {Redirect, Route, Switch} from 'wouter'
 import {Pane} from 'evergreen-ui'
 import Split from 'react-split'
-import {useUpdateAtom} from 'jotai/utils'
+import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import throttle from 'lodash/throttle'
 
 import EditorPage from './components/EditorPage'
 import WindowContainer from './components/WindowContainer'
 import Sidebar from './components/editor/Sidebar'
-import Inspire from './components/Inspire'
 import Toolbar from './components/editor/Toolbar'
 import OutputTabView from './components/editor/OutputTabView'
 import useSplit from './hooks/useSplit'
 import {sizesAtom} from './stores/editor'
+import {snippetListAtom} from './stores/snippets'
 
 const EditorWindow = () => {
   const {splitRef} = useSplit()
   const setSizes = useUpdateAtom(sizesAtom)
+  const snippets = useAtomValue(snippetListAtom)
 
   const handleDrag = throttle(sizes => {
     setSizes(sizes)
@@ -46,7 +47,11 @@ const EditorWindow = () => {
             height='100vh'
           >
             <Switch>
-              <Route path='/' component={Inspire}/>
+              <Route path='/'>
+                <Redirect
+                  to={`/snippets/${snippets[0].id}`}
+                />
+              </Route>
               <Route path='/snippets/:id' component={EditorPage}/>
             </Switch>
           </Pane>

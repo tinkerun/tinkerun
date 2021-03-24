@@ -1,9 +1,29 @@
 import {atom} from 'jotai'
 import {atomWithImmer} from 'jotai/immer'
+import {nanoid} from 'nanoid'
+import isEmpty from 'lodash/isEmpty'
 
 import {allSnippets, createSnippet, deleteSnippet, updateSnippet} from '../utils/api'
 
-const snippetDataAtom = atomWithImmer(allSnippets())
+const newSnippet = snippet => ({
+  id: nanoid(),
+  code: '',
+  name: 'New Snippet',
+  ...snippet,
+})
+
+const allSnippetData = () => {
+  const data = allSnippets()
+
+  if (isEmpty(data)) {
+    const snippet = newSnippet()
+    data[snippet.id] = snippet
+  }
+
+  return data
+}
+
+const snippetDataAtom = atomWithImmer(allSnippetData())
 
 const snippetListAtom = atom(get => Object.values(get(snippetDataAtom)))
 
@@ -52,4 +72,5 @@ export {
   updateSnippetAtom,
   deleteSnippetAtom,
   snippetAtomWithId,
+  newSnippet,
 }
