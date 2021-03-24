@@ -13,7 +13,7 @@ module.exports = {
 
   extraMetadata: {
     name: config.productName,
-    description: 'An application that lets you run code within your favorite PHP application - either locally or via SSH.',
+    description: config.description,
     homepage: `https://github.com/${config.githubOrg}/${config.githubOrg}`,
     author: {
       name: 'billyct',
@@ -32,29 +32,41 @@ module.exports = {
   },
   mac: {
     category: 'public.app-category.developer-tools',
-    icon: path.join(assetsDir, 'icons/mac/icon.icns'),
     electronLanguages: ['en', 'zh', 'zh-CN'],
     target: [
       'dmg',
       'zip',
     ],
   },
-  'dmg': {
-    'window': {
-      'width': 540,
-      'height': 380,
+  dmg: {
+    window: {
+      width: 540,
+      height: 380,
     },
-    'contents': [
+    contents: [
       {
-        'x': 130,
-        'y': 186,
+        x: 130,
+        y: 186,
       },
       {
-        'x': 409,
-        'y': 186,
-        'type': 'link',
-        'path': '/Applications',
+        x: 409,
+        y: 186,
+        type: 'link',
+        path: '/Applications',
       },
+    ],
+  },
+  win: {
+    target: [
+      'squirrel',
+      'portable',
+    ],
+  },
+  linux: {
+    synopsis: config.synopsis,
+    category: 'Development',
+    target: [
+      'AppImage',
     ],
   },
   files: [
