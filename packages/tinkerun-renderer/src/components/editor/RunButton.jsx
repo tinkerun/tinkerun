@@ -1,7 +1,9 @@
+import {useCallback} from 'react'
 import {IconButton, majorScale, PlayIcon} from 'evergreen-ui'
 import {FormattedMessage} from 'react-intl'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import {useRoute} from 'wouter'
+import debounce from 'lodash/debounce'
 
 import Tooltip from '../Tooltip'
 import {snippetAtomWithId} from '../../stores/snippets'
@@ -20,7 +22,10 @@ const RunButton = () => {
     return false
   }
 
-  const handleClick = () => run(snippet.code)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const runDebounced = useCallback(debounce(code => run(code), 500), [])
+
+  const handleClick = () => runDebounced(snippet.code)
 
   return (
     <Tooltip

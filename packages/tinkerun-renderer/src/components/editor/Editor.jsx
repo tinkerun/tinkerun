@@ -22,7 +22,10 @@ const Editor = () => {
   const sizes = useAtomValue(sizesAtom)
   const run = useUpdateAtom(runAtom)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSnippetDebounced = useCallback(debounce(updateSnippet, 200), [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const runDebounced = useCallback(debounce(code => run(code), 500), [])
 
   // 重置编辑器的事件和代码
   const resetEditor = editor => {
@@ -111,7 +114,7 @@ const Editor = () => {
       contextMenuGroupId: 'navigation',
       contextMenuOrder: 1,
       run: ed => {
-        run(ed.getValue())
+        runDebounced(ed.getValue())
         return null
       },
     })

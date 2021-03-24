@@ -6,29 +6,34 @@ import 'xterm/css/xterm.css'
 import debounce from 'lodash/debounce'
 
 import {getTermOptions} from '../../utils/getTermOptions'
-import {outputFilteredAtom} from '../../stores/editor'
+import {filterOutput} from '../../utils/filterOutput'
+import {inputAtom, outputAtom} from '../../stores/editor'
 import useFitAddon from '../../hooks/useFitAddon'
 
 const Output = () => {
   const domRef = useRef()
   const termRef = useRef()
   const {fitAddonRef} = useFitAddon()
-  const content = useAtomValue(outputFilteredAtom)
+  const output = useAtomValue(outputAtom)
+  const input = useAtomValue(inputAtom)
 
   // 清空 output，写入内容
   // https://github.com/xtermjs/xterm.js/issues/943
-  const writeContent = useCallback(debounce((content) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const writeOutput = useCallback(debounce((output, input) => {
     const term = termRef.current
     if (term) {
       term.reset()
-      term.write(content)
+      term.write(
+        filterOutput(output, input),
+      )
     }
   }, 500), [])
 
   // 写入内容至 output
   useEffect(() => {
-    writeContent(content)
-  }, [content])
+    writeOutput(output, input)
+  }, [output, input])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps

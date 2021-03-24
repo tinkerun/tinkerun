@@ -2,7 +2,7 @@ import {Route, Switch} from 'wouter'
 import {Pane} from 'evergreen-ui'
 import Split from 'react-split'
 import {useUpdateAtom} from 'jotai/utils'
-import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
 
 import EditorPage from './components/EditorPage'
 import WindowContainer from './components/WindowContainer'
@@ -17,7 +17,7 @@ const EditorWindow = () => {
   const {splitRef} = useSplit()
   const setSizes = useUpdateAtom(sizesAtom)
 
-  const handleDrag = debounce(sizes => {
+  const handleDrag = throttle(sizes => {
     setSizes(sizes)
   }, 50)
 
