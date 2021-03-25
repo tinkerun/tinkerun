@@ -65,8 +65,13 @@ module.exports = {
   linux: {
     synopsis: config.synopsis,
     category: 'Development',
+    icon: 'icon.icns',
     target: [
       'AppImage',
+      'deb',
+      'tar.gz',
+      'rpm',
+      'snap'
     ],
   },
   files: [
