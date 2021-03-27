@@ -14,13 +14,11 @@ const getOrCreateRelease = async version => {
   const releaseName = `${config.productName} ${version} 📦`
 
   try {
-    const data = await octokit.repos.getReleaseByTag({
+    return await octokit.repos.getReleaseByTag({
       owner: config.githubOrg,
       repo: config.githubRepo,
       tag,
     })
-
-    console.log('data', data)
   } catch ( err ) {
     // Doesn't exist
   }
