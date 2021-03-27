@@ -20,7 +20,7 @@ const ConnectionPage = () => {
     <Pane
       flex={1}
       height='100%'
-      overflowY='scroll'
+      overflowY='auto'
       padding={majorScale(2)}
     >
       <ConnectionFormProvider defaultValues={connection}>

@@ -20,7 +20,7 @@ const Sidebar = () => (
 
     <Pane
       flex={1}
-      overflowY='scroll'
+      overflowY='auto'
     >
       <ConnectionList/>
     </Pane>
