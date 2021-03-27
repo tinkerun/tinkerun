@@ -1904,11 +1904,6 @@ electron-rebuild@^2.3.5:
     tar "^6.0.5"
     yargs "^16.0.0"
 
-electron-serve@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/electron-serve/download/electron-serve-1.1.0.tgz#507f56c8512c501880d3a9bec792fa92512af378"
-  integrity sha1-UH9WyFEsUBiA06m+x5L6klEq83g=
-
 electron-store@^7.0.2:
   version "7.0.2"
   resolved "https://registry.npm.taobao.org/electron-store/download/electron-store-7.0.2.tgz#e45a54d092ea43e2a953619ed4473893d448dfdf"
