@@ -15,6 +15,7 @@ const {
   allConnections,
   getConnection,
   inputConnection,
+  inputConnectionClearLine,
   closeConnection,
   connectConnection,
 } = require('./services/connections')
@@ -72,6 +73,10 @@ ipcMain.on('connectConnection', async (event, connection) => {
 
 ipcMain.on('inputConnection', (event, id, code) => {
   inputConnection(id, code)
+})
+
+ipcMain.on('inputConnectionClearLine', (event, id) => {
+  inputConnectionClearLine(id)
 })
 
 ipcMain.on('closeConnection', async (event, id) => {

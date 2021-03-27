@@ -78,6 +78,13 @@ const inputConnection = (id, code) => {
 /**
  * @param {String} id
  */
+const inputConnectionClearLine = id => {
+  getPtyProcess(id).clearLine()
+}
+
+/**
+ * @param {String} id
+ */
 const closeConnection = async id => {
   getEditorWindow(id).close()
 
@@ -94,6 +101,7 @@ module.exports = {
   updateConnection,
   getConnection,
   inputConnection,
+  inputConnectionClearLine,
   closeConnection,
   connectConnection,
 }

@@ -1,6 +1,7 @@
 const pty = require('node-pty')
 const defaultShell = require('default-shell')
 const fs = require('fs')
+const {is} = require('electron-util')
 
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
 
@@ -80,6 +81,18 @@ class Pty {
    */
   input (code) {
     this.pty.write(code)
+  }
+
+  /**
+   * terminal 清空当前行
+   */
+  clearLine () {
+    if (!is.windows) {
+      // 执行 ctrl+u
+      this.pty.write('\x15')
+    }
+
+    // windows 似乎沒有这样的命令
   }
 }
 

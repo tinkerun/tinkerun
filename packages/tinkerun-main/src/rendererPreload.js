@@ -21,6 +21,7 @@ contextBridge.exposeInMainWorld('api', {
   popupConnectionContextMenu: id => ipcRenderer.send('popupConnectionContextMenu', id),
   inputConnection: code => ipcRenderer.send('inputConnection', connectionId(), code),
   closeConnection: () => ipcRenderer.send('closeConnection', connectionId()),
+  inputConnectionClearLine: () => ipcRenderer.send('inputConnectionClearLine', connectionId()),
 
   onSetIntlConfig: cb => {
     const listener = (event, arg) => cb(arg)

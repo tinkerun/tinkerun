@@ -1,7 +1,7 @@
 import {atom} from 'jotai'
 import compact from 'lodash/compact'
 
-import {inputConnection, getConnection} from '../utils/api'
+import {inputConnection, getConnection, inputConnectionClearLine} from '../utils/api'
 
 const connectionAtom = atom(getConnection())
 const sizesAtom = atom([])
@@ -22,7 +22,7 @@ const runAtom = atom(null, (get, set, code) => {
   set(inputAtom, codeArr)
 
   // 清除命令行已输入的内容
-  inputConnection('\u0015')
+  inputConnectionClearLine()
 
   for (const codeItem of codeArr) {
     inputConnection(`${codeItem}\r`)
