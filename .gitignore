@@ -4,5 +4,6 @@ build/
 
 .DS_Store
 .envrc
+.actrc
 
 yarn-error.log
