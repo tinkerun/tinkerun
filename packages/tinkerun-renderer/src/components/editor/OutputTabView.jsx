@@ -3,10 +3,10 @@ import {useAtomValue} from 'jotai/utils'
 
 import Output from './Output'
 import Terminal from './Terminal'
-import {tabIndexAtom} from '../../stores/editor'
+import {outputTabIndexAtom} from '../../stores/editor'
 
 const OutputTabView = (props) => {
-  const tabIndex = useAtomValue(tabIndexAtom)
+  const tabIndex = useAtomValue(outputTabIndexAtom)
 
   const paneStyle = isDisplay => {
     const base = {

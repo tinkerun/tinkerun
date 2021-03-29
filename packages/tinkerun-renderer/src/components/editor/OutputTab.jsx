@@ -2,10 +2,10 @@ import {Tablist, Tab} from 'evergreen-ui'
 import {useIntl} from 'react-intl'
 import {useAtom} from 'jotai'
 
-import {tabIndexAtom} from '../../stores/editor'
+import {outputTabIndexAtom} from '../../stores/editor'
 
 const OutputTab = () => {
-  const [tabIndex, setTabIndex] = useAtom(tabIndexAtom)
+  const [tabIndex, setTabIndex] = useAtom(outputTabIndexAtom)
   const intl = useIntl()
 
   const tabs = [

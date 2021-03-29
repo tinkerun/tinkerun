@@ -6,14 +6,14 @@ import {inputConnection, getConnection, inputConnectionClearLine} from '../utils
 const connectionAtom = atom(getConnection())
 const sizesAtom = atom([])
 const outputAtom = atom('')
-const tabIndexAtom = atom(0)
+const outputTabIndexAtom = atom(0)
 const inputAtom = atom([])
 
 // 执行代码
 const runAtom = atom(null, (get, set, code) => {
-  if (get(tabIndexAtom) !== 1) {
+  if (get(outputTabIndexAtom) !== 1) {
     // 展示 output
-    set(tabIndexAtom, 1)
+    set(outputTabIndexAtom, 1)
   }
 
   set(outputAtom, '')
@@ -43,7 +43,7 @@ export {
   connectionAtom,
   sizesAtom,
   outputAtom,
-  tabIndexAtom,
+  outputTabIndexAtom,
   inputAtom,
   runAtom,
   appendOutputAtom,
