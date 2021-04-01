@@ -8,6 +8,8 @@ contextBridge.exposeInMainWorld('api', {
   selectFile: defaultPath => ipcRenderer.sendSync('selectFile', defaultPath),
   setLocale: locale => ipcRenderer.send('setLocale', locale),
   getLocale: () => ipcRenderer.sendSync('getLocale'),
+  allConfig: () => ipcRenderer.sendSync('allConfig'),
+  setConfig: data => ipcRenderer.send('setConfig', data),
   allLocales: () => ipcRenderer.sendSync('allLocales'),
   getIntlConfig: () => ipcRenderer.send('getIntlConfig'),
   inspire: () => ipcRenderer.sendSync('inspire'),

@@ -9,9 +9,10 @@ const {
 
 const {config} = require('./database/config')
 const {getIntl} = require('./locale')
+const {createPreferenceWindow} = require('./createPreferenceWindow')
 
 const showPreferences = () => {
-  // Show the app's preferences here
+  createPreferenceWindow()
 }
 
 const helpSubmenu = [

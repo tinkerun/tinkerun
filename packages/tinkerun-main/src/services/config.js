@@ -22,7 +22,15 @@ const setLocale = lang => {
  */
 const getLocale = () => config.get('locale', 'en')
 
+const allConfig = () => config.store
+
+const setConfig = data => {
+  config.set(data)
+}
+
 module.exports = {
   setLocale,
   getLocale,
+  allConfig,
+  setConfig,
 }

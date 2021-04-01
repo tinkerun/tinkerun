@@ -34,7 +34,13 @@
     "delete_snippet": "Delete Snippet"
   },
 
-  "unable_to_connect": "Unable to connect the connection, switch to the terminal mode for more detail.",
+  "preference": {
+    "general": "General",
+    "locale": "Locale",
+    "default_command": "Default command",
+    "default_command_tooltip": "it will used for quick connect, and when you leave command field empty in the connection form"
+  },
+
   "ok": "OK",
   "cancel": "Cancel",
   "delete": "Delete",

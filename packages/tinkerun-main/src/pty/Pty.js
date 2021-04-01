@@ -33,7 +33,7 @@ class Pty {
         TERM: 'xterm-256color',
         COLORTERM: 'truecolor',
         TERM_PROGRAM: productName,
-        TERM_PROGRAM_VERSION: version
+        TERM_PROGRAM_VERSION: version,
       },
     )
 
