@@ -29,7 +29,7 @@ const ConnectionInfo = () => {
         </Text>
       </Tooltip>
 
-      <TagBadge tag={connection.tag}/>
+      {connection.tag && <TagBadge tag={connection.tag}/>}
     </Pane>
   )
 }
