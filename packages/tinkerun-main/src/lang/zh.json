@@ -34,7 +34,13 @@
     "delete_snippet": "删除代码片段"
   },
 
-  "unable_to_connect": "无法连接，切换至命令行模式查看更多细节。",
+  "preference": {
+    "general": "通用",
+    "locale": "语言",
+    "default_command": "默认命令",
+    "default_command_tooltip": "当使用快速连接，或者命令栏空着的时候生效"
+  },
+
   "ok": "确定",
   "cancel": "取消",
   "delete": "删除",

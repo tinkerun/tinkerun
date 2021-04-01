@@ -19,7 +19,7 @@ const {
   closeConnection,
   connectConnection,
 } = require('./services/connections')
-const {setLocale, getLocale} = require('./services/config')
+const {setLocale, getLocale, allConfig, setConfig} = require('./services/config')
 const {createSnippet, allSnippets, updateSnippet, deleteSnippet} = require('./services/snippets')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
@@ -36,6 +36,14 @@ ipcMain.on('setLocale', (event, lang) => {
 
 ipcMain.on('getLocale', event => {
   event.returnValue = getLocale()
+})
+
+ipcMain.on('allConfig', event => {
+  event.returnValue = allConfig()
+})
+
+ipcMain.on('setConfig', (event, config) => {
+  setConfig(config)
 })
 
 ipcMain.on('allLocales', event => {

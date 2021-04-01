@@ -1,7 +1,7 @@
 import {FormFieldLabel, majorScale, Pane} from 'evergreen-ui'
 import PropTypes from 'prop-types'
 
-const Field = ({label, children, ...rest}) => (
+const Field = ({label, labelWidth, children, ...rest}) => (
   <Pane
     display='flex'
     alignItems='center'
@@ -11,7 +11,7 @@ const Field = ({label, children, ...rest}) => (
     <FormFieldLabel
       size={300}
       marginRight={majorScale(1)}
-      width={70}
+      width={labelWidth}
       textAlign='right'
       flexShrink={0}
     >
@@ -22,12 +22,14 @@ const Field = ({label, children, ...rest}) => (
 )
 
 Field.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.any,
+  labelWidth: PropTypes.number,
   children: PropTypes.element.isRequired,
 }
 
 Field.defaultProps = {
   label: '',
+  labelWidth: 70,
 }
 
 export default Field

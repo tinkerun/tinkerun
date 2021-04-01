@@ -1,8 +1,11 @@
 const pty = require('node-pty')
 const defaultShell = require('default-shell')
+const osLocale = require('os-locale')
 const fs = require('fs')
 const {is} = require('electron-util')
 
+const {name: productName, version} = require('../../package.json')
+const {config} = require('../database/config')
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
 
 class Pty {
@@ -11,8 +14,6 @@ class Pty {
     this.pty = null
     // 标记进程执行完毕
     this.prompt = ''
-    // 默认初始化命令
-    this.commandDefault = ''
   }
 
   /**
@@ -20,9 +21,25 @@ class Pty {
    */
   connect () {
     const shell = defaultShell
+    const args = [
+      '--login',
+    ]
+
+    const env = Object.assign(
+      {},
+      process.env,
+      {
+        LANG: `${osLocale.sync().replace(/-/, '_')}.UTF-8`,
+        TERM: 'xterm-256color',
+        COLORTERM: 'truecolor',
+        TERM_PROGRAM: productName,
+        TERM_PROGRAM_VERSION: version,
+      },
+    )
+
     const options = {
-      cwd: process.env.HOME,
-      env: process.env,
+      cwd: env.HOME,
+      env,
       encoding: 'utf-8',
     }
 
@@ -34,14 +51,15 @@ class Pty {
       }
     }
 
-    this.pty = pty.spawn(shell, [], options)
+    this.pty = pty.spawn(shell, args, options)
 
     if (this.connection.is_over_ssh) {
       // TODO 如果是 ssh，需要去检查 ssh 的连接是否断开。
       this.pty.write(`${parseSSHCommand(this.connection)}\r`)
     }
 
-    const command = this.connection.command || this.commandDefault
+    // 默认使用配置中的 default command
+    const command = this.connection.command || config.get('command_default')
     if (command) {
       this.pty.write(`${command}\r`)
     }

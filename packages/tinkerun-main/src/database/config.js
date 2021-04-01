@@ -7,6 +7,7 @@ const config = new Store({
   name: 'app/config',
   defaults: {
     locale: allLocales.indexOf(app.getLocale()) >= 0 ? app.getLocale() : 'en',
+    command_default: 'php artisan tinker',
   },
 })
 
