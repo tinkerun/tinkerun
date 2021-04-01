@@ -22,6 +22,7 @@
     "flat": "^5.0.2",
     "lodash": "^4.17.21",
     "node-pty": "^0.10.0",
+    "os-locale": "^5.0.0",
     "query-string": "^6.14.1"
   },
   "devDependencies": {
