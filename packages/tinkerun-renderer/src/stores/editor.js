@@ -1,5 +1,4 @@
 import {atom} from 'jotai'
-import compact from 'lodash/compact'
 
 import {inputConnection, getConnection, inputConnectionClearLine} from '../utils/api'
 import {minifyPHPCode} from '../utils/minifyPHPCode'
