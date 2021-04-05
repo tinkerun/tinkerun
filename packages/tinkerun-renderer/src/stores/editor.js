@@ -2,12 +2,13 @@ import {atom} from 'jotai'
 import compact from 'lodash/compact'
 
 import {inputConnection, getConnection, inputConnectionClearLine} from '../utils/api'
+import {minifyPHPCode} from '../utils/minifyPHPCode'
 
 const connectionAtom = atom(getConnection())
 const sizesAtom = atom([])
 const outputAtom = atom('')
 const outputTabIndexAtom = atom(0)
-const inputAtom = atom([])
+const inputAtom = atom('')
 
 // 执行代码
 const runAtom = atom(null, (get, set, code) => {
@@ -17,16 +18,15 @@ const runAtom = atom(null, (get, set, code) => {
   }
 
   set(outputAtom, '')
-  let codeArr = code.split('\n')
-  codeArr = compact(codeArr)
-  set(inputAtom, codeArr)
+
+  const input = minifyPHPCode(code)
+
+  set(inputAtom, input)
 
   // 清除命令行已输入的内容
   inputConnectionClearLine()
 
-  for (const codeItem of codeArr) {
-    inputConnection(`${codeItem}\r`)
-  }
+  inputConnection(`${input}\r`)
 })
 
 // 增加 output 数据
