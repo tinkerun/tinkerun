@@ -23,7 +23,7 @@ lines
     StmasSocks::where('stkcod', 'LIKE', '%B01%')
     ->get();
     `,
-    'StmasSocks::where(\'stkcod\', \'LIKE\', \'%B01%\')->get();',
+    'StmasSocks::where(\'stkcod\', \'LIKE\', \'%B01%\') ->get();',
   ],
   [
     `// lots of blank line
@@ -42,6 +42,18 @@ lines
     
     `,
     'User::first()',
+  ],
+  [
+    `
+    DB::connection("socks")
+->select("
+SELECT COUNT(*)
+FROM stcrd
+WHERE ( docnum LIKE 'IV%' OR docnum LIKE 'HS%' )
+AND docdat BETWEEN '2017-01-01' AND '2018-01-01'
+");
+    `,
+    'DB::connection("socks") ->select(" SELECT COUNT(*) FROM stcrd WHERE ( docnum LIKE \'IV%\' OR docnum LIKE \'HS%\' ) AND docdat BETWEEN \'2017-01-01\' AND \'2018-01-01\' ");',
   ],
 ])('test minifyPHPCode(%s)', (code, expected) => {
   it(`should be ${expected}`, () => {

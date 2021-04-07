@@ -15,5 +15,6 @@ export const minifyPHPCode = code => {
   // 合并成一行代码
   return join(compact(
     code.split('\n').map(c => c.trim()),
-  ), '')
+    // @warning 合并字符串需要一个空格，如果是多行字符串，当需要执行多行 SQL 的时候
+  ), ' ')
 }
