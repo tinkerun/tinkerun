@@ -18,6 +18,8 @@
 ### Download links
 [Github Releases](//github.com/tinkerun/tinkerun/releases)
 
+🗒 If you are using Visual Studio Code, you may like <a href="//tinke.run/vscode">Tinkerun for Visual Studio Code</a>
+
 ### Features
 
 - [x] **Connections**: Quick connect to your app either locally, in production or in docker container etc;
@@ -61,6 +63,10 @@
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-## Community
+## Ask for help
 
-Join the [Tinkerun Discord](https://discord.gg/7XFV6dmsat)
+If the troubleshooting guides did not resolve the issue, please reach out to me by [filing an issue](https://github.com/tinkerun/tinkerun/issues/new), [starting a GitHub discussion](https://github.com/tinkerun/tinkerun/discussions/new)
+
+## License
+
+[MIT](./LICENSE)
