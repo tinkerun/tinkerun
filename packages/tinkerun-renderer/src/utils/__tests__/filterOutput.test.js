@@ -9,6 +9,7 @@ describe.each([
   ['input\r\nex \bpected\r\n \bexpected\r\n>>>', 'input', 'expected\r\nexpected'],
   ['----->>>input\r\nex \bpected\r\n \bexpected\r\n>>>', 'input', 'expected\r\nexpected'],
   ['----->>>inputinput\r\nex \bpected\r\n \bexpected\r\n>>>', 'input', 'expected\r\nexpected'],
+  ['----->>>inputinput\r\nex \bpected\\\r\n...  \bexpected\r\n>>>', 'input', 'expected\\\nexpected'],
 ])('test filterOutput(%s, %s)', (output, input, expected) => {
   test(`should be ${expected}`, () => {
     expect(filterOutput(output, input)).toBe(expected)

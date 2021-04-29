@@ -13,6 +13,12 @@ export const filterOutput = (output, input = '') => {
     // 如果字符串过长，会添加 ` \b` 字符串来分割字符串
     const regB = new RegExp(escapeRegExp(' \b'), 'g')
     output = output.replace(regB, '')
+
+    // 替换换行的前缀
+    // https://github.com/bobthecow/psysh/blob/main/src/Shell.php#L54
+    const regBuff = new RegExp(escapeRegExp('\\\r\n... '), 'g')
+    output = output.replace(regBuff, '\\\n')
+
     // 如果是点击 run，则有 input，则需要处理将 input 过滤掉，来得到 output
     const regInput = new RegExp(`${escapeRegExp(input)}\r+\n`)
     output = last(output.split(regInput))
