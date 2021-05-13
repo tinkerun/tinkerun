@@ -5,8 +5,8 @@ const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 
 const createPreferenceWindow = () => {
   const win = new BrowserWindow({
-    width: 400,
-    height: 300,
+    width: 500,
+    height: 400,
     parent: BrowserWindow.getFocusedWindow(),
     resizable: false,
     webPreferences: {

@@ -2,11 +2,14 @@ import PropTypes from 'prop-types'
 
 import LanguageProvider from './LanguageProvider'
 import RouterProvider from './RouterProvider'
+import ConfigProvider from './ConfigProvider'
 
 const WindowContainer = ({children}) => (
   <LanguageProvider>
     <RouterProvider>
-      {children}
+      <ConfigProvider>
+        {children}
+      </ConfigProvider>
     </RouterProvider>
   </LanguageProvider>
 )

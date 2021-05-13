@@ -1,4 +1,4 @@
-import {CogIcon, majorScale, SidebarTab, Tablist} from 'evergreen-ui'
+import {CogIcon, KeyCommandIcon, majorScale, Pane, SidebarTab, Tablist} from 'evergreen-ui'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 
 import {preferenceTabIndexAtom} from '../../stores/preference'
@@ -12,11 +12,15 @@ const PreferenceTab = () => {
       icon: CogIcon,
       text: 'General',
     },
+    {
+      icon: KeyCommandIcon,
+      text: 'Shortcuts',
+    },
   ]
 
   return (
     <Tablist
-      flexBasis={100}
+      flexBasis={200}
       paddingX={majorScale(1)}
       paddingY={majorScale(2)}
     >
@@ -27,14 +31,17 @@ const PreferenceTab = () => {
             key={`setting_tabs_${index}`}
             isSelected={tabIndex === index}
             onSelect={() => setTabIndex(index)}
-            alignItems='center'
-            display='flex'
           >
-            <Component
-              size={12}
-              marginRight={majorScale(1)}
-            />
-            {text}
+            <Pane
+              alignItems='center'
+              display='flex'
+            >
+              <Component
+                size={12}
+                marginRight={majorScale(1)}
+              />
+              {text}
+            </Pane>
           </SidebarTab>
         )
       })}

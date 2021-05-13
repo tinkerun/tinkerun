@@ -1,5 +1,5 @@
-import {useCallback, useRef} from 'react'
-import {FormFieldLabel, majorScale, Pane, Text, TextInputField} from 'evergreen-ui'
+import {useCallback} from 'react'
+import {FormFieldLabel, majorScale, Text, TextInputField} from 'evergreen-ui'
 import {FormattedMessage} from 'react-intl'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import debounce from 'lodash/debounce'
@@ -10,8 +10,8 @@ import {configAtom, setConfigAtom} from '../../stores/config'
 const DefaultCommandField = () => {
   const config = useAtomValue(configAtom)
   const setConfig = useUpdateAtom(setConfigAtom)
-  const inputRef = useRef()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setConfigBounced = useCallback(debounce(value => {
     setConfig({
       command_default: value,
@@ -24,7 +24,6 @@ const DefaultCommandField = () => {
 
   return (
     <TextInputField
-      ref={inputRef}
       label={
         <FormFieldLabel
           display='flex'
@@ -32,6 +31,7 @@ const DefaultCommandField = () => {
         >
           <Text
             marginRight={4}
+            fontWeight={500}
           >
             <FormattedMessage id='preference.default_command'/>
           </Text>

@@ -26,6 +26,9 @@ const allConfig = () => config.store
 
 const setConfig = data => {
   config.set(data)
+  for (const win of BrowserWindow.getAllWindows()) {
+    win.webContents.send('setConfig', data)
+  }
 }
 
 module.exports = {

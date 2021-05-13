@@ -21,6 +21,7 @@ export const inputConnection = api.inputConnection
 export const inputConnectionClearLine = api.inputConnectionClearLine
 export const closeConnection = api.closeConnection
 export const onSetIntlConfig = api.onSetIntlConfig
+export const onSetConfig = api.onSetConfig
 export const onDeleteConnectionConfirm = api.onDeleteConnectionConfirm
 export const onOutputConnection = api.onOutputConnection
 
