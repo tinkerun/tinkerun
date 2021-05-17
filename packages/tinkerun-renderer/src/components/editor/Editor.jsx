@@ -10,6 +10,7 @@ import {registerPHPSnippetLanguage} from '../../utils/registerPHPSnippetLanguage
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
 import {runAtom, sizesAtom} from '../../stores/editor'
 import {configAtom} from '../../stores/config'
+import {isMatchShortcut} from '../../utils/isMatchShortcut'
 
 const Editor = () => {
   const domRef = useRef()
@@ -62,27 +63,7 @@ const Editor = () => {
 
   const handleEditorKeyDown = editor => {
     return editor.onKeyDown(e => {
-      const isMatchShortcutRun = config.shortcut_run.reduce((res, value) => {
-        if (value === 'Control') {
-          return e.ctrlKey && res
-        }
-
-        if (value === 'Meta') {
-          return e.metaKey && res
-        }
-
-        if (value === 'Alt') {
-          return e.altKey && res
-        }
-
-        if (value === 'Shift') {
-          return e.shiftKey && res
-        }
-
-        return value === e.browserEvent.key && res
-      }, true)
-
-      if (isMatchShortcutRun) {
+      if (isMatchShortcut(e.browserEvent, config.shortcut_run)) {
         e.preventDefault()
         e.stopPropagation()
         return editor.getAction('run-php-snippet').run()
