@@ -35,6 +35,7 @@
   },
 
   "preference": {
+    "preferences": "Preferences",
     "general": "General",
     "shortcuts": "Shortcuts",
     "locale": "Locale",

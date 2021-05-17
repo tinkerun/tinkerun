@@ -35,6 +35,7 @@
   },
 
   "preference": {
+    "preferences": "偏好设置",
     "general": "通用",
     "shortcuts": "快捷键",
     "locale": "语言",

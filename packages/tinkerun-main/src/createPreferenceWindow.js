@@ -2,6 +2,8 @@ const {BrowserWindow} = require('electron')
 const {is} = require('electron-util')
 
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
+const {appName} = require('./constants')
+const {getIntl} = require('./locale')
 
 const createPreferenceWindow = () => {
   const win = new BrowserWindow({
@@ -9,6 +11,7 @@ const createPreferenceWindow = () => {
     height: 400,
     parent: BrowserWindow.getFocusedWindow(),
     resizable: false,
+    title: `${appName} - ${getIntl().formatMessage({id: 'preference.preferences'})}`,
     webPreferences: {
       preload: getPreloadEntryUrl(),
       contextIsolation: true,
