@@ -57,7 +57,9 @@ const createConnection = connection => {
  * @param {Record<string, any>} connection
  */
 const updateConnection = connection => {
-  connections.set(connection.id, connection)
+  if (connections.has(connection.id)) {
+    connections.set(connection.id, connection)
+  }
 }
 
 /**

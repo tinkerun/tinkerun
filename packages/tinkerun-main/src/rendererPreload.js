@@ -33,6 +33,14 @@ contextBridge.exposeInMainWorld('api', {
     }
   },
 
+  onSetConfig: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('setConfig', listener)
+    return {
+      dispose: () => ipcRenderer.off('setConfig', listener),
+    }
+  },
+
   onOutputConnection: cb => {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('outputConnection', listener)

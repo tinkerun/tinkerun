@@ -9,11 +9,14 @@ import debounce from 'lodash/debounce'
 import {registerPHPSnippetLanguage} from '../../utils/registerPHPSnippetLanguage'
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
 import {runAtom, sizesAtom} from '../../stores/editor'
+import {configAtom} from '../../stores/config'
+import {isMatchShortcut} from '../../utils/isMatchShortcut'
 
 const Editor = () => {
   const domRef = useRef()
   const editorRef = useRef()
   const editorEventsRef = useRef()
+  const editorHandleDownEventRef = useRef()
   const intl = useIntl()
 
   const [, params] = useRoute('/snippets/:id')
@@ -21,6 +24,7 @@ const Editor = () => {
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
   const sizes = useAtomValue(sizesAtom)
   const run = useUpdateAtom(runAtom)
+  const config = useAtomValue(configAtom)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSnippetDebounced = useCallback(debounce(updateSnippet, 200), [])
@@ -55,6 +59,16 @@ const Editor = () => {
       onPositionChange,
       onCodeChange,
     ]
+  }
+
+  const handleEditorKeyDown = editor => {
+    return editor.onKeyDown(e => {
+      if (isMatchShortcut(e.browserEvent, config.shortcut_run)) {
+        e.preventDefault()
+        e.stopPropagation()
+        return editor.getAction('run-php-snippet').run()
+      }
+    })
   }
 
   // 当 resize 事件触发的时候，编辑器触发 layout
@@ -97,6 +111,22 @@ const Editor = () => {
   }, [params.id])
 
   useEffect(() => {
+    const editor = editorRef.current
+
+    if (editor) {
+      if (editorHandleDownEventRef.current) {
+        editorHandleDownEventRef.current.dispose()
+      }
+
+      const event = handleEditorKeyDown(editor)
+
+      return () => {
+        event.dispose()
+      }
+    }
+  }, [config.shortcut_run])
+
+  useEffect(() => {
     // 注册 php-snippet
     registerPHPSnippetLanguage(monaco.languages)
 
@@ -108,9 +138,6 @@ const Editor = () => {
     editor.addAction({
       id: 'run-php-snippet',
       label: intl.formatMessage({id: 'editor.run'}),
-      keybindings: [
-        monaco.KeyMod.WinCtrl | monaco.KeyCode.KEY_R,
-      ],
       contextMenuGroupId: 'navigation',
       contextMenuOrder: 1,
       run: ed => {
@@ -121,6 +148,7 @@ const Editor = () => {
 
     // 初始化 editor 代码、光标、事件
     editorEventsRef.current = resetEditor(editor)
+    editorHandleDownEventRef.current = handleEditorKeyDown(editor)
 
     // 第一次编辑器加载完成触发 layout
     editor.layout()
