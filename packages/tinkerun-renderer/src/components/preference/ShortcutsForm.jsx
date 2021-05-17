@@ -1,8 +1,18 @@
+import {majorScale, Pane} from 'evergreen-ui'
+
 import ShortcutRunField from './ShortcutRunField'
+import ShortcutNewConnectionField from './ShortcutNewConnectionField'
 
 const ShortcutsForm = () => (
   <>
-    <ShortcutRunField/>
+    <Pane>
+      <ShortcutRunField/>
+    </Pane>
+    <Pane
+      marginTop={majorScale(3)}
+    >
+      <ShortcutNewConnectionField/>
+    </Pane>
   </>
 )
 

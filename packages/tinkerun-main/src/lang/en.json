@@ -42,7 +42,9 @@
     "default_command_tooltip": "it will used for quick connect, and when you leave command field empty in the connection form",
     "shortcut_capture_label": "Press desired key combination and then press ENTER",
     "shortcut_run_label": "Run Snippet Code",
-    "shortcut_run_description": "run current snippet code in the editor"
+    "shortcut_run_description": "run current snippet code in the editor",
+    "shortcut_new_connection_label": "New Connection",
+    "shortcut_new_connection_description": "create new connection in the connections page"
   },
 
   "ok": "OK",
