@@ -2,7 +2,7 @@
   "name": "tinkerun",
   "private": true,
   "scripts": {
-    "bootstrap": "npm install && lerna bootstrap",
+    "bootstrap": "yarn && lerna bootstrap",
     "postinstall": "electron-builder install-app-deps",
     "rebuild": "lerna run rebuild --scope tinkerun-main",
     "start:main": "lerna run start --scope tinkerun-main --stream --",

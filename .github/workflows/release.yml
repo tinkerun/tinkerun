@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm run bootstrap
-      - run: npm run release
+      - run: yarn bootstrap
+      - run: yarn release
 
   Mac:
     name: Mac
@@ -28,8 +28,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm run bootstrap
-      - run: npm run release
+      - run: yarn bootstrap
+      - run: yarn release
 
   Linux:
     name: Linux
@@ -39,5 +39,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm run bootstrap
-      - run: npm run release
+      - run: yarn bootstrap
+      - run: yarn release
