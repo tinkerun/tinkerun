@@ -25,7 +25,9 @@ const deleteConnectionAtom = atom(null, (get, set, id) => {
 
 const updateConnectionAtom = atom(null, (get, set, connection) => {
   set(connectionDataAtom, data => {
-    data[connection.id] = connection
+    if (data[connection.id]) {
+      data[connection.id] = connection
+    }
   })
 
   updateConnection(connection)
