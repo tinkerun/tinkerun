@@ -1,12 +1,14 @@
 import {useState} from 'react'
 import {Button, Dialog, FormField, majorScale, Pane} from 'evergreen-ui'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
+import {useIntl} from 'react-intl'
 
 import ShortcutCaptureForm from './ShortcutCaptureForm'
 import KeyCode from './KeyCode'
 import {configAtom, setConfigAtom} from '../../stores/config'
 
 const ShortcutRunField = () => {
+  const intl = useIntl()
   const config = useAtomValue(configAtom)
   const setConfig = useUpdateAtom(setConfigAtom)
 
@@ -21,8 +23,8 @@ const ShortcutRunField = () => {
   return (
     <Pane>
       <FormField
-        label='Run'
-        description='shortcut for run code in the editor'
+        label={intl.formatMessage({id: 'preference.shortcut_run_label'})}
+        description={intl.formatMessage({id: 'preference.shortcut_run_description'})}
       >
         <Button
           onClick={() => setIsShown(true)}

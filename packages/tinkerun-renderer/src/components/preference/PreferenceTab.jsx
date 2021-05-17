@@ -1,20 +1,22 @@
 import {CogIcon, KeyCommandIcon, majorScale, Pane, SidebarTab, Tablist} from 'evergreen-ui'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
+import {useIntl} from 'react-intl'
 
 import {preferenceTabIndexAtom} from '../../stores/preference'
 
 const PreferenceTab = () => {
+  const intl = useIntl()
   const tabIndex = useAtomValue(preferenceTabIndexAtom)
   const setTabIndex = useUpdateAtom(preferenceTabIndexAtom)
 
   const tabs = [
     {
       icon: CogIcon,
-      text: 'General',
+      text: intl.formatMessage({id: 'preference.general'}),
     },
     {
       icon: KeyCommandIcon,
-      text: 'Shortcuts',
+      text: intl.formatMessage({id: 'preference.shortcuts'}),
     },
   ]
 

@@ -36,9 +36,13 @@
 
   "preference": {
     "general": "通用",
+    "shortcuts": "快捷键",
     "locale": "语言",
     "default_command": "默认命令",
-    "default_command_tooltip": "当使用快速连接，或者命令栏空着的时候生效"
+    "default_command_tooltip": "当使用快速连接，或者命令栏空着的时候生效",
+    "shortcut_capture_label": "输入快捷键，按 Enter 保存",
+    "shortcut_run_label": "运行代码",
+    "shortcut_run_description": "在编辑器中运行当前代码的快捷键"
   },
 
   "ok": "确定",

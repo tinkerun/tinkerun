@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import PropTypes from 'prop-types'
 import {Heading, majorScale, Pane, TextInput} from 'evergreen-ui'
+import {FormattedMessage} from 'react-intl'
 
 import KeyCode from './KeyCode'
 
@@ -35,6 +36,11 @@ const ShortcutCaptureForm = ({defaultValue, close, onEnter}) => {
       return
     }
 
+    if (e.key === 'Escape') {
+      close()
+      return
+    }
+
     if (!isRecording) {
       setKeys([])
       setIsRecording(true)
@@ -56,7 +62,7 @@ const ShortcutCaptureForm = ({defaultValue, close, onEnter}) => {
         size={200}
         marginBottom={majorScale(1)}
       >
-        Press desired key combination and then press ENTER
+        <FormattedMessage id='preference.shortcut_capture_label'/>
       </Heading>
 
       <TextInput
