@@ -159,12 +159,12 @@ const menu = Menu.buildFromTemplate(template)
 const dockMenu = Menu.buildFromTemplate([
   {
     label: getIntl().formatMessage({id: 'menu.show_connections'}),
-    async click() {
+    async click () {
       if (!getIndexWindow()) {
         await createIndexWindow()
       }
-    }
-  }
+    },
+  },
 ])
 
 module.exports = {
