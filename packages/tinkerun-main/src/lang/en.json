@@ -66,6 +66,7 @@
     "show_settings": "Show Settings",
     "show_app_data": "Show App Data",
     "delete_settings": "Delete Settings",
-    "delete_app_data": "Delete App Data"
+    "delete_app_data": "Delete App Data",
+    "show_connections": "Show Connections"
   }
 }

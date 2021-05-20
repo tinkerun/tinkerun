@@ -1,12 +1,11 @@
-const {app, Menu} = require('electron')
+const {app, Menu, BrowserWindow} = require('electron')
 const {is} = require('electron-util')
 const unhandled = require('electron-unhandled')
 const debug = require('electron-debug')
 const contextMenu = require('electron-context-menu')
 
 const {createIndexWindow} = require('./createIndexWindow')
-const {getIndexWindow} = require('./processes')
-const {menu} = require('./menu')
+const {menu, dockMenu} = require('./menu')
 require('./ipc')
 
 unhandled()
@@ -28,7 +27,7 @@ app.on('window-all-closed', () => {
 app.on('activate', async () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (!getIndexWindow()) {
+  if (BrowserWindow.getAllWindows().length <= 0) {
     await createIndexWindow()
   }
 })
@@ -48,5 +47,6 @@ app.on('ready', async () => {
   } catch (e) {}
 
   Menu.setApplicationMenu(menu)
+  app.dock.setMenu(dockMenu)
   await createIndexWindow()
 })

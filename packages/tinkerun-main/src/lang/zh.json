@@ -66,6 +66,7 @@
     "show_settings": "打开配置文件",
     "show_app_data": "打开应用数据",
     "delete_settings": "删除配置文件",
-    "delete_app_data": "删除应用数据"
+    "delete_app_data": "删除应用数据",
+    "show_connections": "打开连接列表"
   }
 }

@@ -10,6 +10,8 @@ const {
 const {config} = require('./database/config')
 const {getIntl} = require('./locale')
 const {createPreferenceWindow} = require('./createPreferenceWindow')
+const {createIndexWindow} = require('./createIndexWindow')
+const {getIndexWindow} = require('./processes')
 
 const showPreferences = () => {
   createPreferenceWindow()
@@ -154,6 +156,18 @@ if (is.development) {
 
 const menu = Menu.buildFromTemplate(template)
 
+const dockMenu = Menu.buildFromTemplate([
+  {
+    label: getIntl().formatMessage({id: 'menu.show_connections'}),
+    async click() {
+      if (!getIndexWindow()) {
+        await createIndexWindow()
+      }
+    }
+  }
+])
+
 module.exports = {
   menu,
+  dockMenu,
 }
