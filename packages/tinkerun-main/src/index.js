@@ -7,6 +7,7 @@ const contextMenu = require('electron-context-menu')
 const {createIndexWindow} = require('./createIndexWindow')
 const {menu, dockMenu} = require('./menu')
 require('./ipc')
+require('./protocol')
 
 unhandled()
 debug()

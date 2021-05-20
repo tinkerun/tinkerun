@@ -37,6 +37,10 @@ module.exports = {
       'dmg',
       'zip',
     ],
+    extendInfo: {
+      CFBundleURLSchemes: 'tinkerun',
+      CFBundleURLName: 'Tinkerun Protocol',
+    }
   },
   dmg: {
     window: {

@@ -5,7 +5,10 @@ const quickConnection = {
 
 const appName = 'Tinkerun'
 
+const protocol = 'tinkerun'
+
 module.exports = {
   quickConnection,
   appName,
+  protocol,
 }
