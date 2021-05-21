@@ -1,13 +1,15 @@
-import Header from '../Header'
+import {Pane} from 'evergreen-ui'
 import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 
+import Header from '../Header'
 import SnippetNameInput from './SnippetNameInput'
 import RunButton from './RunButton'
+import FormButton from './FormButton'
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
 
 const EditorHeader = () => {
-  const [, params] = useRoute('/snippets/:id')
+  const [, params] = useRoute('/snippets/:id/:form?')
 
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
@@ -31,7 +33,12 @@ const EditorHeader = () => {
         value={snippet.name}
         onChange={handleChange}
       />
-      <RunButton/>
+      <Pane
+        display='flex'
+      >
+        <RunButton/>
+        <FormButton/>
+      </Pane>
     </Header>
   )
 }

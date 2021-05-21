@@ -19,7 +19,7 @@ const Editor = () => {
   const editorHandleDownEventRef = useRef()
   const intl = useIntl()
 
-  const [, params] = useRoute('/snippets/:id')
+  const [, params] = useRoute('/snippets/:id/:form?')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
   const sizes = useAtomValue(sizesAtom)
@@ -151,7 +151,10 @@ const Editor = () => {
     editorHandleDownEventRef.current = handleEditorKeyDown(editor)
 
     // 第一次编辑器加载完成触发 layout
-    editor.layout()
+    const layoutTimer = setTimeout(() => {
+      // 加上 timeout 修复当从 form mode 切换回来之后，form 还没有完全 unmounted
+      editor.layout()
+    }, 50)
 
     editorRef.current = editor
 
@@ -162,6 +165,8 @@ const Editor = () => {
       if (model) {
         model.dispose()
       }
+
+      clearTimeout(layoutTimer)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 

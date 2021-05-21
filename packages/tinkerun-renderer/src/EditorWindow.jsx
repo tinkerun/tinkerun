@@ -52,7 +52,7 @@ const EditorWindow = () => {
                   to={`/snippets/${snippets[0].id}`}
                 />
               </Route>
-              <Route path='/snippets/:id' component={EditorPage}/>
+              <Route path='/snippets/:id/:form?' component={EditorPage}/>
             </Switch>
           </Pane>
 

@@ -1,7 +1,9 @@
 import {Pane} from 'evergreen-ui'
+import {Route} from 'wouter'
 
 import Editor from './editor/Editor'
 import EditorHeader from './editor/EditorHeader'
+import Form from './editor/Form'
 
 const EditorPage = () => (
   <Pane
@@ -11,7 +13,8 @@ const EditorPage = () => (
     height='100%'
   >
     <EditorHeader/>
-    <Editor/>
+    <Route path='/snippets/:id' component={Editor}/>
+    <Route path='/snippets/:id/form' component={Form}/>
   </Pane>
 )
 

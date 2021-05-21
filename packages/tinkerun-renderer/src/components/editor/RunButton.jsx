@@ -10,7 +10,8 @@ import {snippetAtomWithId} from '../../stores/snippets'
 import {runAtom} from '../../stores/editor'
 
 const RunButton = () => {
-  const [, params] = useRoute('/snippets/:id')
+  const [, params] = useRoute('/snippets/:id/:form?')
+  const [matchFormRoute] = useRoute('/snippets/:id/form')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
 
@@ -39,6 +40,7 @@ const RunButton = () => {
         onClick={handleClick}
         disabled={isDisabled()}
         borderRadius='50%'
+        display={matchFormRoute ? 'none' : 'flex'}
       />
     </Tooltip>
   )
