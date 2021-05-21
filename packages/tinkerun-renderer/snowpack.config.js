@@ -18,5 +18,9 @@ module.exports = {
     open: 'none',
     port: parseInt(process.env.WEB_PORT) || 8080,
   },
-  buildOptions: {},
+  buildOptions: {
+    jsxInject: `
+      import React from 'react'
+    `,
+  },
 }
