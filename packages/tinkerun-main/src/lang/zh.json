@@ -43,6 +43,7 @@
     "general": "通用",
     "shortcuts": "快捷键",
     "locale": "语言",
+    "theme": "主题",
     "command_default": "默认命令",
     "command_default_description": "当使用快速连接，或者命令栏空着的时候生效",
     "form_prefix": "变量前缀",

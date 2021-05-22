@@ -43,6 +43,7 @@
     "general": "General",
     "shortcuts": "Shortcuts",
     "locale": "Locale",
+    "theme": "Theme",
     "command_default": "Default command",
     "command_default_description": "it will used for quick connect, and when you leave command field empty in the connection form",
     "form_prefix": "Snippet form's variable prefix",
