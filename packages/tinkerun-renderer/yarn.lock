@@ -1807,13 +1807,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dom-helpers@^3.2.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
-  integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-
 dom-helpers@^5.0.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.1.tgz#d9400536b2bf8225ad98fe052e029451ac40e902"
@@ -2192,22 +2185,23 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
-evergreen-ui@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-5.1.2.tgz#c1a53e360d165eb30b7e036294b93a6ec36a3af8"
-  integrity sha512-M2slMTjzsZenMuhvisux+xVumpH5s74qOBIgLg5dEUu7EMTYZ/ZX+rwIbhUF+2P3d/jVtj1PzwGJ5AOAbws/6Q==
+evergreen-ui@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/evergreen-ui/-/evergreen-ui-6.0.1.tgz#4e04f1c93b5a878f877464b967dc823b36cc8b31"
+  integrity sha512-8jD0M8uE/1ergVvNZ+YM3iq8wwp1zC6LTVZMc/fEco8Am/xKE32DZyBp54fGWRvPhWs6147r30pw1gJAzXHoxg==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@types/react" "^16.9.5"
     "@types/react-transition-group" "^4.4.0"
     arrify "^1.0.1"
     classnames "^2.2.6"
-    dom-helpers "^3.2.1"
     downshift "^5.2.0"
     fuzzaldrin-plus "^0.6.0"
     glamor "^2.20.40"
     lodash.debounce "^4.0.8"
+    lodash.merge "^4.6.2"
     prop-types "^15.6.2"
+    react-fast-compare "^3.2.0"
     react-is "^16.13.1"
     react-scrollbar-size "^2.0.2"
     react-tiny-virtual-list "^2.1.4"
@@ -3814,6 +3808,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
 lodash.truncate@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
@@ -4728,6 +4727,11 @@ react-event-listener@^0.5.1:
     fbjs "^0.8.16"
     prop-types "^15.6.0"
     warning "^3.0.0"
+
+react-fast-compare@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
+  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
 react-hook-form@^6.15.4:
   version "6.15.7"
