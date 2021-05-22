@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {Button, majorScale, Pane, PlayIcon} from 'evergreen-ui'
 import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
@@ -18,13 +18,13 @@ const Form = () => {
   const run = useUpdateAtom(runAtom)
   const config = useAtomValue(configAtom)
   const [fields, setFields] = useState([])
-  const [phpForm, setPHPForm] = useState(null)
+  const phpFormRef = useRef()
 
   useEffect(() => {
     (async () => {
-      const phpFormInstance = await instance(config.form_prefix)
-      const result = await phpFormInstance.parse(snippet.code)
-      setPHPForm(phpFormInstance)
+      phpFormRef.current = await instance(config.form_prefix)
+      const result = await phpFormRef.current.parse(snippet.code)
+
       setFields(result)
     })()
   }, [])
@@ -33,8 +33,10 @@ const Form = () => {
   const runDebounced = useCallback(debounce(code => run(code), 500), [])
 
   const runSnippet = async () => {
-    const code = await phpForm.stringify(fields)
-    runDebounced(code)
+    if (phpFormRef.current) {
+      const code = await phpFormRef.current.stringify(fields)
+      runDebounced(code)
+    }
   }
 
   const changeFieldValue = (index, value) => {
