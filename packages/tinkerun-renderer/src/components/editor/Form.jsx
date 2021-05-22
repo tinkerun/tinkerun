@@ -4,6 +4,7 @@ import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import {instance} from 'php-form'
 import debounce from 'lodash/debounce'
+import {FormattedMessage} from 'react-intl'
 
 import FormField from './FormField'
 import NoFormFields from './NoFormFields'
@@ -71,7 +72,7 @@ const Form = () => {
           height={majorScale(3)}
           onClick={runSnippet}
         >
-          Run Snippet
+          <FormattedMessage id='editor.form_run_snippet'/>
         </Button>
       </Pane>
     </Pane>

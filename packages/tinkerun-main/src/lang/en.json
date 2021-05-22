@@ -31,7 +31,11 @@
     "new_snippet": "New Snippet",
     "delete_confirm_title": "Are you absolutely sure?",
     "delete_confirm_content": "This action <strong>cannot</strong> be undone. This will permanently delete the <strong>{name}</strong> snippet.",
-    "delete_snippet": "Delete Snippet"
+    "delete_snippet": "Delete Snippet",
+    "form": "Snippet Form",
+    "form_no_fields": "No fields, try to add some variables prefixed with <code>{prefix}</code> to the code.",
+    "form_edit_code": "Edit the code",
+    "form_run_snippet": "Run Snippet Form"
   },
 
   "preference": {

@@ -1,9 +1,11 @@
 import {useLocation, useRoute} from 'wouter'
 import {IconButton, FormIcon, majorScale} from 'evergreen-ui'
+import {useIntl} from 'react-intl'
 
 import Tooltip from '../Tooltip'
 
 const FormButton = () => {
+  const intl = useIntl()
   const [, setLocation] = useLocation()
   const [, params] = useRoute('/snippets/:id/:form?')
   const [matchFormRoute] = useRoute('/snippets/:id/form')
@@ -19,7 +21,7 @@ const FormButton = () => {
 
   return (
     <Tooltip
-      content='Form Mode'
+      content={intl.formatMessage({id: 'editor.form'})}
     >
       <IconButton
         icon={FormIcon}
