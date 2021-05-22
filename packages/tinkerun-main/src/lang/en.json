@@ -34,8 +34,7 @@
     "delete_snippet": "Delete Snippet",
     "form": "Snippet Form",
     "form_no_fields": "No fields, try to add some variables prefixed with <code>{prefix}</code> to the code.",
-    "form_edit_code": "Edit the code",
-    "form_run_snippet": "Run Snippet Form"
+    "form_edit_code": "Edit the code"
   },
 
   "preference": {

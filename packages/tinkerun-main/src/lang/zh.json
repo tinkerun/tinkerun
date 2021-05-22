@@ -34,8 +34,7 @@
     "delete_snippet": "删除代码片段",
     "form": "表单模式",
     "form_no_fields": "找不到代码对应的表单字段，试一下给代码添加一些前缀为 <code>{prefix}</code> 的变量。",
-    "form_edit_code": "编辑代码",
-    "form_run_snippet": "运行"
+    "form_edit_code": "编辑代码"
   },
 
   "preference": {

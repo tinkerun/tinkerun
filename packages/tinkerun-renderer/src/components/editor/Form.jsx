@@ -81,7 +81,7 @@ const Form = () => {
           height={majorScale(3)}
           onClick={runSnippet}
         >
-          <FormattedMessage id='editor.form_run_snippet'/>
+          <FormattedMessage id='editor.run'/>
         </Button>
       </Pane>
     </Pane>
