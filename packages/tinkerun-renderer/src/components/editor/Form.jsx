@@ -18,14 +18,19 @@ const Form = () => {
   const run = useUpdateAtom(runAtom)
   const config = useAtomValue(configAtom)
   const [fields, setFields] = useState([])
+  const [error, setError] = useState('')
   const phpFormRef = useRef()
 
   useEffect(() => {
     (async () => {
-      phpFormRef.current = await instance(config.form_prefix)
-      const result = await phpFormRef.current.parse(snippet.code)
+      try {
+        phpFormRef.current = await instance(config.form_prefix)
+        const result = await phpFormRef.current.parse(snippet.code)
 
-      setFields(result)
+        setFields(result)
+      } catch (e) {
+        setError(e.message)
+      }
     })()
   }, [])
 
@@ -52,7 +57,7 @@ const Form = () => {
   }
 
   if (fields.length <= 0) {
-    return <NoFormFields/>
+    return <NoFormFields error={error}/>
   }
 
   return (
