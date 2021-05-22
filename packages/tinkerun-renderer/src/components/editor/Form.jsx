@@ -10,17 +10,19 @@ import FormField from './FormField'
 import NoFormFields from './NoFormFields'
 import {snippetAtomWithId} from '../../stores/snippets'
 import {runAtom} from '../../stores/editor'
+import {configAtom} from '../../stores/config'
 
 const Form = () => {
   const [, params] = useRoute('/snippets/:id/:form?')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
+  const config = useAtomValue(configAtom)
   const [fields, setFields] = useState([])
   const [phpForm, setPHPForm] = useState(null)
 
   useEffect(() => {
     (async () => {
-      const phpFormInstance = await instance('field_')
+      const phpFormInstance = await instance(config.form_prefix)
       const result = await phpFormInstance.parse(snippet.code)
       setPHPForm(phpFormInstance)
       setFields(result)

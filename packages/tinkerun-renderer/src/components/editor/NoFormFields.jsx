@@ -1,8 +1,12 @@
 import {Button, Code, CodeIcon, majorScale, Pane, Paragraph} from 'evergreen-ui'
 import {useLocation, useRoute} from 'wouter'
 import {FormattedMessage} from 'react-intl'
+import {useAtomValue} from 'jotai/utils'
+
+import {configAtom} from '../../stores/config'
 
 const NoFormFields = () => {
+  const config = useAtomValue(configAtom)
   const [, params] = useRoute('/snippets/:id/:form?')
   const [, setLocation] = useLocation()
   return (
@@ -17,7 +21,7 @@ const NoFormFields = () => {
         <FormattedMessage
           id='editor.form_no_fields'
           values={{
-            prefix: '$field_',
+            prefix: config.form_prefix,
             // eslint-disable-next-line react/display-name
             code: chucks => <Code size={300}>{chucks}</Code>,
           }}
