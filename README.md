@@ -12,7 +12,11 @@
 </p>
 
 <p align="center">
-<img width="100%" alt="screenshot" src="https://user-images.githubusercontent.com/1612364/112504654-f34ec980-8dc6-11eb-967e-f5c48c4f2af1.png">
+<img width="100%" alt="screenshot" src="https://user-images.githubusercontent.com/1612364/119233035-b8180f00-bb59-11eb-8922-05343231af20.png">
+</p>
+
+<p align="center">
+<img width="100%" alt="Snippet Form" src="https://user-images.githubusercontent.com/1612364/119233015-a0d92180-bb59-11eb-95c2-3a6f0edb228d.png">
 </p>
 
 ### Download links
@@ -29,9 +33,7 @@
 
 ### Next Features
 
-- [ ] **Form mode**: Switch the editor to the form, so that you can modify your variable value via form, like an admin panel;
-- [ ] **Other languages**: Now it's only support php-snippet, may be there is a way to run python,node.js,ruby code;
-- [ ] **Web**: So that you can use it everywhere;
+- [x] **Form mode**: Switch the editor to the form, so that you can modify your variable value via form, like an admin panel;
 - [ ] **Dark mode**
 
 ## Tech Stack
