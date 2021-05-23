@@ -30,10 +30,7 @@
 - [x] **Snippets**: Manage the code snippets you have ran;
 - [x] **Editor**: Run your terminal code via editor;
 - [x] **Output**: Focus on the results you really care that terminal return;
-
-### Next Features
-
-- [x] **Form mode**: Switch the editor to the form, so that you can modify your variable value via form, like an admin panel;
+- [x] **[Snippet Form](https://github.com/tinkerun/tinkerun/wiki/Snippet-Form)**: Switch the editor to the form, so that you can modify your variable value via form, like an admin panel;
 - [ ] **Dark mode**
 
 ## Tech Stack
