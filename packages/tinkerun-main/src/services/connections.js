@@ -5,6 +5,7 @@ const {getIndexWindow, getPtyProcess, getEditorWindow} = require('../processes')
 const {quickConnection} = require('../constants')
 const {createIndexWindow} = require('../createIndexWindow')
 const {createEditorWindow} = require('../createEditorWindow')
+const {createPty} = require('../createPty')
 
 /**
  * @returns {Record<string, any>}
@@ -44,6 +45,15 @@ const connectConnection = async connection => {
   }
 
   await createEditorWindow(connection)
+}
+
+const reconnectConnection = connection => {
+  const pty = getPtyProcess(connection.id)
+  if (pty) {
+    pty.kill()
+  }
+  createPty(connection)
+  getEditorWindow(connection.id).webContents.send('reconnectConnection')
 }
 
 /**
@@ -106,4 +116,5 @@ module.exports = {
   inputConnectionClearLine,
   closeConnection,
   connectConnection,
+  reconnectConnection,
 }

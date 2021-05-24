@@ -15,6 +15,7 @@ export const deleteConnection = api.deleteConnection
 export const allConnections = api.allConnections
 export const updateConnection = api.updateConnection
 export const connectConnection = api.connectConnection
+export const reconnectConnection = api.reconnectConnection
 export const quickConnect = api.quickConnect
 export const popupConnectionContextMenu = api.popupConnectionContextMenu
 export const inputConnection = api.inputConnection
@@ -24,6 +25,7 @@ export const onSetIntlConfig = api.onSetIntlConfig
 export const onSetConfig = api.onSetConfig
 export const onDeleteConnectionConfirm = api.onDeleteConnectionConfirm
 export const onOutputConnection = api.onOutputConnection
+export const onReconnectConnection = api.onReconnectConnection
 
 export const createSnippet = api.createSnippet
 export const updateSnippet = api.updateSnippet

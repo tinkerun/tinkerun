@@ -27,6 +27,7 @@
     "output": "Output",
     "terminal": "Terminal",
     "run": "Run",
+    "reconnect": "Reconnect",
     "snippets": "Snippets",
     "new_snippet": "New Snippet",
     "delete_confirm_title": "Are you absolutely sure?",
