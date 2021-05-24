@@ -39,9 +39,9 @@ const EditorWindow = () => {
           })}
           direction='vertical'
           height='100vh'
-          width='100%'
           onDrag={handleDrag}
           flex={1}
+          overflow='hidden'
         >
           <Pane
             height='100vh'
