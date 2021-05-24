@@ -48,6 +48,10 @@ app.on('ready', async () => {
   } catch (e) {}
 
   Menu.setApplicationMenu(menu)
-  app.dock.setMenu(dockMenu)
+
+  if (is.macos) {
+    app.dock.setMenu(dockMenu)
+  }
+
   await createIndexWindow()
 })
