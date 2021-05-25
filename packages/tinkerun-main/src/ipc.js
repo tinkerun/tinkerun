@@ -18,6 +18,7 @@ const {
   inputConnectionClearLine,
   closeConnection,
   connectConnection,
+  reconnectConnection,
 } = require('./services/connections')
 const {setLocale, getLocale, allConfig, setConfig} = require('./services/config')
 const {createSnippet, allSnippets, updateSnippet, deleteSnippet} = require('./services/snippets')
@@ -77,6 +78,10 @@ ipcMain.on('updateConnection', (event, connection) => {
 ipcMain.on('connectConnection', async (event, connection) => {
   updateConnection(connection)
   await connectConnection(connection)
+})
+
+ipcMain.on('reconnectConnection', async (event, connection) => {
+  reconnectConnection(connection)
 })
 
 ipcMain.on('inputConnection', (event, id, code) => {

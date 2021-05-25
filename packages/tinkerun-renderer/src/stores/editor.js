@@ -1,6 +1,6 @@
 import {atom} from 'jotai'
 
-import {inputConnection, getConnection, inputConnectionClearLine} from '../utils/api'
+import {inputConnection, getConnection, inputConnectionClearLine, reconnectConnection} from '../utils/api'
 import {minifyPHPCode} from '../utils/minifyPHPCode'
 
 const connectionAtom = atom(getConnection())
@@ -28,6 +28,20 @@ const runAtom = atom(null, (get, set, code) => {
   inputConnection(`${input}\r`)
 })
 
+// 重新连接
+const reconnectAtom = atom(null, (get, set, code) => {
+  if (get(outputTabIndexAtom) !== 0) {
+    // 展示 output
+    set(outputTabIndexAtom, 0)
+  }
+
+  set(outputAtom, '')
+
+  const connection = get(connectionAtom)
+
+  reconnectConnection(connection)
+})
+
 // 增加 output 数据
 const appendOutputAtom = atom(null, (get, set, update) => {
   set(outputAtom, prev => `${prev}${update}`)
@@ -45,6 +59,7 @@ export {
   outputTabIndexAtom,
   inputAtom,
   runAtom,
+  reconnectAtom,
   appendOutputAtom,
   clearOutputAtom,
 }

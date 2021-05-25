@@ -12,8 +12,6 @@ class Pty {
   constructor (connection) {
     this.connection = connection
     this.pty = null
-    // 标记进程执行完毕
-    this.prompt = ''
   }
 
   /**
@@ -74,7 +72,7 @@ class Pty {
   }
 
   onData (cb) {
-    this.pty.onData(cb)
+    return this.pty.onData(cb)
   }
 
   /**

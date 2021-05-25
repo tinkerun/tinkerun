@@ -19,6 +19,7 @@ contextBridge.exposeInMainWorld('api', {
   allConnections: () => ipcRenderer.sendSync('allConnections'),
   updateConnection: connection => ipcRenderer.send('updateConnection', connection),
   connectConnection: connection => ipcRenderer.send('connectConnection', connection),
+  reconnectConnection: connection => ipcRenderer.send('reconnectConnection', connection),
   quickConnect: () => ipcRenderer.send('quickConnect'),
   popupConnectionContextMenu: id => ipcRenderer.send('popupConnectionContextMenu', id),
   inputConnection: code => ipcRenderer.send('inputConnection', connectionId(), code),
@@ -54,6 +55,14 @@ contextBridge.exposeInMainWorld('api', {
     ipcRenderer.on('deleteConnectionConfirm', listener)
     return {
       dispose: () => ipcRenderer.off('deleteConnectionConfirm', listener),
+    }
+  },
+
+  onReconnectConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('reconnectConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('reconnectConnection', listener),
     }
   },
 

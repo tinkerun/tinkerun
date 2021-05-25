@@ -27,6 +27,7 @@
     "output": "输出",
     "terminal": "命令行",
     "run": "运行",
+    "reconnect": "重连",
     "snippets": "代码",
     "new_snippet": "新代码片段",
     "delete_confirm_title": "确定删除？",
