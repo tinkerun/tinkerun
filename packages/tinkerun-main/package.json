@@ -3,7 +3,7 @@
   "main": "main/index.js",
   "license": "MIT",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "scripts": {
     "start": "electron ./src/index.js",
     "lint": "eslint ./src",
