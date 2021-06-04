@@ -8,6 +8,7 @@ import {
   Switch,
   TextareaField,
 } from 'evergreen-ui'
+import isArray from 'lodash/isArray'
 
 const FormField = ({field, onChange}) => {
   switch (field.type) {
@@ -21,7 +22,7 @@ const FormField = ({field, onChange}) => {
           value={field.value}
           onChange={e => onChange(e.target.value)}
         >
-          {(field.options || []).map((option, index) => (
+          {(isArray(field.options) ? field.options : []).map((option, index) => (
             <option
               key={`${field.name}_options_${index}`}
               value={option.value}
