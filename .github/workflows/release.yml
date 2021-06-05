@@ -19,11 +19,12 @@ jobs:
           - windows-2016
     name: Release on ${{ matrix.os }}
     steps:
-      - name: Set Env (macos-latest)
+      - name: Set Environment variables (macos-latest)
         if: matrix.os == 'macos-latest'
         env:
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+        run: echo "Set Environment variables succeed"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
