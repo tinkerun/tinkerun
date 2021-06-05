@@ -43,7 +43,11 @@ const start = async () => {
   const distGlob = ext => path.posix.join('build', '**', `*${ext}`)
 
   const assetGlobs = {
-    darwin: [distGlob('.zip'), distGlob('.dmg')],
+    darwin: [
+      distGlob('.zip'),
+      distGlob('.dmg'),
+      path.posix.join('build/latest-mac.yml'),
+    ],
     win32: [path.posix.join('build', 'squirrel-windows', '*'), path.posix.join('build', '*.exe')],
     linux: [
       distGlob('.snap'),

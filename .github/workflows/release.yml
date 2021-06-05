@@ -19,9 +19,15 @@ jobs:
           - windows-2016
     name: Release on ${{ matrix.os }}
     steps:
+      - name: Set Env (macos-latest)
+        if: matrix.os == 'macos-latest'
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14.17.0'
+          node-version: '14'
+          check-latest: true
       - run: yarn bootstrap
       - run: yarn release
