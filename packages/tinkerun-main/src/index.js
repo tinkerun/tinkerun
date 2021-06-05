@@ -1,5 +1,6 @@
 const {app, Menu, BrowserWindow} = require('electron')
 const {is} = require('electron-util')
+const {autoUpdater} = require('electron-updater')
 const unhandled = require('electron-unhandled')
 const debug = require('electron-debug')
 const contextMenu = require('electron-context-menu')
@@ -12,6 +13,13 @@ require('./protocol')
 unhandled()
 debug()
 contextMenu()
+
+// 目前只有 Mac 的证书
+if (!is.development && is.macos) {
+  const FOUR_HOURS = 1000 * 60 * 60 * 4;
+  setInterval(() => autoUpdater.checkForUpdatesAndNotify(), FOUR_HOURS);
+  autoUpdater.checkForUpdatesAndNotify()
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
