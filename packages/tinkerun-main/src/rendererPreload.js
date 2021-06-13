@@ -26,6 +26,9 @@ contextBridge.exposeInMainWorld('api', {
   closeConnection: () => ipcRenderer.send('closeConnection', connectionId()),
   inputConnectionClearLine: () => ipcRenderer.send('inputConnectionClearLine', connectionId()),
 
+  parsePhpForm: code => ipcRenderer.sendSync('parsePhpForm', connectionId(), code),
+  stringifyPhpForm: fields => ipcRenderer.sendSync('stringifyPhpForm', fields),
+
   onSetIntlConfig: cb => {
     const listener = (event, arg) => cb(arg)
     ipcRenderer.on('setIntlConfig', listener)

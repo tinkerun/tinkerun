@@ -2,7 +2,14 @@ const {BrowserWindow} = require('electron')
 const {is} = require('electron-util')
 
 const {createPty} = require('./createPty')
-const {setEditorWindow, getPtyProcess, setPtyProcess} = require('./processes')
+const {createBackgroundPty} = require('./createBackgroundPty')
+const {
+  setEditorWindow,
+  getPtyProcess,
+  setPtyProcess,
+  getBackgroundPtyProcess,
+  setBackgroundPtyProcess,
+} = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')
 
@@ -40,12 +47,16 @@ const createEditorWindow = async connection => {
     if (getPtyProcess(id)) {
       getPtyProcess(id).kill()
       setPtyProcess(id, null)
+
+      getBackgroundPtyProcess(id).kill()
+      setBackgroundPtyProcess(id, null)
     }
   })
 
   setEditorWindow(id, win)
 
   createPty(connection)
+  createBackgroundPty(connection)
 }
 
 module.exports = {

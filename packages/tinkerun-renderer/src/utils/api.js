@@ -33,3 +33,6 @@ export const allSnippets = api.allSnippets
 export const deleteSnippet = api.deleteSnippet
 export const popupSnippetContextMenu = api.popupSnippetContextMenu
 export const onDeleteSnippetConfirm = api.onDeleteSnippetConfirm
+
+export const parsePhpForm = api.parsePhpForm
+export const stringifyPhpForm = api.stringifyPhpForm

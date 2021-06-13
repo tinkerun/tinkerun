@@ -22,6 +22,11 @@ const setLocale = lang => {
  */
 const getLocale = () => config.get('locale', 'en')
 
+/**
+ * @return {string}
+ */
+const getFormPrefix = () => config.get('form_prefix', 'field_')
+
 const allConfig = () => config.store
 
 const setConfig = data => {
@@ -34,6 +39,7 @@ const setConfig = data => {
 module.exports = {
   setLocale,
   getLocale,
+  getFormPrefix,
   allConfig,
   setConfig,
 }
