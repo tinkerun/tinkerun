@@ -18,7 +18,7 @@ const FormField = ({field, onChange}) => {
           label={field.label || field.name}
           description={field.description}
           inputHeight={majorScale(3)}
-          inputWidth={200}
+          inputWidth={320}
           value={field.value}
           onChange={e => onChange(e.target.value)}
         >

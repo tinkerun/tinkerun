@@ -1,8 +1,7 @@
-import {useCallback, useEffect, useRef, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {Button, majorScale, Pane, PlayIcon} from 'evergreen-ui'
 import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
-import {instance} from 'php-form'
 import debounce from 'lodash/debounce'
 import {FormattedMessage} from 'react-intl'
 
@@ -10,23 +9,19 @@ import FormField from './FormField'
 import NoFormFields from './NoFormFields'
 import {snippetAtomWithId} from '../../stores/snippets'
 import {runAtom} from '../../stores/editor'
-import {configAtom} from '../../stores/config'
+import {parsePhpForm, stringifyPhpForm} from '../../utils/api'
 
 const Form = () => {
   const [, params] = useRoute('/snippets/:id/:form?')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
-  const config = useAtomValue(configAtom)
   const [fields, setFields] = useState([])
   const [error, setError] = useState('')
-  const phpFormRef = useRef()
 
   useEffect(() => {
     (async () => {
       try {
-        phpFormRef.current = await instance(config.form_prefix)
-        const result = await phpFormRef.current.parse(snippet.code)
-
+        const result = await parsePhpForm(snippet.code)
         setFields(result)
       } catch (e) {
         setError(e.message)
@@ -38,10 +33,8 @@ const Form = () => {
   const runDebounced = useCallback(debounce(code => run(code), 500), [])
 
   const runSnippet = async () => {
-    if (phpFormRef.current) {
-      const code = await phpFormRef.current.stringify(fields)
-      runDebounced(code)
-    }
+    const code = await stringifyPhpForm(fields)
+    runDebounced(code)
   }
 
   const changeFieldValue = (index, value) => {

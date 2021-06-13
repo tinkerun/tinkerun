@@ -22,6 +22,7 @@ const {
 } = require('./services/connections')
 const {setLocale, getLocale, allConfig, setConfig} = require('./services/config')
 const {createSnippet, allSnippets, updateSnippet, deleteSnippet} = require('./services/snippets')
+const {parsePhpForm, stringifyPhpForm} = require('./services/php')
 
 ipcMain.on('selectDirectory', (event, defaultPath) => {
   event.returnValue = selectDirectory(defaultPath)
@@ -132,4 +133,12 @@ ipcMain.on('deleteSnippet', (event, connectionId, snippetId) => {
 
 ipcMain.on('popupSnippetContextMenu', (event, connectionId, snippetId) => {
   snippetContextMenu(connectionId, snippetId).popup()
+})
+
+ipcMain.on('parsePhpForm', async (event, connectionId, code) => {
+  event.returnValue = await parsePhpForm(connectionId, code)
+})
+
+ipcMain.on('stringifyPhpForm', async (event, fields) => {
+  event.returnValue = await stringifyPhpForm(fields)
 })

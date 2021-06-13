@@ -16,8 +16,8 @@ contextMenu()
 
 // 目前只有 Mac 的证书
 if (!is.development && is.macos) {
-  const FOUR_HOURS = 1000 * 60 * 60 * 4;
-  setInterval(() => autoUpdater.checkForUpdatesAndNotify(), FOUR_HOURS);
+  const FOUR_HOURS = 1000 * 60 * 60 * 4
+  setInterval(() => autoUpdater.checkForUpdatesAndNotify(), FOUR_HOURS)
   autoUpdater.checkForUpdatesAndNotify()
 }
 
@@ -48,13 +48,6 @@ app.on('activate', async () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
-  try {
-    const {default: installExtension, REACT_DEVELOPER_TOOLS} = require('electron-devtools-installer')
-    installExtension(REACT_DEVELOPER_TOOLS)
-      .then((name) => console.log(`Added Extension:  ${name}`))
-      .catch((err) => console.log('An error occurred: ', err))
-  } catch (e) {}
-
   Menu.setApplicationMenu(menu)
 
   if (is.macos) {
