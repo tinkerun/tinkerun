@@ -7,33 +7,33 @@
   "scripts": {
     "start": "electron ./src/index.js",
     "lint": "eslint ./src",
-    "rebuild": "electron-rebuild -f -w node-pty",
+    "rebuild": "electron-rebuild -f -w node-pty --force-abi=89",
     "build": "ncc build ./src/index.js -e electron -o build",
     "test": "jest"
   },
   "dependencies": {
-    "@formatjs/intl": "^1.8.1",
+    "@formatjs/intl": "^1.14.1",
     "default-shell": "^1.0.1",
-    "electron-context-menu": "^2.5.0",
+    "electron-context-menu": "^3.1.1",
     "electron-debug": "^3.2.0",
-    "electron-store": "^7.0.2",
+    "electron-store": "^8.0.1",
     "electron-unhandled": "^3.0.2",
     "electron-updater": "^4.3.9",
-    "electron-util": "^0.14.2",
+    "electron-util": "^0.17.2",
     "flat": "^5.0.2",
     "lodash": "^4.17.21",
-    "node-pty": "^0.10.0",
+    "node-pty": "^0.10.1",
     "os-locale": "^5.0.0",
     "php-form": "^0.0.8",
-    "query-string": "^6.14.1"
+    "query-string": "^7.0.1"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6",
-    "electron": "^11.3.0",
-    "electron-rebuild": "^2.3.5",
-    "eslint": "^7.20.0",
+    "@vercel/ncc": "^0.31.1",
+    "electron": "^15.0.0",
+    "electron-rebuild": "^3.2.3",
+    "eslint": "^7.32.0",
     "eslint-config-billyct": "^1.1.0",
-    "jest": "^26.6.3",
+    "jest": "^27.2.1",
     "npm-run-all": "^4.1.5"
   }
 }
