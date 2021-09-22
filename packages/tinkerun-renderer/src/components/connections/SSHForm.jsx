@@ -26,7 +26,7 @@ const SSHForm = () => {
           width='100%'
           height={majorScale(3)}
           name='ssh_server'
-          ref={register}
+          {...register('ssh_server')}
         />
       </Field>
 
@@ -39,7 +39,7 @@ const SSHForm = () => {
           width='100%'
           height={majorScale(3)}
           name='ssh_port'
-          ref={register}
+          {...register('ssh_port')}
         />
       </Field>
 
@@ -51,7 +51,7 @@ const SSHForm = () => {
           height={majorScale(3)}
           placeholder='root'
           name='ssh_user'
-          ref={register}
+          {...register('ssh_user')}
         />
       </Field>
 

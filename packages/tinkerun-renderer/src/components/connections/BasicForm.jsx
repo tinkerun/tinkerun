@@ -16,7 +16,7 @@ const BasicForm = () => {
       <TextInput
         name='id'
         type='hidden'
-        ref={register}
+        {...register('id')}
       />
 
       <Field
@@ -27,7 +27,7 @@ const BasicForm = () => {
           height={majorScale(3)}
           placeholder='Magic'
           name='name'
-          ref={register}
+          {...register('name')}
         />
       </Field>
 
@@ -45,7 +45,7 @@ const BasicForm = () => {
           height={majorScale(3)}
           placeholder='php artisan tinker'
           name='command'
-          ref={register}
+          {...register('command')}
         />
       </Field>
     </>

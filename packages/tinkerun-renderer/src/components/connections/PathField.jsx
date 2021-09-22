@@ -24,7 +24,7 @@ const PathField = () => {
           placeholder='/var/www/html'
           width='100%'
           name='path'
-          ref={register}
+          {...register('path')}
         />
       </Field>
 
