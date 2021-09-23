@@ -135,10 +135,10 @@ ipcMain.on('popupSnippetContextMenu', (event, connectionId, snippetId) => {
   snippetContextMenu(connectionId, snippetId).popup()
 })
 
-ipcMain.on('parsePhpForm', async (event, connectionId, code) => {
-  event.returnValue = await parsePhpForm(connectionId, code)
+ipcMain.handle('parsePhpForm', async (event, connectionId, code) => {
+  return await parsePhpForm(connectionId, code)
 })
 
-ipcMain.on('stringifyPhpForm', async (event, fields) => {
-  event.returnValue = await stringifyPhpForm(fields)
+ipcMain.handle('stringifyPhpForm', async (event, fields) => {
+  return await stringifyPhpForm(fields)
 })

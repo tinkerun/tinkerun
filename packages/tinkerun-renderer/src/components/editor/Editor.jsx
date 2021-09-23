@@ -108,7 +108,7 @@ const Editor = () => {
         }
       }
     }
-  }, [params.id])
+  }, [snippet.id])
 
   useEffect(() => {
     const editor = editorRef.current

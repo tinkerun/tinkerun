@@ -18,7 +18,11 @@ const NoFormFields = ({error}) => {
       {
         error
           ? (
-            <InlineAlert intent="warning" marginBottom={16}>
+            <InlineAlert
+              intent="warning"
+              marginBottom={majorScale(2)}
+              whiteSpace='pre-line'
+            >
               {error}
             </InlineAlert>
             )

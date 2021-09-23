@@ -8,12 +8,16 @@ class BackgroundPty extends Pty {
   }
 
   jsonResult (code) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.input(`${this.jsonEncode(code)}\r`)
 
       let result = ''
       const onData = this.onData(data => {
         result += data
+
+        const timer = setTimeout(() => {
+          reject(new Error('Timeout, try to reconnect!'))
+        }, 5000)
 
         if (result.endsWith('>>> ')) {
           const prefix = escapeRegExp('\u001b[32m')
@@ -23,6 +27,13 @@ class BackgroundPty extends Pty {
           const res = reg.exec(result)
 
           onData.dispose()
+
+          clearTimeout(timer)
+
+          if (!res) {
+            reject(new Error(result))
+            return
+          }
 
           resolve(res[1])
         }
