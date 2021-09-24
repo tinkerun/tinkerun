@@ -3,12 +3,15 @@ const {is} = require('electron-util')
 
 const {createPty} = require('./createPty')
 const {createBackgroundPty} = require('./createBackgroundPty')
+const {createIndexWindow} = require('./createIndexWindow')
 const {
   setEditorWindow,
+  isExistEditorWindow,
   getPtyProcess,
   setPtyProcess,
   getBackgroundPtyProcess,
   setBackgroundPtyProcess,
+  getIndexWindow,
 } = require('./processes')
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')
@@ -40,7 +43,7 @@ const createEditorWindow = async connection => {
     win.show()
   })
 
-  win.on('closed', () => {
+  win.on('closed', async () => {
     setEditorWindow(id, null)
 
     // 清理 pty
@@ -50,6 +53,10 @@ const createEditorWindow = async connection => {
 
       getBackgroundPtyProcess(id).kill()
       setBackgroundPtyProcess(id, null)
+    }
+
+    if (!isExistEditorWindow() && !getIndexWindow()) {
+      await createIndexWindow()
     }
   })
 

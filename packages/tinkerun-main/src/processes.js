@@ -9,6 +9,7 @@ const setIndexWindow = win => indexWindow = win
 
 const getEditorWindow = id => editorWindows[id]
 const setEditorWindow = (id, win) => editorWindows[id] = win
+const isExistEditorWindow = () => Object.values(editorWindows).findIndex(w => w !== null) !== -1
 
 const getPtyProcess = id => ptyProcesses[id]
 const setPtyProcess = (id, process) => ptyProcesses[id] = process
@@ -21,6 +22,7 @@ module.exports = {
   setIndexWindow,
   getEditorWindow,
   setEditorWindow,
+  isExistEditorWindow,
   getPtyProcess,
   setPtyProcess,
   getBackgroundPtyProcess,
