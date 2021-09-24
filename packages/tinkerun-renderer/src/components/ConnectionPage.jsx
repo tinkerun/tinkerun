@@ -9,7 +9,7 @@ import {connectionAtomWithId, updateConnectionAtom} from '../stores/connections'
 
 const ConnectionPage = () => {
   const [, params] = useRoute('/connections/:id')
-  const connection = useAtomValue(connectionAtomWithId(params.id)) || {}
+  const connection = useAtomValue(connectionAtomWithId((params || {}).id)) || {}
   const updateConnection = useUpdateAtom(updateConnectionAtom)
 
   const handleSubmit = data => {
