@@ -11,6 +11,7 @@
     "command": "Command",
     "save": "Save",
     "connect": "Connect",
+    "clone": "Clone",
     "over_ssh": "Over SSH",
     "ssh_server": "Server",
     "ssh_port": "Port",

@@ -1,7 +1,12 @@
 const {Menu, MenuItem} = require('electron')
 
 const {getIntl} = require('./locale')
-const {deleteConnectionConfirm, getConnection, connectConnection} = require('./services/connections')
+const {
+  deleteConnectionConfirm,
+  getConnection,
+  connectConnection,
+  cloneConnection,
+} = require('./services/connections')
 
 const connectionContextMenu = id => {
   const menu = new Menu()
@@ -9,6 +14,11 @@ const connectionContextMenu = id => {
   menu.append(new MenuItem({
     label: getIntl().formatMessage({id: 'connections.connect'}),
     click: () => connectConnection(getConnection(id)),
+  }))
+
+  menu.append(new MenuItem({
+    label: getIntl().formatMessage({id: 'connections.clone'}),
+    click: () => cloneConnection(id),
   }))
 
   menu.append(new MenuItem({

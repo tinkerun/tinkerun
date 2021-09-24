@@ -32,6 +32,13 @@ const deleteConnectionConfirm = id => {
 }
 
 /**
+ * @param {String} id
+ */
+const cloneConnection = id => {
+  getIndexWindow().webContents.send('cloneConnection', getConnection(id))
+}
+
+/**
  * @param {Record<string, any>} connection
  * @returns {Promise<void>}
  */
@@ -109,6 +116,7 @@ module.exports = {
   allConnections,
   deleteConnection,
   deleteConnectionConfirm,
+  cloneConnection,
   createConnection,
   updateConnection,
   getConnection,

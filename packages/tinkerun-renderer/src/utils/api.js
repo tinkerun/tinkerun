@@ -26,6 +26,7 @@ export const onSetConfig = api.onSetConfig
 export const onDeleteConnectionConfirm = api.onDeleteConnectionConfirm
 export const onOutputConnection = api.onOutputConnection
 export const onReconnectConnection = api.onReconnectConnection
+export const onCloneConnection = api.onCloneConnection
 
 export const createSnippet = api.createSnippet
 export const updateSnippet = api.updateSnippet

@@ -69,6 +69,14 @@ contextBridge.exposeInMainWorld('api', {
     }
   },
 
+  onCloneConnection: cb => {
+    const listener = (event, arg) => cb(arg)
+    ipcRenderer.on('cloneConnection', listener)
+    return {
+      dispose: () => ipcRenderer.off('cloneConnection', listener),
+    }
+  },
+
   createSnippet: snippet => ipcRenderer.send('createSnippet', connectionId(), snippet),
   updateSnippet: snippet => ipcRenderer.send('updateSnippet', connectionId(), snippet),
   deleteSnippet: id => ipcRenderer.send('deleteSnippet', connectionId(), id),

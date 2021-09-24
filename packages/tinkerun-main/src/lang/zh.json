@@ -11,6 +11,7 @@
     "command": "命令",
     "save": "保存",
     "connect": "连接",
+    "clone": "复制",
     "over_ssh": "使用 SSH",
     "ssh_server": "服务器",
     "ssh_port": "端口",
