@@ -8,6 +8,7 @@ const config = new Store({
   defaults: {
     locale: allLocales.indexOf(app.getLocale()) >= 0 ? app.getLocale() : 'en',
     command_default: 'php artisan tinker',
+    form_switch: true,
     form_prefix: 'field_',
     theme: 'classic',
     shortcut_run: ['Control', 'r'],

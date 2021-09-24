@@ -3,6 +3,7 @@ import {useAtomValue} from 'jotai/utils'
 
 import GeneralForm from './GeneralForm'
 import ShortcutsForm from './ShortcutsForm'
+import LabForm from './LabForm'
 import {preferenceTabIndexAtom} from '../../stores/preference'
 
 const PreferenceForm = () => {
@@ -11,8 +12,9 @@ const PreferenceForm = () => {
   return (
     <Pane
       padding={majorScale(2)}
-      minHeight='100vh'
+      height='100vh'
       flex={1}
+      overflowY='auto'
     >
       {tabIndex === 0 && (
         <GeneralForm/>
@@ -20,6 +22,10 @@ const PreferenceForm = () => {
 
       {tabIndex === 1 && (
         <ShortcutsForm/>
+      )}
+
+      {tabIndex === 2 && (
+        <LabForm/>
       )}
     </Pane>
   )

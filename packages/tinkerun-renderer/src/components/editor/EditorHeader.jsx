@@ -7,10 +7,12 @@ import SnippetNameInput from './SnippetNameInput'
 import RunButton from './RunButton'
 import FormButton from './FormButton'
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
+import {configAtom} from '../../stores/config'
 
 const EditorHeader = () => {
   const [, params] = useRoute('/snippets/:id/:form?')
 
+  const config = useAtomValue(configAtom)
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
 
@@ -37,7 +39,9 @@ const EditorHeader = () => {
         display='flex'
       >
         <RunButton/>
-        <FormButton/>
+        {config.form_switch && (
+          <FormButton/>
+        )}
       </Pane>
     </Header>
   )

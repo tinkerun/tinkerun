@@ -7,7 +7,7 @@ const ShortcutNewConnectionField = () => {
 
   return (
     <ShortcutField
-      label={intl.formatMessage({id: 'preference.shortcut_new_connection_label'})}
+      label={intl.formatMessage({id: 'preference.shortcut_new_connection'})}
       description={intl.formatMessage({id: 'preference.shortcut_new_connection_description'})}
       configKey='shortcut_new_connection'
     />

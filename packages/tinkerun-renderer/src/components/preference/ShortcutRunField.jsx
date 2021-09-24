@@ -7,7 +7,7 @@ const ShortcutRunField = () => {
 
   return (
     <ShortcutField
-      label={intl.formatMessage({id: 'preference.shortcut_run_label'})}
+      label={intl.formatMessage({id: 'preference.shortcut_run'})}
       description={intl.formatMessage({id: 'preference.shortcut_run_description'})}
       configKey='shortcut_run'
     />
