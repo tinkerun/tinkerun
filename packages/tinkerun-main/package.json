@@ -8,7 +8,7 @@
     "start": "electron ./src/index.js",
     "lint": "eslint ./src",
     "rebuild": "electron-rebuild -f -w node-pty --force-abi=89",
-    "build": "ncc build ./src/index.js -e electron -o build",
+    "build": "node build",
     "test": "jest"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "electron-rebuild": "^3.2.3",
     "eslint": "^7.32.0",
     "eslint-config-billyct": "^1.1.0",
+    "fs-extra": "^10.0.0",
     "jest": "^27.2.1",
     "npm-run-all": "^4.1.5"
   }
