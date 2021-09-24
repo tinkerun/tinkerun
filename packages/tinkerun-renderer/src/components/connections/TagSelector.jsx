@@ -9,7 +9,9 @@ const TagSelector = () => {
       name='tag'
       control={control}
       defaultValue='local'
-      render={({value, onChange}) =>
+      render={({
+        field: {value, onChange},
+      }) =>
         <Select
           height={majorScale(3)}
           value={value}

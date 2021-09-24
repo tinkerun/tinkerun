@@ -13,7 +13,9 @@ const SSHKeyButton = () => {
       name='ssh_key'
       control={control}
       defaultValue={''}
-      render={({value, onChange}) => {
+      render={({
+        field: {value, onChange},
+      }) => {
         return (
           <Pane
             display='flex'

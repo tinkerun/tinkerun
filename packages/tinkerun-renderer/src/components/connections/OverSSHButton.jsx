@@ -10,7 +10,9 @@ const OverSSHButton = props => {
       name='is_over_ssh'
       control={control}
       defaultValue={false}
-      render={({value, onChange}) => (
+      render={({
+        field: {value, onChange},
+      }) => (
         <Button
           height={majorScale(3)}
           onClick={() => onChange(!value)}
