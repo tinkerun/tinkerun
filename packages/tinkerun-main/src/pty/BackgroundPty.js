@@ -20,11 +20,15 @@ class BackgroundPty extends Pty {
         }, 5000)
 
         if (result.endsWith('>>> ')) {
-          const prefix = escapeRegExp('\u001b[32m')
-          const suffix = escapeRegExp('\u001b[39m')
+          let res = /=> "(.+)"/.exec(result)
 
-          const reg = new RegExp(`${prefix}(.+)${suffix}`)
-          const res = reg.exec(result)
+          if (result.indexOf('\u001b[32m') !== -1) {
+            const prefix = escapeRegExp('\u001b[32m')
+            const suffix = escapeRegExp('\u001b[39m')
+
+            const reg = new RegExp(`${prefix}(.+)${suffix}`)
+            res = reg.exec(result)
+          }
 
           onData.dispose()
 
