@@ -62,12 +62,15 @@ const Editor = () => {
   }
 
   const handleEditorKeyDown = editor => {
-    return editor.onKeyDown(e => {
+    return editor.onKeyDown(async e => {
       if (isMatchShortcut(e.browserEvent, config.shortcut_run)) {
         e.preventDefault()
         e.stopPropagation()
-        return editor.getAction('run-php-snippet').run()
+        await editor.getAction('run-php-snippet').run()
+        return false
       }
+
+      return true
     })
   }
 

@@ -19,19 +19,20 @@ const CreateButton = () => {
   useEffect(() => {
     const listener = e => {
       const tagName = e.target.tagName
-
-      if (
-        tagName.isContentEditable ||
+      const isInputField = tagName.isContentEditable ||
         tagName === 'INPUT' ||
         tagName === 'SELECT' ||
         tagName === 'TEXTAREA'
+
+      if (
+        !isInputField &&
+        isMatchShortcut(e, config.shortcut_new_connection)
       ) {
+        handleClick()
         return false
       }
 
-      if (isMatchShortcut(e, config.shortcut_new_connection)) {
-        handleClick()
-      }
+      return true
     }
     document.addEventListener('keydown', listener, false)
 
