@@ -29,10 +29,6 @@ const createIndexWindow = async () => {
 
   await win.loadURL(getEntryUrl(asset))
 
-  if (is.development) {
-    win.webContents.openDevTools()
-  }
-
   win.on('ready-to-show', () => {
     win.show()
   })

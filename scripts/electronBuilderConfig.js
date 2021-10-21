@@ -35,6 +35,7 @@ module.exports = {
     electronLanguages: ['en', 'zh', 'zh-CN'],
     target: [
       'dmg',
+      'zip'
     ],
     extendInfo: {
       CFBundleURLSchemes: 'tinkerun',

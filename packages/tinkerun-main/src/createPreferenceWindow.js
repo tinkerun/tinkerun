@@ -22,10 +22,6 @@ const createPreferenceWindow = () => {
 
   win.loadURL(getEntryUrl('preference.html'))
 
-  if (is.development) {
-    win.webContents.openDevTools()
-  }
-
   win.on('ready-to-show', () => {
     win.show()
   })

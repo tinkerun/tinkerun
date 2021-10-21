@@ -1,24 +1,27 @@
 const {app, Menu, BrowserWindow} = require('electron')
 const {is} = require('electron-util')
-const {autoUpdater} = require('electron-updater')
 const unhandled = require('electron-unhandled')
 const debug = require('electron-debug')
 const contextMenu = require('electron-context-menu')
 
 const {createIndexWindow} = require('./createIndexWindow')
 const {menu, dockMenu} = require('./menu')
+const {checkForUpdates} = require('./updater')
 require('./ipc')
 require('./protocol')
 
-unhandled()
-debug()
+unhandled({
+  showDialog: false
+})
+debug({
+  isEnabled: is.development,
+  devToolsMode: 'undocked',
+})
 contextMenu()
 
-// 目前只有 Mac 的证书
-if (!is.development && is.macos) {
-  const FOUR_HOURS = 1000 * 60 * 60 * 4
-  setInterval(() => autoUpdater.checkForUpdatesAndNotify(), FOUR_HOURS)
-  autoUpdater.checkForUpdatesAndNotify()
+if (!is.development) {
+  setInterval(checkForUpdates, 1000 * 60 * 60 * 4)
+  checkForUpdates()
 }
 
 // Keep a global reference of the window object, if you don't, the window will

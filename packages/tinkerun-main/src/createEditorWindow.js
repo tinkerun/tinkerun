@@ -35,10 +35,6 @@ const createEditorWindow = async connection => {
 
   await win.loadURL(`${getEntryUrl('editor.html')}?id=${id}`)
 
-  if (is.development) {
-    win.webContents.openDevTools()
-  }
-
   win.on('ready-to-show', () => {
     win.show()
   })
