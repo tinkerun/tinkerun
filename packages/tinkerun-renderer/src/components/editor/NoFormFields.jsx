@@ -8,7 +8,7 @@ import {configAtom} from '../../stores/config'
 
 const NoFormFields = ({error}) => {
   const config = useAtomValue(configAtom)
-  const [, params] = useRoute('/snippets/:id/:form?')
+  const [, params] = useRoute('/snippets/:id/:mode')
   const [, setLocation] = useLocation()
   return (
     <Pane
@@ -46,7 +46,7 @@ const NoFormFields = ({error}) => {
       <Button
         iconBefore={CodeIcon}
         height={majorScale(3)}
-        onClick={() => setLocation(`/snippets/${params.id}`)}
+        onClick={() => setLocation(`/snippets/${params.id}/editor`)}
       >
         <FormattedMessage id="editor.form_edit_code"/>
       </Button>

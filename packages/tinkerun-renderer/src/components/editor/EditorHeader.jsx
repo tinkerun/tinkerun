@@ -1,5 +1,5 @@
 import {Pane} from 'evergreen-ui'
-import {useRoute} from 'wouter'
+import PropTypes from 'prop-types'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 
 import Header from '../Header'
@@ -9,9 +9,7 @@ import FormButton from './FormButton'
 import {snippetAtomWithId, updateSnippetAtom} from '../../stores/snippets'
 import {configAtom} from '../../stores/config'
 
-const EditorHeader = () => {
-  const [, params] = useRoute('/snippets/:id/:form?')
-
+const EditorHeader = ({params}) => {
   const config = useAtomValue(configAtom)
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
@@ -45,6 +43,10 @@ const EditorHeader = () => {
       </Pane>
     </Header>
   )
+}
+
+EditorHeader.propTypes = {
+  params: PropTypes.object.isRequired
 }
 
 export default EditorHeader

@@ -1,8 +1,8 @@
 import {useMemo, useEffect, useRef, useCallback} from 'react'
+import PropTypes from 'prop-types'
 import {Pane} from 'evergreen-ui'
 import * as monaco from 'monaco-editor'
 import {useIntl} from 'react-intl'
-import {useRoute} from 'wouter'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 import debounce from 'lodash/debounce'
 
@@ -12,14 +12,13 @@ import {runAtom, sizesAtom} from '../../stores/editor'
 import {configAtom} from '../../stores/config'
 import {isMatchShortcut} from '../../utils/isMatchShortcut'
 
-const Editor = () => {
+const Editor = ({params}) => {
   const domRef = useRef()
   const editorRef = useRef()
   const editorEventsRef = useRef()
   const editorHandleDownEventRef = useRef()
   const intl = useIntl()
 
-  const [, params] = useRoute('/snippets/:id/:form?')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const updateSnippet = useUpdateAtom(updateSnippetAtom)
   const sizes = useAtomValue(sizesAtom)
@@ -33,6 +32,10 @@ const Editor = () => {
 
   // 重置编辑器的事件和代码
   const resetEditor = editor => {
+    if (!snippet) {
+      return
+    }
+
     const {id, code, position} = snippet
     // 设置代码
     editor.setValue(code)
@@ -111,7 +114,7 @@ const Editor = () => {
         }
       }
     }
-  }, [snippet.id])
+  }, [snippet?.id])
 
   useEffect(() => {
     const editor = editorRef.current
@@ -179,6 +182,10 @@ const Editor = () => {
       ref={domRef}
     />
   ), [])
+}
+
+Editor.propTypes = {
+  params: PropTypes.object.isRequired
 }
 
 export default Editor

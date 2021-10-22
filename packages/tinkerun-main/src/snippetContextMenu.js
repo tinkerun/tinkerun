@@ -8,7 +8,6 @@ const snippetContextMenu = (connectionId, snippetId) => {
 
   menu.append(new MenuItem({
     label: getIntl().formatMessage({id: 'delete'}),
-    accelerator: 'Cmd+Delete',
     click: () => deleteSnippetConfirm(connectionId, snippetId),
   }))
 

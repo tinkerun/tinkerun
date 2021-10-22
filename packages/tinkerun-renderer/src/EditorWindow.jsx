@@ -46,14 +46,10 @@ const EditorWindow = () => {
           <Pane
             height='100vh'
           >
-            <Switch>
-              <Route path='/'>
-                <Redirect
-                  to={`/snippets/${snippets[0].id}`}
-                />
-              </Route>
-              <Route path='/snippets/:id/:form?' component={EditorPage}/>
-            </Switch>
+            <Route path='/'>
+              <Redirect to={`/snippets/${snippets[0].id}/editor`}/>
+            </Route>
+            <EditorPage/>
           </Pane>
 
           <Pane

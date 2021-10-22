@@ -1,5 +1,5 @@
 import {useMemo} from 'react'
-import {useRoute} from 'wouter'
+import PropTypes from 'prop-types'
 import {majorScale, Pane} from 'evergreen-ui'
 import {useAtomValue, useUpdateAtom} from 'jotai/utils'
 
@@ -7,9 +7,8 @@ import ConnectionFormProvider from './connections/ConnectionFormProvider'
 import ConnectionForm from './connections/ConnectionForm'
 import {connectionAtomWithId, updateConnectionAtom} from '../stores/connections'
 
-const ConnectionPage = () => {
-  const [, params] = useRoute('/connections/:id')
-  const connection = useAtomValue(connectionAtomWithId((params || {}).id)) || {}
+const ConnectionPage = ({params}) => {
+  const connection = useAtomValue(connectionAtomWithId(params.id))
   const updateConnection = useUpdateAtom(updateConnectionAtom)
 
   const handleSubmit = data => {
@@ -27,7 +26,11 @@ const ConnectionPage = () => {
         <ConnectionForm onSubmit={handleSubmit}/>
       </ConnectionFormProvider>
     </Pane>
-  ), [connection.id])
+  ), [connection?.id])
+}
+
+ConnectionPage.propTypes = {
+  params: PropTypes.object.isRequired
 }
 
 export default ConnectionPage

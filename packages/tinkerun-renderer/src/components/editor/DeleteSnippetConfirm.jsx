@@ -11,7 +11,7 @@ const DeleteSnippetConfirm = () => {
   const [isShow, setIsShow] = useState(false)
   const [snippet, setSnippet] = useState({})
   const intl = useIntl()
-  const [match, params] = useRoute('/snippets/:id')
+  const [, params] = useRoute('/snippets/:id/:mode')
   const [, setLocation] = useLocation()
   const deleteSnippet = useUpdateAtom(deleteSnippetAtom)
 
@@ -20,7 +20,7 @@ const DeleteSnippetConfirm = () => {
       deleteSnippet(snippet.id)
 
       // 如果删除的 connection 和当前页面的 connection 相同则返回首页
-      if (match && params.id === snippet.id) {
+      if (params.id === snippet.id) {
         setLocation('/')
       }
     }

@@ -12,7 +12,7 @@ import {runAtom} from '../../stores/editor'
 import {parsePhpForm, stringifyPhpForm} from '../../utils/api'
 
 const Form = () => {
-  const [, params] = useRoute('/snippets/:id/:form?')
+  const [, params] = useRoute('/snippets/:id/:mode')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
   const [fields, setFields] = useState([])

@@ -18,7 +18,7 @@ const CreateSnippetButton = () => {
 
     createSnippet(snippet)
 
-    setLocation(`/snippets/${snippet.id}`)
+    setLocation(`/snippets/${snippet.id}/editor`)
   }
 
   return (

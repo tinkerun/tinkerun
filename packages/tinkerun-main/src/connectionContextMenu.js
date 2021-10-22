@@ -27,7 +27,6 @@ const connectionContextMenu = id => {
 
   menu.append(new MenuItem({
     label: getIntl().formatMessage({id: 'delete'}),
-    accelerator: 'Cmd+Delete',
     click: () => deleteConnectionConfirm(id),
   }))
 

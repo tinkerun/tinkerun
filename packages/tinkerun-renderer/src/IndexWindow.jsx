@@ -1,4 +1,4 @@
-import {Route, Switch} from 'wouter'
+import {Route, Switch, Redirect} from 'wouter'
 import {Pane} from 'evergreen-ui'
 import Split from 'react-split'
 
@@ -29,7 +29,10 @@ const IndexWindow = () => {
           height='100vh'
         >
           <Switch>
-            <Route path='/' component={Inspire}/>
+            <Route path='/'>
+              <Redirect to='/inspire'/>
+            </Route>
+            <Route path='/inspire' component={Inspire}/>
             <Route path='/connections/:id' component={ConnectionPage}/>
           </Switch>
         </Pane>

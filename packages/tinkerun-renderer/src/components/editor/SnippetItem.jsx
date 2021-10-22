@@ -7,11 +7,11 @@ import {popupSnippetContextMenu} from '../../utils/api'
 const {Row, TextCell} = Table
 
 const SnippetItem = ({snippet}) => {
-  const [match, params] = useRoute('/snippets/:id')
+  const [match, params] = useRoute('/snippets/:id/:mode')
   const [, setLocation] = useLocation()
 
   const handleSelect = () => {
-    setLocation(`/snippets/${snippet.id}`)
+    setLocation(`/snippets/${snippet.id}/editor`)
   }
 
   const handleContextMenu = () => {

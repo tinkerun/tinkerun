@@ -7,12 +7,12 @@ import Tooltip from '../Tooltip'
 const FormButton = () => {
   const intl = useIntl()
   const [, setLocation] = useLocation()
-  const [, params] = useRoute('/snippets/:id/:form?')
-  const [matchFormRoute] = useRoute('/snippets/:id/form')
+  const [, params] = useRoute('/snippets/:id/:mode')
+  const isFormMode = params.mode === 'form'
 
   const handleClick = () => {
-    if (matchFormRoute) {
-      setLocation(`/snippets/${params.id}`)
+    if (isFormMode) {
+      setLocation(`/snippets/${params.id}/editor`)
       return
     }
 
@@ -29,7 +29,7 @@ const FormButton = () => {
         borderRadius='50%'
         marginLeft={majorScale(1)}
         onClick={handleClick}
-        isActive={matchFormRoute}
+        isActive={isFormMode}
       />
     </Tooltip>
   )

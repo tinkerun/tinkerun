@@ -10,7 +10,7 @@ import {snippetAtomWithId} from '../../stores/snippets'
 import {runAtom} from '../../stores/editor'
 
 const RunButton = () => {
-  const [, params] = useRoute('/snippets/:id/:form?')
+  const [, params] = useRoute('/snippets/:id/:mode')
   const [matchFormRoute] = useRoute('/snippets/:id/form')
   const snippet = useAtomValue(snippetAtomWithId(params.id))
   const run = useUpdateAtom(runAtom)
