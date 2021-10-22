@@ -10,7 +10,7 @@ class DynamicPhpForm {
   /**
    * @param {PHPForm} phpForm
    */
-  constructor (phpForm) {
+  constructor(phpForm) {
     this.phpForm = phpForm
   }
 
@@ -19,7 +19,7 @@ class DynamicPhpForm {
    * @param {string} code
    * @return {Promise<PHPFormField[]>}
    */
-  async parse (connectionId, code) {
+  async parse(connectionId, code) {
     const fields = await this.phpForm.parse(code)
 
     for (let i = 0; i < fields.length; i++) {
@@ -43,7 +43,7 @@ class DynamicPhpForm {
    * @param {string} jsonString
    * @return {any}
    */
-  parseJsonResult (jsonString) {
+  parseJsonResult(jsonString) {
     try {
       let res = JSON.parse(jsonString)
       if (isString(res)) {
@@ -60,14 +60,14 @@ class DynamicPhpForm {
    * @param {PHPFormField[]} fields
    * @return {Promise<string>}
    */
-  stringify (fields) {
+  stringify(fields) {
     return this.phpForm.stringify(fields)
   }
 
   /**
    * @return {Promise<DynamicPhpForm>}
    */
-  static async instance () {
+  static async instance() {
     if (!DynamicPhpForm.dynamicPhpForm) {
       const phpForm = await instance(getFormPrefix())
       DynamicPhpForm.dynamicPhpForm = new DynamicPhpForm(phpForm)

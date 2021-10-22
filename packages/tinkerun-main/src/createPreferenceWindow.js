@@ -1,5 +1,4 @@
 const {BrowserWindow} = require('electron')
-const {is} = require('electron-util')
 
 const {getEntryUrl, getPreloadEntryUrl} = require('./utils/entryUrl')
 const {appName} = require('./constants')

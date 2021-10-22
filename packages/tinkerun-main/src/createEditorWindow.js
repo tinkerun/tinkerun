@@ -1,5 +1,4 @@
 const {BrowserWindow} = require('electron')
-const {is} = require('electron-util')
 
 const {createPty} = require('./createPty')
 const {createBackgroundPty} = require('./createBackgroundPty')

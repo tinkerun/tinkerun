@@ -9,7 +9,7 @@ const {config} = require('../database/config')
 const {parseSSHCommand} = require('../utils/parseSSHCommand')
 
 class Pty {
-  constructor (connection) {
+  constructor(connection) {
     this.connection = connection
     this.pty = null
   }
@@ -17,7 +17,7 @@ class Pty {
   /**
    * 初始化 connection pty 进程
    */
-  connect () {
+  connect() {
     const shell = defaultShell
     const args = [
       '--login',
@@ -66,26 +66,26 @@ class Pty {
   /**
    * 重连
    */
-  reconnect () {
+  reconnect() {
     this.kill()
     this.connect()
   }
 
-  onData (cb) {
+  onData(cb) {
     return this.pty.onData(cb)
   }
 
   /**
    * @param {Function} cb
    */
-  onExit (cb) {
+  onExit(cb) {
     this.pty.onExit(cb)
   }
 
   /**
    * 清理
    */
-  kill () {
+  kill() {
     this.pty.kill()
     this.pty = null
   }
@@ -95,14 +95,14 @@ class Pty {
    *
    * @param {String} code
    */
-  input (code) {
+  input(code) {
     this.pty.write(code)
   }
 
   /**
    * terminal 清空当前行
    */
-  clearLine () {
+  clearLine() {
     if (!is.windows) {
       // 执行 ctrl+u
       this.pty.write('\x15')

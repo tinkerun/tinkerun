@@ -3,11 +3,11 @@ const escapeRegExp = require('lodash/escapeRegExp')
 const {Pty} = require('./Pty')
 
 class BackgroundPty extends Pty {
-  jsonEncode (code) {
+  jsonEncode(code) {
     return `json_encode((${code})())`
   }
 
-  jsonResult (code) {
+  jsonResult(code) {
     return new Promise((resolve, reject) => {
       this.input(`${this.jsonEncode(code)}\r`)
 

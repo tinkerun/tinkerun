@@ -11,7 +11,7 @@ require('./ipc')
 require('./protocol')
 
 unhandled({
-  showDialog: false
+  showDialog: false,
 })
 debug({
   isEnabled: is.development,

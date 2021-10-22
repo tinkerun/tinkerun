@@ -28,7 +28,7 @@ const helpSubmenu = [
   }),
   {
     label: getIntl().formatMessage({id: 'menu.report_an_issue'}),
-    click () {
+    click() {
       const body = `
 <!-- Please succinctly describe your issue and steps to reproduce it. -->
 
@@ -49,13 +49,13 @@ ${debugInfo()}`
 const debugSubmenu = [
   {
     label: getIntl().formatMessage({id: 'menu.show_settings'}),
-    click () {
+    click() {
       config.openInEditor()
     },
   },
   {
     label: getIntl().formatMessage({id: 'menu.show_app_data'}),
-    click () {
+    click() {
       return shell.openPath(app.getPath('userData'))
     },
   },
@@ -64,7 +64,7 @@ const debugSubmenu = [
   },
   {
     label: getIntl().formatMessage({id: 'menu.delete_settings'}),
-    click () {
+    click() {
       config.clear()
       app.relaunch()
       app.quit()
@@ -72,7 +72,7 @@ const debugSubmenu = [
   },
   {
     label: getIntl().formatMessage({id: 'menu.delete_app_data'}),
-    click () {
+    click() {
       shell.moveItemToTrash(app.getPath('userData'))
       app.relaunch()
       app.quit()
@@ -85,7 +85,7 @@ const macosTemplate = [
     {
       label: getIntl().formatMessage({id: 'menu.preferences'}),
       accelerator: 'Command+,',
-      click () {
+      click() {
         showPreferences()
       },
     },
@@ -121,7 +121,7 @@ const otherTemplate = [
       {
         label: getIntl().formatMessage({id: 'menu.settings'}),
         accelerator: 'Control+,',
-        click () {
+        click() {
           showPreferences()
         },
       },
@@ -159,7 +159,7 @@ const menu = Menu.buildFromTemplate(template)
 const dockMenu = Menu.buildFromTemplate([
   {
     label: getIntl().formatMessage({id: 'menu.show_connections'}),
-    async click () {
+    async click() {
       if (!getIndexWindow()) {
         await createIndexWindow()
       }

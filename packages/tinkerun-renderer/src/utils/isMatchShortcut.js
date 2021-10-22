@@ -5,7 +5,7 @@
  * @param {[]} shortcuts
  * @return {boolean}
  */
-export function isMatchShortcut (event, shortcuts) {
+export function isMatchShortcut(event, shortcuts) {
   return shortcuts.reduce((res, value) => {
     if (value === 'Control') {
       return event.ctrlKey && res
