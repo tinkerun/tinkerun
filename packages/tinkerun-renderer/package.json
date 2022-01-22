@@ -17,7 +17,7 @@
     "jotai": "^1.4.0",
     "lodash": "^4.17.21",
     "monaco-editor": "0.29.1",
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.1.31",
     "path-to-regexp": "^6.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
