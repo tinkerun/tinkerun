@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
-    "electron": "^15.3.0",
+    "electron": "^15.3.5",
     "electron-rebuild": "^3.2.3",
     "eslint": "^8.0.1",
     "eslint-config-billyct": "^1.2.0",
