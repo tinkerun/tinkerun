@@ -2368,9 +2368,9 @@ electron-publish@22.14.5:
     mime "^2.5.2"
 
 electron@^15.3.0:
-  version "15.3.0"
-  resolved "https://registry.npmmirror.com/electron/download/electron-15.3.0.tgz#f9803c5a05b2dac12efc6d4203492c7e204b4819"
-  integrity sha1-+YA8WgWy2sEu/G1CA0ksfiBLSBk=
+  version "15.5.5"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-15.5.5.tgz#796b7822bfb2b045b504e40657674f2869361681"
+  integrity sha512-cGS1ueek14WLvLJlJbId3fmqJLvkr7VuBI0hHt6gpKaj8m2iv/NMteRg0deLgwlxjEF6ZGGNerUJW6a96rNq/Q==
   dependencies:
     "@electron/get" "^1.13.0"
     "@types/node" "^14.6.2"
