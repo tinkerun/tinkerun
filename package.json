@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@octokit/rest": "^18.12.0",
-    "electron": "^15.3.0",
+    "electron": "^18.3.7",
     "electron-builder": "^22.14.2",
     "electron-builder-squirrel-windows": "^22.14.5",
     "fast-glob": "^3.2.7",
